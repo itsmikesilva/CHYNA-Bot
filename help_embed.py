@@ -141,7 +141,9 @@ def tournament_results_page_embed():
 
 def call_command_help_embed(message):
 
-    if message == "!sp" or message == "!setprofile" or message == 1:
+    if message == "!m" or message == "!manual" or message == 0:
+        return 1
+    elif message == "!sp" or message == "!setprofile" or message == 1:
         embed = create_profile_embed()
     elif message == "!t" or message == "!thumbnail" or message == 2:
         embed = thumbnail_page_embed()
@@ -180,8 +182,8 @@ def call_command_help_embed(message):
 
 def show_commands_embed():
 
-    commands_string_1 = "1- !sp ou !setprofile\n2- !t ou !thumbnail\n3- !ss ou !setsubs\n4- !rs ou !removesubs\n5- !mr ou !maxrank\n6- !d ou !description\n7- !sm ou !setsocial\n8- !rm ou!removesocial\n9- !se ou !setesports\n10- !re ou !removeesports"
-    commands_string_2 = "11- !cn ou! changename\n12- !p ou !profile\n13- !tr ou !results\n14- !rr ou !removeresults\n15- !er ou !editresults\n16- !pr ou !pickresults"
+    commands_string_1 = "0- !m ou !manual\n1- !sp ou !setprofile\n2- !t ou !thumbnail\n3- !ss ou !setsubs\n4- !rs ou !removesubs\n5- !mr ou !maxrank\n6- !d ou !description\n7- !sm ou !setsocial\n8- !rm ou!removesocial\n9- !se ou !setesports"
+    commands_string_2 = "10- !re ou !removeesports\n11- !cn ou! changename\n12- !p ou !profile\n13- !tr ou !results\n14- !rr ou !removeresults\n15- !er ou !editresults\n16- !pr ou !pickresults"
     embed1 = discord.Embed(title="LISTA DE COMANDOS")
     embed1.set_author(name="CHYNA", icon_url="https://cdn.discordapp.com/avatars/808866968416813076/cc650ce022895166abf57e35f4454bc0.webp?size=128")
     embed1.add_field(name="Escolhe o número do command para obter informação sobre ele:", value=commands_string_1)
