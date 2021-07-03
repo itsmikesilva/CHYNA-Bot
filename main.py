@@ -1,6 +1,6 @@
 import discord
 import profile_embeds
-import wishlists
+#import wishlists
 import hall_of_fame
 import help_embed
 from reactionmenu import ReactionMenu, Button, ButtonType
@@ -280,15 +280,34 @@ async def set_vods(ctx):
     check_vod_success = profile_embeds.add_vods(vod_link, discord_user_id)
 
 #ADMINISTRATOR COMMANDS ----------//-------------//----------------//-------------//-------------//-------------//------------
-#Command para HOF Discórdias Embed
-@client.command(name="hofdiscordias", aliases=["hd"])
+#Command para Discórdias Embed
+@client.command(name="discordias")
 async def hof_discordias(ctx):
-    hof_discordias_embed1, hof_discordias_embed2 = hall_of_fame.hall_of_fame_discordias_embed()
+    discordias = hall_of_fame.hall_of_fame_discordias_embed()
     menu = ReactionMenu(ctx, back_button='⬅️', next_button='➡️', config=ReactionMenu.STATIC, style="$/&")
-    menu.add_page(hof_discordias_embed1)
-    menu.add_page(hof_discordias_embed2)
+    for item in discordias:
+        menu.add_page(item)
     await menu.start()
 
+#Command para outros online tournaments embed
+@client.command(name="onlines")
+async def hof_online_tournaments(ctx):
+    online_tours = hall_of_fame.hall_of_fame_onlines_embed()
+    menu = ReactionMenu(ctx, back_button='⬅️', next_button='➡️', config=ReactionMenu.STATIC, style="$/&")
+    for item in online_tours:
+        menu.add_page(item)
+    await menu.start()
+
+#Command para offline tournaments embed
+@client.command(name="offlines")
+async def hof_offline_tournaments(ctx):
+    offline_tours = hall_of_fame.hall_of_fame_offlines_embed()
+    menu = ReactionMenu(ctx, back_button='⬅️', next_button='➡️', config=ReactionMenu.STATIC, style="$/&")
+    for item in offline_tours:
+        menu.add_page(item)
+    await menu.start()
+
+#Command para exhibitions embed -> !exhibitions
 
 #VALENTINE'S DAY STUFF
 @client.command()

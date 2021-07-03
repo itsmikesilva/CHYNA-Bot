@@ -41,38 +41,76 @@
         ]
     },
 
-    "onlines": [
-        "🥇 Jondesu                                       Deathphist League #1 PS4 (03/02/18)",
-        "🥇 Coxo                                          Deathphist League #1 PC (11/03/18)",
-        "🥇 Jondesu                                       Easter Wind Tuga Fist 2018 PC (08/04/18)",
-        "🥇 SC_Yin                                        Easter Wind Tuga Fist 2018 PS4 (15/04/18)",
-        "🥇 Jondesu                                       Comunidade Gamer Portuguesa Tekken 7 (16/12/18)",
-        "🥇 JFSL                                          Deathphist League #2 PC (17/02/19)",
-        "🥇 ChiefJ                                        Deathphist League #2 PS4 (02/03/19)"
+    "onlines": {
+       "winners":[
+            "🥇 Jondesu",
+            "🥇 Coxo",
+            "🥇 Jondesu",
+            "🥇 SC_Yin",
+            "🥇 Jondesu",
+            "🥇 JFSL",
+            "🥇 ChiefJ"
     ],
+        "tournaments": [
+            "Deathphist League #1 PS4 🇵🇹",
+            "Deathphist League #1 PC 🇵🇹",
+            "Easter Wind Tuga Fist 2018 PC 🇵🇹",
+            "Easter Wind Tuga Fist 2018 PS4 🇵🇹",
+            "Comunidade Gamer Portuguesa Tekken 7 🇵🇹",
+            "Deathphist League #2 PC 🇵🇹",
+            "Deathphist League #2 PS4 🇵🇹"
+            ]
+        },
+    
+    "offlines": {
+        "winners": [
+            "🏆 Jondesu",
+            "🏆 Cris",
+            "🏆 Jondesu",
+            "🏆 Jondesu",
+            "🏆 Jondesu",
+            "🏆 Seifer",
+            "🏆 Coxo",
+            "🏆 JFSL",
+            "🏆 Cris",
+            "🏆 Coxo",
+            "🏆 Coxo",
+            "🏆 Coxo",
+            "🏆 Jondesu",
+            "🏆 Cris",
+            "🏆 Jondesu",
+            "🏆 Coxo",
+            "🏆 MIKE SILVA",
+            "🏆 Jondesu",
+            "🏆 MIKE SILVA",
+            "🏆 Seifer",
+            "🏆 MIKE SILVA"
+        ],
 
-    "offlines": [
-        "🏆 Jondesu                                       Lutinhas em Lisboa #5 (17/06/17)",
-        "🏆 Cris                                          tab#11 (08 & 09/07/17)",
-        "🏆 Jondesu                                       Road to Lockdown (19/08/17)",
-        "🏆 Jondesu                                       Lockdown 2017 (16 & 17/09/17)",
-        "🏆 Jondesu                                       Last Chance Qualifier (25/11/17)",
-        "🏆 Seifer                                        Lutinhas em Lisboa #6 (24/03/17)",
-        "🏆 Coxo                                          Super Combo #2 (19/05/18)",
-        "🏆 JFSL                                          Lutinhas em Lisboa #7 (28/07/18)",
-        "🏆 Cris                                          Lockdown 2018 (15 & 16/09/18)",
-        "🏆 Coxo                                          Braga Fight Fest #1 (20/10/18)",
-        "🏆 Coxo                                          Super Combo #3 (17/11/18)",
-        "🏆 Coxo                                          Finais Liga PTFighters 2018 (08/12/18)",
-        "🏆 Jondesu                                       Hold The L #1 (19/01/19)",
-        "🏆 Cris                                          Stone Fist #1 (23/03/19)",
-        "🏆 Jondesu                                       Lutinhas em Lisboa #8 (25/05/19)",
-        "🏆 Coxo                                          Super Combo #4 (10/08/19)",
-        "🏆 MIKE SILVA                                    Lutinhas em Lisboa #9 (19/10/19)",
-        "🏆 Jondesu                                       Stone Fist #2 (16/11/19)",
-        "🏆 MIKE SILVA                                    IeSF World Championship Qualifier 2019 (26/10/19)",
-        "🏆 Seifer                                        Finais Liga PTFighters 2019 (07/12/19)",
-        "🏆 MIKE SILVA                                    Northern Cross #1 (15/02/20)"
+    "tournaments":[
+            "Lutinhas em Lisboa #5 🇵🇹",
+            "tab#11 🇵🇹",
+            "Road to Lockdown 🇵🇹",
+            "Lockdown 2017 🇵🇹",
+            "Last Chance Qualifier 🇵🇹",
+            "Lutinhas em Lisboa #6 🇵🇹",
+            "Super Combo #2 🇵🇹",
+            "Lutinhas em Lisboa #7 🇵🇹",
+            "Lockdown 2018 🇵🇹",
+            "Braga Fight Fest #1 🇵🇹",
+            "Super Combo #3 🇵🇹",
+            "Finais Liga PTFighters 2018 🇵🇹",
+            "Hold The L #1 🇵🇹",
+            "Stone Fist #1 🇵🇹",
+            "Lutinhas em Lisboa #8 🇵🇹",
+            "Super Combo #4 🇵🇹",
+            "Lutinhas em Lisboa #9 🇵🇹",
+            "Stone Fist #2 🇵🇹",
+            "IeSF World Championship Qualifier 2019 🇵🇹",
+            "Finais Liga PTFighters 2019 🇵🇹",
+            "Northern Cross #1 🇵🇹"
     ]
+
+    }
 }
 

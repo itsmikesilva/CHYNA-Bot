@@ -1,5 +1,6 @@
 import json
 import discord
+import random
 
 hall_of_fame_onlines = {}
 hall_of_fame_offlines = {}
@@ -9,45 +10,121 @@ with open('HOF.json','r',encoding='utf8') as f:
     hof = json.load(f)
     discordias_winners = hof["discordias"]["winners"]
     discordias = hof["discordias"]["tournaments"]
-    hall_of_fame_onlines = hof["onlines"]
-    hall_of_fame_offlines = hof["offlines"]
+    onlines_winners = hof["onlines"]["winners"]
+    onlines_tournaments = hof["onlines"]["tournaments"]
+    offline_winners = hof["offlines"]["winners"]
+    offline_tournaments = hof["offlines"]["tournaments"]
     #hall_of_fame_exhibitions = hof["exhibitions"]
 
 def hall_of_fame_discordias_embed():
 
-    final_first_half_discordias = ""
-    final_second_half_discordias = ""
-    final_first_half_winners = ""
-    final_second_half_winners = ""
-    first_half_discordias = []
-    first_half_winners = []
-    second_half_discordias = []
-    second_half_winners = []
+    with open('tekken_icons.json', 'r', encoding='utf8') as f:
+        tekken_icons = json.load(f)
+        icons_list = list(tekken_icons.keys())
 
-    first_half_discordias = discordias[:len(discordias)//2]
-    first_half_winners = discordias_winners[:len(discordias_winners)//2]
-    second_half_discordias = discordias[len(discordias)//2:]
-    second_half_winners = discordias_winners[len(discordias_winners)//2:]
+        count = 0
+        embed_array = []
+        embed = discord.Embed(title="HALL OF FAME - DISCÓRDIA LUSITANA/IBÉRICA")
+        embed_content_w = ""
+        embed_content_t = ""
+        for item in range(len(discordias)):
+            winner = discordias_winners[item]
+            tournament = discordias[item]
+            embed_content_w = embed_content_w + winner + "\n"
+            embed_content_t = embed_content_t + tournament + "\n"
+            count += 1
+            if count == 10:
+                thumb = random.choice(icons_list)
+                embed.set_thumbnail(url=tekken_icons[thumb])
+                embed.add_field(name="Vencedores", value=embed_content_w)
+                embed.add_field(name="Torneios", value=embed_content_t)
+                embed_array.append(embed)
+                embed_content_w = ""
+                embed_content_t = ""
+                embed = discord.Embed(title="HALL OF FAME - DISCÓRDIA LUSITANA/IBÉRICA")
+                count = 0
+        
+        thumb = random.choice(icons_list)
+        embed.set_thumbnail(url=tekken_icons[thumb])
+        embed.add_field(name="Vencedores", value=embed_content_w)
+        embed.add_field(name="Torneios", value=embed_content_t)
+        embed_array.append(embed)
+        
 
-    for item in first_half_discordias:
-        final_first_half_discordias = final_first_half_discordias + item + "\n"
+        return embed_array
 
-    for item in first_half_winners:
-        final_first_half_winners = final_first_half_winners + item + "\n"
+def hall_of_fame_onlines_embed():
 
-    for item in second_half_discordias:
-        final_second_half_discordias = final_second_half_discordias + item + "\n"
+    with open('tekken_icons.json', 'r', encoding='utf8') as f:
+        tekken_icons = json.load(f)
+        icons_list = list(tekken_icons.keys())
 
-    for item in second_half_winners:
-        final_second_half_winners = final_second_half_winners + item + "\n"
+        count = 0
+        embed_array = []
+        embed = discord.Embed(title="HALL OF FAME - OUTROS TORNEIOS ONLINE")
+        embed_content_w = ""
+        embed_content_t = ""
+        for item in range(len(onlines_tournaments)):
+            winner = onlines_winners[item]
+            tournament = onlines_tournaments[item]
+            embed_content_w = embed_content_w + winner + "\n"
+            embed_content_t = embed_content_t + tournament + "\n"
+            count += 1
+            if count == 10:
+                thumb = random.choice(icons_list)
+                embed.set_thumbnail(url=tekken_icons[thumb])
+                embed.add_field(name="Vencedores", value=embed_content_w)
+                embed.add_field(name="Torneios", value=embed_content_t)
+                embed_array.append(embed)
+                embed_content_w = ""
+                embed_content_t = ""
+                embed = discord.Embed(title="HALL OF FAME - OUTROS TORNEIOS ONLINE")
+                count = 0
+        
+        thumb = random.choice(icons_list)
+        embed.set_thumbnail(url=tekken_icons[thumb])
+        embed.add_field(name="Vencedores", value=embed_content_w)
+        embed.add_field(name="Torneios", value=embed_content_t)
+        embed_array.append(embed)
+        
 
-    embed1 = discord.Embed(title="HALL OF FAME - DISCÓRDIA LUSITANA/IBÉRICA")
-    embed1.set_thumbnail(url="https://cdn.discordapp.com/attachments/854306255043428392/854306375156498453/C_ASK.png")
-    embed1.add_field(name="Winners:", value=final_first_half_winners)
-    embed1.add_field(name="Tournaments", value=final_first_half_discordias)
+        return embed_array
 
-    embed2 = discord.Embed(title="HALL OF FAME - DISCÓRDIA LUSITANA/IBÉRICA")
-    embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/854306255043428392/854306376356462613/C_BOB.png")
-    embed2.add_field(name="Winners:", value=final_second_half_winners)
-    embed2.add_field(name="Tournaments", value=final_second_half_discordias)
-    return embed1, embed2
+def hall_of_fame_offlines_embed():
+
+    with open('tekken_icons.json', 'r', encoding='utf8') as f:
+        tekken_icons = json.load(f)
+        icons_list = list(tekken_icons.keys())
+
+        count = 0
+        embed_array = []
+        embed = discord.Embed(title="HALL OF FAME - TORNEIOS OFFLINE")
+        embed_content_w = ""
+        embed_content_t = ""
+        for item in range(len(offline_tournaments)):
+            winner = offline_winners[item]
+            tournament = offline_tournaments[item]
+            embed_content_w = embed_content_w + winner + "\n"
+            embed_content_t = embed_content_t + tournament + "\n"
+            count += 1
+            if count == 10:
+                thumb = random.choice(icons_list)
+                embed.set_thumbnail(url=tekken_icons[thumb])
+                embed.add_field(name="Vencedores", value=embed_content_w)
+                embed.add_field(name="Torneios", value=embed_content_t)
+                embed_array.append(embed)
+                embed_content_w = ""
+                embed_content_t = ""
+                embed = discord.Embed(title="HALL OF FAME - TORNEIOS OFFLINE")
+                count = 0
+        
+        thumb = random.choice(icons_list)
+        embed.set_thumbnail(url=tekken_icons[thumb])
+        embed.add_field(name="Vencedores", value=embed_content_w)
+        embed.add_field(name="Torneios", value=embed_content_t)
+        embed_array.append(embed)
+        
+
+        return embed_array
+
+#def hall_of_fame_exhibitions():
