@@ -1,0 +1,45 @@
+{
+    "220318176792150018": {
+        "user_id": 220318176792150018,
+        "player_name": "MIKE SILVA",
+        "thumbnail": "https://cdn.discordapp.com/attachments/808872661920514050/853403476180729856/C_ANN.png",
+        "max_rank": "TRUE TEKKEN GOD",
+        "main_character": "Anna",
+        "social_media": [
+            "https://twitter.com/itsmikeysilva",
+            "https://www.twitch.tv/mikesilva",
+            "https://www.youtube.com/channel/UC1wKU36QhO-_jrgGNblIOUg"
+        ],
+        "description": "Verdade a verdadeira forsa vem de quem nos quer derrobar pois eu sou do contra quem me quer derrobar e derrotado por ele mesmo pois a mim n\u00e3o consegue gosto de olhar nos olhos e dizer estas a vontade pois n\u00e3o vais conseguir",
+        "accolades": [
+            "Competed in Seoul, South Korea at IeSF World Championship 2019",
+            "1st place: Lutinhas em Lisboa #9 (TWT DOJO)",
+            "1st place: Northern Cross #1",
+            "5th place: Lutinhas em Lisboa #8 (TWT DOJO)",
+            "2nd place: Braga Fight Fest",
+            "1st place: IeSF World Championship Qualifier Portugal 2019",
+            "5th place: Lutinhas em Lisboa #6",
+            "Debut at Lutinhas em Lisboa"
+        ],
+        "sub_characters": [
+            "Lili",
+            "Nina",
+            "Kunimitsu"
+        ]
+    },
+    "135895383686512640": {
+        "player_name": "Project Hawke",
+        "user_id": 135895383686512640,
+        "thumbnail": "https://cdn.discordapp.com/attachments/854306255043428392/854306548007174144/C_ITA.png",
+        "max_rank": "BRAWLER",
+        "main_character": "Claudio",
+        "social_media": [
+            "https://github.com/ProjectLinus/"
+        ],
+        "sub_characters": [
+            "Nina",
+            "Anna",
+            "Josie"
+        ]
+    }
+}
