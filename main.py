@@ -5,6 +5,7 @@ import hall_of_fame
 import help_embed
 from reactionmenu import ReactionMenu, Button, ButtonType
 from discord.ext import commands
+import token_chyna
 
 client = commands.Bot(command_prefix = "!")
 client.remove_command("help")
@@ -340,4 +341,4 @@ async def wishlistremove(ctx):
     elif (ctx.message.author.id == 220318176792150018):
         wishlists.remove_from_wishlist_mike(ix)
 
-client.run("ODA4ODY2OTY4NDE2ODEzMDc2.YCMyEQ.CFFKe6fukigl7yp0QKyGEDpn7zg")
+client.run(token_chyna.token_chyna)
