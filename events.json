@@ -1,211 +1,405 @@
 {
-    "lutinhas_lisboa_5": {
+    "Lutinhas em Lisboa #5": {
         "name": "Lutinhas em Lisboa #5",
+        "aliases": [
+            "LUTINHAS EM LISBOA #5",
+            "LEL #5",
+            "LUTINHAS #5"
+        ],
         "date": "17 de Junho de 2017",
         "brackets": "[Challonge](https://challonge.com/pt/lel5tk7)",
         "vod": "[VOD de Lutinhas em Lisboa #5](https://www.youtube.com/watch?v=UZjUxCL0z5E)",
         "poster": "https://scontent.fopo3-1.fna.fbcdn.net/v/t31.18172-8/s960x960/18922539_1558875477479746_1963526596694731062_o.jpg?_nc_cat=106&ccb=1-3&_nc_sid=340051&_nc_ohc=fUcR9Xvt9JYAX9-M3J_&_nc_ht=scontent.fopo3-1.fna&tp=7&oh=eddeb8d99d114c34a26de9066662e843&oe=60E4B885",
-        "location": "1UP Gaming Lounge, Parque das Nações",
+        "location": "1UP Gaming Lounge, Parque das Na\u00e7\u00f5es",
+        "winner": "Jondesu",
+        "top_3": [
+            "Ocelot/Seifer",
+            "Galin\u00e1cio"
+        ],
         "organizers": "PTFighters"
     },
-
-    "tab#11": {
-        "name": "Tripeiros à Bulha #11",
+    "Tripeiros \u00e0 Bulha #11": {
+        "name": "Tripeiros \u00e0 Bulha #11",
         "date": "8 e 9 de Outubro de 2017",
+        "aliases": [
+            "TRIPEIROS \u00c0 BULHA #11",
+            "TAB#11"
+        ],
         "brackets": "[Challonge](https://challonge.com/pt/tab11t7)",
-        "vod": "[Playlist de Tripeiros à Bulha #11](https://www.youtube.com/playlist?list=PLnF4aArsYkpGXr0nygak4uAbPvqP-DdFG)",
+        "vod": "[Playlist de Tripeiros \u00e0 Bulha #11](https://www.youtube.com/playlist?list=PLnF4aArsYkpGXr0nygak4uAbPvqP-DdFG)",
         "poster": "https://scontent.fopo3-1.fna.fbcdn.net/v/t31.18172-8/19238201_1579161395451154_4709046371830179445_o.jpg?_nc_cat=101&ccb=1-3&_nc_sid=340051&_nc_ohc=-pTQxRxi4J4AX_jGq6d&_nc_ht=scontent.fopo3-1.fna&oh=d55ca59bfcbb50492047b69c188ce3aa&oe=60E560A2",
         "location": "Instituto Superior da Maia, Porto",
+        "winner": "Cris",
+        "top_3": [
+            "JFSL",
+            "Seifer"
+        ],
         "organizers": "PTFighters"
     },
-
-    "road_to_lockdown": {
+    "Road to Lockdown": {
         "name": "Road to Lockdown",
         "date": "19 de Agosto de 2017",
+        "aliases": [
+            "ROAD TO LOCKDOWN",
+            "RTL"
+        ],
         "brackets": "[Challonge](https://challonge.com/pt/rtlt7)",
         "vod": "[VOD de Road to Lockdown](https://www.youtube.com/watch?v=J_CjLaPtQD4)",
         "poster": "https://scontent.fopo3-2.fna.fbcdn.net/v/t31.18172-8/20690102_1636101333090493_8649079890629930343_o.jpg?_nc_cat=103&ccb=1-3&_nc_sid=340051&_nc_ohc=5EGKC8Kmr-IAX-GL9tM&_nc_ht=scontent.fopo3-2.fna&oh=852c129cd01cabf90d86c6426eaad656&oe=60E63FE1",
-        "location": "1UP Gaming Lounge, Parque das Nações",
+        "location": "1UP Gaming Lounge, Parque das Na\u00e7\u00f5es",
+        "winner": "Jondesu",
+        "top_3": [
+            "Dodompa",
+            "Lomb"
+        ],
         "organizers": "PTFighters"
     },
-
-    "lockdown2017": {
+    "Lockdown 2017": {
         "name": "Lockdown 2017",
         "date": "16 e 17 de Setembro de 2017",
+        "aliases": [
+            "LOCKDOWN 2017"
+        ],
         "brackets": "[Smash.gg](https://smash.gg/tournament/lockdown-2017/event/tekken-7-singles/overview)",
-        "vod": "[VOD Lockdown 2017 Day 1](https://www.youtube.com/watch?v=ePH3S8E4dlc)\n[VOD Lockdown 2017 Day 2](https://www.youtube.com/watch?v=Dq2-LhMyR3Q)]",
+        "vod": "[VOD Lockdown 2017 Day 1](https://www.youtube.com/watch?v=ePH3S8E4dlc)\n[VOD Lockdown 2017 Day 2](https://www.youtube.com/watch?v=Dq2-LhMyR3Q)",
         "poster": "https://scontent.fopo3-2.fna.fbcdn.net/v/t31.18172-8/20935035_1664440476923245_7704674979429101916_o.jpg?_nc_cat=104&ccb=1-3&_nc_sid=340051&_nc_ohc=UsjS3YRajYcAX8hfjtS&tn=U4vxFkavH3Ur9W3Y&_nc_ht=scontent.fopo3-2.fna&oh=c0f9b6a0b5a77327a9966bf08429b554&oe=60E55F26",
-        "location": "Hotel VIP Executive Santa Iria, Santa Iria de Azóia",
+        "location": "Hotel VIP Executive Santa Iria, Santa Iria de Az\u00f3ia",
+        "winner": "Jondesu",
+        "top_3": [
+            "Dodompa",
+            "Cris"
+        ],
         "organizers": "PTFighters"
     },
-
-    "lcq2017": {
-        "name": "Last Chance Qualifier",
+    "Liga PTF Last Chance Qualifier": {
+        "name": "Liga PTF Last Chance Qualifier",
         "date": "25 de Novembro de 2017",
+        "aliases": [
+            "LAST CHANCE QUALIFIER 2017",
+            "LCQ"
+        ],
         "brackets": "[Challonge](https://challonge.com/pt/lcqt7)",
         "vod": "[VOD de Last Chance Qualifier](https://www.youtube.com/watch?v=CH6ybckrYaY)",
         "poster": "https://scontent.fopo3-1.fna.fbcdn.net/v/t1.18169-9/22886182_1737065969660695_8772153613926478514_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=340051&_nc_ohc=ZRKeezzdP1MAX_KaRiw&_nc_ht=scontent.fopo3-1.fna&oh=a79d1ec3cb80a73940257b910f430df6&oe=60E50FE8",
         "location": "1UP Gaming Lounge, Lisboa",
+        "winner": "Jondesu",
+        "top_3": [
+            "Coxo",
+            "Ravage"
+        ],
         "organizers": "PTFighters"
     },
-
-    "lutinhas_lisboa_6": {
+    "Lutinhas em Lisboa #6": {
         "name": "Lutinhas em Lisboa #6",
-        "date": "24 de Março de 2018",
+        "date": "24 de Mar\u00e7o de 2018",
+        "aliases": [
+            "LUTINHAS EM LISBOA #6",
+            "LEL #6",
+            "LUTINHAS #6"
+        ],
         "brackets": "[Challonge](https://challonge.com/pt/LEL6T7)",
         "vod": "[VOD de Lutinhas em Lisboa #6](https://www.youtube.com/watch?v=QXwVCYinLTg)",
         "poster": "https://scontent.fopo3-1.fna.fbcdn.net/v/t1.18169-9/28467614_1872036426163648_2582330680666436754_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=340051&_nc_ohc=PLUK8VnwBbMAX8hMxki&tn=U4vxFkavH3Ur9W3Y&_nc_ht=scontent.fopo3-1.fna&oh=9a814c431438e6cc7f15f08edd29c3f9&oe=60E65911",
         "location": "1UP Gaming Lounge, Lisboa",
+        "winner": "Seifer",
+        "top_3": [
+            "Coxo",
+            "Dodompa"
+        ],
         "organizers": "PTFighters"
     },
-
-    "super_combo_2": {
+    "Super Combo #2": {
         "name": "Super Combo #2",
         "date": "19 de Maio de 2018",
+        "aliases": [
+            "SUPER COMBO #2",
+            "SC #2",
+            "SC2"
+        ],
         "brackets": "[Challonge](https://challonge.com/pt/SC2TK7)",
         "vod": "[VOD de Super Combo #2](https://www.youtube.com/watch?v=EanK3RKOax8)",
         "poster": "https://cdn.discordapp.com/attachments/859851768595087390/860968660671660072/maxresdefault.png",
-        "location": "Estádio Municipal Dr. Magalhães Pessoa, Leiria",
+        "location": "Est\u00e1dio Municipal Dr. Magalh\u00e3es Pessoa, Leiria",
+        "winner": "Coxo",
+        "top_3": [
+            "JFSL",
+            "Vitag"
+        ],
         "organizers": "PTFighters, UDL ESPORTS"
     },
-
-    "lutinhas_lisboa_7": {
+    "Lutinhas em Lisboa #7": {
         "name": "Lutinhas em Lisboa #7",
         "date": "28 de Julho de 2018",
+        "aliases": [
+            "LUTINHAS EM LISBOA #7",
+            "LEL #7",
+            "LUTINHAS #7"
+        ],
         "brackets": "[Challonge](https://challonge.com/pt/LEL7T7)",
         "vod": "[VOD de Lutinhas em Lisboa #7](https://www.youtube.com/watch?v=m8aCL2n4Wmw)",
         "poster": "https://scontent.fopo3-1.fna.fbcdn.net/v/t1.6435-9/36002832_2006812202686069_2155889762286698496_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=340051&_nc_ohc=I5DX9MKFFQ4AX_cOfh2&_nc_ht=scontent.fopo3-1.fna&oh=d0164112c20eecf93f72f6931bcf54dd&oe=60E6103D",
         "location": "1UP Gaming Lounge, Lisboa",
+        "winner": "JFSL",
+        "top_3": [
+            "Coxo",
+            "Jondesu"
+        ],
         "organizers": "PTFighters"
     },
-
-    "lockdown2018": {
+    "Lockdown 2018": {
         "name": "Lockdown 2018",
         "date": "15 e 16 de Setembro de 2018",
+        "aliases": [
+            "LOCKDOWN 2018"
+        ],
         "brackets": "[Smash.gg](https://smash.gg/tournament/lockdown-2018/event/tekken-7/overview)",
         "vod": "[VOD Lockdown 2018 Day 1](https://www.youtube.com/watch?v=H6i4xVaoMus)",
         "poster": "https://tekkenportugal.com/wp-content/uploads/2019/06/Lockdown-2018.jpg",
-        "location": "Hotel VIP Executive Santa Iria, Santa Iria de Azóia",
+        "location": "Hotel VIP Executive Santa Iria, Santa Iria de Az\u00f3ia",
+        "winner": "Cris",
+        "top_3": [
+            "Jondesu",
+            "Ocelot/Seifer"
+        ],
         "organizers": "PTFighters"
     },
-
-    "bff#1": {
+    "Braga Fight Fest #1": {
         "name": "Braga Fight Fest #1",
         "date": "20 de Outubro de 2018",
+        "aliases": [
+            "BRAGA FIGHT FEST #1",
+            "BFF #1"
+        ],
         "brackets": "[Challonge](https://challonge.com/pt/6jyds8lu)",
         "vod": "[Playlist/VODs de Braga Fight Fest #1](https://www.youtube.com/playlist?list=PLnF4aArsYkpEA91LE4iH-oSLhaORIVcAE)",
         "poster": "https://scontent.fopo3-1.fna.fbcdn.net/v/t1.6435-9/42604039_1912150242420825_5929970829151436800_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=340051&_nc_ohc=TejytKOoDyEAX-1hRO7&_nc_ht=scontent.fopo3-1.fna&oh=4a188b700bfe399875c26e642abcc10c&oe=60E58BDF",
         "location": "Lan House Station, Braga",
+        "winner": "Coxo",
+        "top_3": [
+            "MIKE SILVA",
+            "JFSL"
+        ],
         "organizers": "PTFighters, Lan House Station - Braga"
     },
-
-    "super_combo_3": {
+    "Super Combo #3": {
         "name": "Super Combo #3",
         "date": "17 de Novembro de 2018",
+        "aliases": [
+            "SUPER COMBO #3",
+            "SC #3"
+        ],
         "brackets": "[Challonge](https://challonge.com/pt/SC3TK7)",
         "vod": "[Playlist de Super Combo #3](https://www.youtube.com/playlist?list=PLnF4aArsYkpFRZEBTgtD9EV5bdkh_-8O5)",
-        "poster": "https://tekkenportugal.com/noticias/torneios/super-combo-3/",
-        "location": "L Lounge Café, Leiria",
+        "poster": "https://tekkenportugal.com/wp-content/uploads/2018/11/sc3tekken.jpg",
+        "location": "L Lounge Caf\u00e9, Leiria",
+        "winner": "Coxo",
+        "top_3": [
+            "JFSL",
+            "Seifer"
+        ],
         "organizers": "PTFighters, UDL ESPORTS"
     },
-
-    "finais_ligaptf_18": {
+    "Finais da Liga PTFighters 2018": {
         "name": "Finais da Liga PTFighters 2018",
         "date": "8 de Dezembro de 2018",
+        "aliases": [
+            "FINAIS LIGA PTFIGHTERS 2018",
+            "FINAIS LIGA PTF 2018"
+        ],
         "brackets": "[Challonge](https://challonge.com/pt/T7LIGA2018)",
         "vod": "[Playlist de Finais Liga PTF 2018](https://www.youtube.com/playlist?list=PLnF4aArsYkpFkATTJcmUqhMN1m7izlB2A)",
         "poster": "https://scontent.fopo3-1.fna.fbcdn.net/v/t1.6435-9/46102165_2218969714803649_1997114974656266240_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=340051&_nc_ohc=ngQvAYkjsMUAX9tVnP5&_nc_ht=scontent.fopo3-1.fna&oh=2933622dbb7d8b9f6e04871b9efd76ec&oe=60E52341",
         "location": "1UP Gaming Lounge, Lisboa",
+        "winner": "Coxo",
+        "top_3": [
+            "JFSL",
+            "Flake & Seifer"
+        ],
         "organizers": "PTFighters"
     },
-
-    "holdthel#1": {
+    "Hold The L #1": {
         "name": "Hold The L #1",
         "date": "19 de Janeiro de 2019",
         "brackets": "[Challonge](https://challonge.com/holdthel)",
+        "aliases": [
+            "HOLD THE L #1",
+            "HTL #1"
+        ],
         "vod": "[Playlist de Hold The L #1](https://www.youtube.com/playlist?list=PLnF4aArsYkpF62-ohFflcCxEeuAf8ITS3)",
         "poster": "https://tekkenportugal.com/wp-content/uploads/2019/01/HoldTheL_BANNERTekken_SmashGG.png",
-        "location": "L Lounge Café, Leiria",
+        "location": "L Lounge Caf\u00e9, Leiria",
+        "winner": "Jondesu",
+        "top_3": [
+            "JFSL",
+            "Seifer"
+        ],
         "organizers": "Tekken Portugal, PTFighters"
     },
-
-    "stonefist#1": {
+    "Stone Fist #1": {
         "name": "Stone Fist #1",
-        "date": "23 de Março de 2019",
+        "date": "23 de Mar\u00e7o de 2019",
+        "aliases": [
+            "STONE FIST #1",
+            "SF #1"
+        ],
         "brackets": "[Challonge](https://challonge.com/pt/StoneFist1TK7)",
         "vod": "[VOD de Stone Fist #1](https://www.youtube.com/watch?v=-32NRhfTWWA)",
         "poster": "https://tekkenportugal.com/wp-content/uploads/2019/03/sfbanner3.png",
         "location": "Gargula Gaming, Lisboa",
+        "winner": "Cris",
+        "top_3": [
+            "Dodompa",
+            "Seifer"
+        ],
         "organizers": "Tekken Portugal"
     },
-
-    "lutinhas_lisboa_8": {
+    "Lutinhas em Lisboa #8": {
         "name": "Lutinhas em Lisboa #8",
         "date": "25 de Maio de 2019",
+        "aliases": [
+            "LUTINHAS EM LISBOA #8",
+            "LEL #8",
+            "LUTINHAS #8"
+        ],
         "brackets": "[Smash.gg](https://smash.gg/tournament/lutinhas-em-lisboa-8-tekken-7/event/tekken-7/overview)",
         "vod": "[Playlist de Lutinhas em Lisboa #8](https://www.youtube.com/playlist?list=PLnF4aArsYkpEr9zVlgGHJksJ4Msh8Sdyu)",
         "poster": "https://tekkenportugal.com/wp-content/uploads/2019/07/lel8-banner.jpg",
         "location": "1UP Gaming Lounge, Lisboa",
+        "winner": "Jondesu",
+        "top_3": [
+            "Seifer",
+            "JFSL"
+        ],
         "organizers": "PTFighters"
     },
-
-    "super_combo_4": {
+    "Super Combo #4": {
         "name": "Super Combo #4",
         "date": "10 de Agosto de 2019",
+        "aliases": [
+            "SUPER COMBO #4",
+            "SC #4"
+        ],
         "brackets": "[Smash.gg](https://smash.gg/tournament/super-combo-4-tekken-7/event/tekken-7/overview)",
         "vod": "[Playlist de Super Combo #4](https://www.youtube.com/playlist?list=PLnF4aArsYkpFTcJWi1RAvuxEkx0PmSu7W)",
         "poster": "https://tekkenportugal.com/wp-content/uploads/2019/07/Super-Combo-4-banner.jpg",
-        "location": "L Lounge Café, Leiria",
+        "location": "L Lounge Caf\u00e9, Leiria",
+        "winner": "Coxo",
+        "top_3": [
+            "JFSL",
+            "MrNuvas"
+        ],
         "organizers": "PTFighters"
     },
-
-    "lutinhas_lisboa_9": {
+    "Lutinhas em Lisboa #9": {
         "name": "Lutinhas em Lisboa #9",
         "date": "19 de Outubro de 2019",
-        "brackets": "[Smash.gg](https://smash.gg/tournament/lutinhas-em-lisboa-8-tekken-7/event/tekken-7/overview)",
+        "aliases": [
+            "LUTINHAS EM LISBOA #9",
+            "LEL #9",
+            "LUTINHAS #9"
+        ],
+        "brackets": "[Smash.gg](https://smash.gg/tournament/lutinhas-em-lisboa-9-tekken-7/event/tekken-7/overview)",
         "vod": "[VOD de Lutinhas em Lisboa #9](https://smash.gg/tournament/lutinhas-em-lisboa-9-tekken-7/event/tekken-7/overview)",
         "poster": "https://tekkenportugal.com/wp-content/uploads/2019/09/LEL9_banner.jpg",
         "location": "1UP Gaming Lounge, Lisboa",
+        "winner": "MIKE SILVA",
+        "top_3": [
+            "Dodompa",
+            "Seifer"
+        ],
         "organizers": "PTFighters"
     },
-
-    "iesf2019": {
+    "IeSF World Championship Portugal Qualifier 2019": {
         "name": "IeSF World Championship Portugal Qualifier 2019",
         "date": "26 de Outubro de 2019",
+        "aliases": [
+            "IESF WORLD CHAMPIONSHIP QUALIFIER PORTUGAL 2019",
+            "IESF 2019",
+            "IESF",
+            "QUALIFIER 2019"
+        ],
         "brackets": "[FPDE](https://fpde.pt/qualificador-nacional-para-o-campeonato-do-mundo-de-esports-tekken-7/)",
-        "vod": "NÃO DISPONÍVEL",
+        "vod": "N\u00c3O DISPON\u00cdVEL",
         "poster": "https://fpde.pt/wp-content/uploads/2020/05/logo-qualifiers-tekken-1024x1024.png",
         "location": "Lanhouse CCD, Porto",
-        "organizers": "Federação Portuguesa de Desportos Eletrónicos, International e-Sports Federation"
+        "winner": "MIKE SILVA",
+        "top_3": [
+            "Seifer",
+            "Drothdarr & Shidoki"
+        ],
+        "organizers": "Federa\u00e7\u00e3o Portuguesa de Desportos Eletr\u00f3nicos, International e-Sports Federation"
     },
-
-    "stonefist#2": {
+    "Stone Fist #2": {
         "name": "Stone Fist #2",
         "date": "16 de Novembro de 2019",
+        "aliases": [
+            "STONE FIST #2",
+            "SF #2"
+        ],
         "brackets": "[Smash.gg](https://smash.gg/tournament/stone-fist-2/event/tekken-7/overview)",
         "vod": "[VOD de Stone Fist #2 (Part One)](https://www.youtube.com/watch?v=6-h1mhflUZg)\n[VOD de Stone Fist #2 (Part Two)](https://www.youtube.com/watch?v=__DHswSxGQI)",
-        "poster": "https://tekkenportugal.com/wp-content/uploads/2019/03/sfbanner3.png",
+        "poster": "https://tekkenportugal.com/wp-content/uploads/2019/10/sf2banner.png",
         "location": "Quest Gaming Lounge, Odivelas",
+        "winner": "Jondesu",
+        "top_3": [
+            "Seifer",
+            "InvictusCobra"
+        ],
         "organizers": "Tekken Portugal"
     },
-
-    "finais_ligaptf_19": {
+    "Finais da Liga PTFighters 2019": {
         "name": "Finais da Liga PTFighters 2019",
         "date": "7 de Dezembro de 2019",
+        "aliases": [
+            "FINAIS LIGA PTFIGHTERS 2019",
+            "FINAIS LIGA PTF 2019"
+        ],
         "brackets": "[Challonge](https://challonge.com/pt/PTFLIGA19TK7)",
         "vod": "[Playlist de Finais Liga PTF 2019](https://www.youtube.com/playlist?list=PLC0GPyWbcaU4Eumf-V9RLNt8_W5uyuN9B",
         "poster": "https://tekkenportugal.com/wp-content/uploads/2019/12/Finais_Liga_PTF_2019-1024x575.png",
         "location": "1UP Gaming Lounge, Lisboa",
+        "winner": "Seifer",
+        "top_3": [
+            "Jondesu",
+            "Dodompa"
+        ],
         "organizers": "PTFighters"
     },
-
-    "northerncross#1": {
+    "Northern Cross #1": {
         "name": "Northern Cross #1",
         "date": "15 de Fevereiro de 2020",
-        "brackets": "[Challonge](https://challonge.com/pt/PTFLIGA19TK7)",
-        "vod": "[VOD de Northern Cross #1](https://www.youtube.com/watch?v=Kt4zaYq76Ac",
+        "aliases": [
+            "NORTHERN CROSS #1",
+            "NC #1"
+        ],
+        "brackets": "[Challonge](https://smash.gg/tournament/northern-cross-tournament-1/event/tekken-7/overview)",
+        "vod": "[VOD de Northern Cross #1](https://www.youtube.com/watch?v=Kt4zaYq76Ac)",
         "poster": "https://tekkenportugal.com/wp-content/uploads/2020/01/northern_cross_banner-1536x768.png",
         "location": "Aniplay, Porto",
+        "winner": "MIKE SILVA",
+        "top_3": [
+            "Coxo",
+            "JFSL"
+        ],
         "organizers": "Tekken Portugal"
+    },
+    "Lutinhas das Gatinhas #1": {
+        "name": "Lutinhas das Gatinhas #1",
+        "date": "18 de mar\u00e7o de 2022",
+        "aliases": [
+            "GATINHAS",
+            " LDG #1",
+            " LUTINHAS DAS GATINHAS"
+        ],
+        "brackets": "[Youtube](https://www.youtube.com/watch?v=OrycUnNCq1M)",
+        "vod": "[Playlist/VOD de Lutinhas das Gatinhas #1 Part 1](https://www.youtube.com/watch?v=OrycUnNCq1M)\n[Playlist/VOD de Lutinhas das Gatinhas #1 Part 2]( https://www.youtube.com/watch?v=OrycUnNCq1M)\n",
+        "poster": "https://pbs.twimg.com/media/E5jVfh-VUAA0PuA.jpg:large",
+        "location": "Cona da tia",
+        "winner": "Flix",
+        "top_3": [
+            "MrNuvas",
+            " dollinhos"
+        ],
+        "organizers": "Eu"
     }
 }
