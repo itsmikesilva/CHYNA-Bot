@@ -365,27 +365,40 @@ async def create_tournament(ctx):
     events.event.add_event_aliases(new_event, new_aliases.content)
     await ctx.send("Insere o link das **brackets** do torneio")
     new_brackets = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-    events.event.add_event_brackets(new_event, new_brackets.content)
-    await ctx.send("Insere o link dos VODs do torneio. Se for mais do que um link, deves separá-los por vírgula!")
-    new_vods = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-    events.event.add_event_vods(new_event, new_vods.content)
+    check_brackets = events.event.add_event_brackets(new_event, new_brackets.content)
+    while check_brackets == 0:
+        await ctx.send("ATENÇÃO: Deves apenas inserir um link para as brackets! Insere novamente o link das **brackets** do torneio")
+        new_brackets = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+        check_brackets = events.event.add_event_brackets(new_event, new_brackets.content)
     await ctx.send("Insere o link do **poster** do torneio")
     new_poster = await client.wait_for('message', check=lambda message: message.author == ctx.author)
     events.event.add_event_poster(new_event, new_poster.content)
     await ctx.send("Insere a localização do torneio")
     new_location = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-    events.event.add_event_location(new_event, new_location.content)
-    await ctx.send("Insere o vencedor do torneio")
-    new_winner = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-    events.event.add_event_winner(new_event, new_winner.content)
-    await ctx.send("Insere o restante do top 3 por ordem de lugar")
-    new_top_3 = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-    events.event.add_event_top_3(new_event, new_top_3.content)
+    events.event.add_event_location(new_event, new_location.content)   
     await ctx.send("Insere os organizadores do torneio")
     new_organizers = await client.wait_for('message', check=lambda message: message.author == ctx.author)
     events.event.add_event_organizers(new_event, new_organizers.content)
 
     await ctx.send("Torneio adicionado com sucesso! Verifica-o através do command !event seguido do nome do evento")
+
+#Command para criar eventos
+#@client.command(name="editevent")
+#async def edit_tournament(ctx):
+#winner, top 3, vods SÓ podem aparecer aqui
+#
+#await ctx.send("Insere o vencedor do torneio")
+#new_winner = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+#events.event.add_event_winner(new_event, new_winner.content)
+#
+#await ctx.send("Insere o restante do top 3 por ordem de lugar")
+#new_top_3 = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+#events.event.add_event_top_3(new_event, new_top_3.content)
+#
+#await ctx.send("Insere o link dos VODs do torneio. Se for mais do que um link, deves separá-los por vírgula!")
+#new_vods = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+#events.event.add_event_vods(new_event, new_vods.content)
+
 
 #VALENTINE'S DAY STUFF
 @client.command()

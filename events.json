@@ -382,24 +382,5 @@
             "JFSL"
         ],
         "organizers": "Tekken Portugal"
-    },
-    "Lutinhas das Gatinhas #1": {
-        "name": "Lutinhas das Gatinhas #1",
-        "date": "18 de mar\u00e7o de 2022",
-        "aliases": [
-            "GATINHAS",
-            " LDG #1",
-            " LUTINHAS DAS GATINHAS"
-        ],
-        "brackets": "[Youtube](https://www.youtube.com/watch?v=OrycUnNCq1M)",
-        "vod": "[Playlist/VOD de Lutinhas das Gatinhas #1 Part 1](https://www.youtube.com/watch?v=OrycUnNCq1M)\n[Playlist/VOD de Lutinhas das Gatinhas #1 Part 2]( https://www.youtube.com/watch?v=OrycUnNCq1M)\n",
-        "poster": "https://pbs.twimg.com/media/E5jVfh-VUAA0PuA.jpg:large",
-        "location": "Cona da tia",
-        "winner": "Flix",
-        "top_3": [
-            "MrNuvas",
-            " dollinhos"
-        ],
-        "organizers": "Eu"
     }
 }
