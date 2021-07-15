@@ -59,6 +59,7 @@ print("Player Team Pokemon in Field 2: ", battle.pokemon_field_2)
 print("Opposing Team Pokemon in Field 1: ", battle.opposing_pokemon_field_1)
 print("Opposing Team Pokemon in Field 2: ", battle.opposing_pokemon_field_2)
 
+turnos_list = []
 for turn in replay[2]:
     for actions in turn:
         for action in actions:
@@ -66,7 +67,9 @@ for turn in replay[2]:
                 action_result = action.split("The opposing ")[1].split(" used ") 
                 pokemon_name = action_result[0]
                 pokemon_move = action_result[1][:-1]
-                battle.opposing_team[pokemon_name].name = pokemon_name
+                if pokemon_move not in battle.opposing_team[pokemon_name].moves:
+                    battle.opposing_team[pokemon_name].moves.append(pokemon_move)
+                    print(battle.opposing_team[pokemon_name].moves)
                 print(actions)
                 print(action)
                 print(pokemon_name)
@@ -77,6 +80,8 @@ for turn in replay[2]:
                 action_result = action.split(" used ") 
                 pokemon_name = action_result[0]
                 pokemon_move = action_result[1][:-1]
+                if pokemon_move not in battle.player_team[pokemon_name].moves:
+                    battle.player_team[pokemon_name].moves.append(pokemon_move)
                 print(actions)
                 print(action)
                 print(pokemon_name)
@@ -87,6 +92,10 @@ for turn in replay[2]:
                 action_result = action.split(" lost ")
                 pokemon_name = action_result[0][1:]
                 hp_lost = action_result[1].split("%")[0]
+                hp_lost = int(hp_lost)
+                if battle.player_team[pokemon_name].health > 0:
+                    battle.player_team[pokemon_name].health = battle.player_team[pokemon_name].health - hp_lost
+                battle.player_team[pokemon_name]
                 print(action)
                 print(pokemon_name)
                 print(hp_lost)
@@ -96,13 +105,33 @@ for turn in replay[2]:
                 action_result = action.split(" lost ")
                 pokemon_name = action_result[0].split("The opposing ")[1]
                 hp_lost = action_result[1].split("%")[0]
+                hp_lost = int(hp_lost)
+                if battle.opposing_team[pokemon_name].health > 0:
+                    battle.opposing_team[pokemon_name].health = battle.opposing_team[pokemon_name].health - hp_lost
                 print(action)
                 print(pokemon_name)
                 print(hp_lost)
                 print()
+    print()
+    turnos_list.append(battle.getCopy())
 
-                
-#print(replay[2][1])
+count1 = 0
+count2 = 0
+for battle_item in turnos_list:
+    for i in battle_item.opposing_team.keys():
+        print("Turn %d" % count1)
+        print("OPPOSING TEAM")
+        print(battle_item.opposing_team[i].name)
+        print(battle_item.opposing_team[i].moves)
+        print(battle_item.opposing_team[i].health)
+    for j in battle_item.player_team.keys():
+        print("Turn %d" % count2)
+        print("PLAYER TEAM")
+        print(battle_item.player_team[j].name)
+        print(battle_item.player_team[j].moves)
+        print(battle_item.player_team[j].health)
+    count1 += 1
+    count2 += 1
 
 '''
 Go! x -> Beginning of Game, Player Team
