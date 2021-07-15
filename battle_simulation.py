@@ -62,6 +62,7 @@ print("Opposing Team Pokemon in Field 2: ", battle.opposing_pokemon_field_2)
 turnos_list = []
 for turn in replay[2]:
     for actions in turn:
+        print(actions)
         if "withdrew" in actions[0]:
             switch_out_action_op = actions[0].split(" withdrew ")
             withdrawn_pokemon_op = switch_out_action_op[1][:-1]
@@ -80,8 +81,6 @@ for turn in replay[2]:
             if "Go!" in actions[1]:
                 switch_in_action_player = actions[1].split("Go! ")
                 entering_pokemon_player = switch_in_action_player[1][:-1]
-                print(withdrawn_pokemon_player + " WITHDRAWN")
-                print(entering_pokemon_player + " ENTERED")
                 if withdrawn_pokemon_player == battle.pokemon_field_1: 
                     battle.pokemon_field_1 = entering_pokemon_player
                 elif withdrawn_pokemon_player == battle.pokemon_field_2:
