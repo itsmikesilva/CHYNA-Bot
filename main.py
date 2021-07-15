@@ -306,7 +306,6 @@ async def delete_esports_team(ctx):
         await ctx.send("E-Sports Team removida com sucesso!")
 
 #Command para adicionar VODs
-#BIIIIIIIG WIP
 @client.command(name="setvods", aliases=["sv"])
 async def set_vods(ctx):
     vod_link = ctx.message.content.split(" ", 1)[1]

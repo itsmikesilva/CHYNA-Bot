@@ -62,6 +62,32 @@ print("Opposing Team Pokemon in Field 2: ", battle.opposing_pokemon_field_2)
 turnos_list = []
 for turn in replay[2]:
     for actions in turn:
+        if "withdrew" in actions[0]:
+            switch_out_action_op = actions[0].split(" withdrew ")
+            withdrawn_pokemon_op = switch_out_action_op[1][:-1]
+            if "sent out" in actions[1]:
+                switch_in_action_op = actions[1].split(" sent out ")
+                entering_pokemon_op = switch_in_action_op[1][:-1]
+                if withdrawn_pokemon_op == battle.opposing_pokemon_field_1: 
+                    battle.opposing_pokemon_field_1 = entering_pokemon_op
+                elif withdrawn_pokemon_op == battle.opposing_pokemon_field_2:
+                    battle.opposing_pokemon_field_2 = entering_pokemon_op
+                else:
+                    continue
+        if "come back" in actions[0]:
+            switch_out_action_player = actions[0].split(", ")
+            withdrawn_pokemon_player = switch_out_action_player[0]
+            if "Go!" in actions[1]:
+                switch_in_action_player = actions[1].split("Go! ")
+                entering_pokemon_player = switch_in_action_player[1][:-1]
+                print(withdrawn_pokemon_player + " WITHDRAWN")
+                print(entering_pokemon_player + " ENTERED")
+                if withdrawn_pokemon_player == battle.pokemon_field_1: 
+                    battle.pokemon_field_1 = entering_pokemon_player
+                elif withdrawn_pokemon_player == battle.pokemon_field_2:
+                    battle.pokemon_field_2 = entering_pokemon_player
+                else:
+                    continue
         for action in actions:
             if "used" in action and "opposing" in action:
                 action_result = action.split("The opposing ")[1].split(" used ") 
@@ -69,12 +95,12 @@ for turn in replay[2]:
                 pokemon_move = action_result[1][:-1]
                 if pokemon_move not in battle.opposing_team[pokemon_name].moves:
                     battle.opposing_team[pokemon_name].moves.append(pokemon_move)
-                    print(battle.opposing_team[pokemon_name].moves)
-                print(actions)
-                print(action)
-                print(pokemon_name)
-                print(pokemon_move)
-                print()
+                    #print(battle.opposing_team[pokemon_name].moves)
+                #print(actions)
+                #print(action)
+                #print(pokemon_name)
+                #print(pokemon_move)
+                #print()
 
             if "used" in action and "opposing" not in action:
                 action_result = action.split(" used ") 
@@ -82,11 +108,11 @@ for turn in replay[2]:
                 pokemon_move = action_result[1][:-1]
                 if pokemon_move not in battle.player_team[pokemon_name].moves:
                     battle.player_team[pokemon_name].moves.append(pokemon_move)
-                print(actions)
-                print(action)
-                print(pokemon_name)
-                print(pokemon_move)
-                print()
+                #print(actions)
+                #print(action)
+                #print(pokemon_name)
+                #print(pokemon_move)
+                #print()
 
             if "lost" in action and "opposing" not in action:
                 action_result = action.split(" lost ")
@@ -96,10 +122,10 @@ for turn in replay[2]:
                 if battle.player_team[pokemon_name].health > 0:
                     battle.player_team[pokemon_name].health = battle.player_team[pokemon_name].health - hp_lost
                 battle.player_team[pokemon_name]
-                print(action)
-                print(pokemon_name)
-                print(hp_lost)
-                print()
+                #print(action)
+                #print(pokemon_name)
+                #print(hp_lost)
+                #print()
 
             if "lost" in action and "opposing" in action:
                 action_result = action.split(" lost ")
@@ -108,31 +134,47 @@ for turn in replay[2]:
                 hp_lost = int(hp_lost)
                 if battle.opposing_team[pokemon_name].health > 0:
                     battle.opposing_team[pokemon_name].health = battle.opposing_team[pokemon_name].health - hp_lost
-                print(action)
-                print(pokemon_name)
-                print(hp_lost)
-                print()
+                #print(action)
+                #print(pokemon_name)
+                #print(hp_lost)
+                #print()
     print()
     turnos_list.append(battle.getCopy())
 
 count1 = 0
 count2 = 0
+
 for battle_item in turnos_list:
     for i in battle_item.opposing_team.keys():
         print("Turn %d" % count1)
-        print("OPPOSING TEAM")
+        #print("OPPOSING TEAM")
         print(battle_item.opposing_team[i].name)
+        #print(battle_item.opposing_team[i].name + "'s moves: ")
         print(battle_item.opposing_team[i].moves)
+        #print(battle_item.opposing_team[i].name + "'s health: ")
         print(battle_item.opposing_team[i].health)
+        print()
     for j in battle_item.player_team.keys():
         print("Turn %d" % count2)
-        print("PLAYER TEAM")
+        #print("PLAYER TEAM")
         print(battle_item.player_team[j].name)
+        #print(battle_item.player_team[j].name + "'s moves: ")
         print(battle_item.player_team[j].moves)
+        #print(battle_item.player_team[j].name + "'s health: ")
         print(battle_item.player_team[j].health)
+        print()
     count1 += 1
     count2 += 1
 
+count3 = 0
+for battle_item in turnos_list:
+    print("Turn %d" % count3)
+    print(battle_item.pokemon_field_1)
+    print(battle_item.pokemon_field_2)
+    print(battle_item.opposing_pokemon_field_1)
+    print(battle_item.opposing_pokemon_field_2)
+    print()
+    count3 += 1
 '''
 Go! x -> Beginning of Game, Player Team
 p sent out x! -> Beginng of Game, Opposing Team
