@@ -359,34 +359,62 @@ async def create_tournament(ctx):
     events.event.add_event(new_event)
     await ctx.send("Insere a data do novo evento (Exemplo: 18 de outubro de 2021)")
     new_date = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-    events.event.add_event_date(new_event, new_date.content)
+    if new_date.content.lower() == "skip":
+        pass
+    else:
+        events.event.add_event_date(new_event, new_date.content)
     await ctx.send("Insere siglas e outros nomes reconhecíveis do torneio\n(Exemplo: Para Lutinhas em Lisboa #5, os *aliases* seriam 'LEL5, Lutinhas #5, Lutinhas em Lisboa #5'")
     new_aliases = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-    events.event.add_event_aliases(new_event, new_aliases.content)
+    if new_aliases.content.lower() == "skip":
+        pass
+    else:
+        events.event.add_event_aliases(new_event, new_aliases.content)
     await ctx.send("Insere o link das **brackets** do torneio")
     new_brackets = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-    check_brackets = events.event.add_event_brackets(new_event, new_brackets.content)
-    while check_brackets == 0:
-        await ctx.send("ATENÇÃO: Deves apenas inserir um link para as brackets! Insere novamente o link das **brackets** do torneio")
-        new_brackets = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+    if new_brackets.content.lower() == "skip":
+        pass
+    else:
         check_brackets = events.event.add_event_brackets(new_event, new_brackets.content)
+        while check_brackets == 0:
+            await ctx.send("ATENÇÃO: Deves apenas inserir um link para as brackets! Insere novamente o link das **brackets** do torneio")
+            new_brackets = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+            check_brackets = events.event.add_event_brackets(new_event, new_brackets.content)
     await ctx.send("Insere o link do **poster** do torneio")
     new_poster = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-    events.event.add_event_poster(new_event, new_poster.content)
+    if new_poster.content.lower() == "skip":
+        pass
+    else:
+        events.event.add_event_poster(new_event, new_poster.content)
     await ctx.send("Insere a localização do torneio")
     new_location = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-    events.event.add_event_location(new_event, new_location.content)   
+    if new_location.content.lower() == "skip":
+        pass
+    else:
+        events.event.add_event_location(new_event, new_location.content)   
     await ctx.send("Insere os organizadores do torneio")
     new_organizers = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-    events.event.add_event_organizers(new_event, new_organizers.content)
+    if new_organizers.content.lower() == "skip":
+        pass
+    else:
+        events.event.add_event_organizers(new_event, new_organizers.content)
 
     await ctx.send("Torneio adicionado com sucesso! Verifica-o através do command !event seguido do nome do evento")
 
 #Command para criar eventos
-#@client.command(name="editevent")
-#async def edit_tournament(ctx):
+@client.command(name="editevent")
+async def edit_tournament(ctx):
 #winner, top 3, vods SÓ podem aparecer aqui
-#
+    menu = ReactionMenu(ctx, back_button='⬅️', next_button='➡️', config=ReactionMenu.STATIC, style="$/&")
+    tour_list = events.edit_event_embed()
+    for item in tour_list:
+        menu.add_page(item)
+    await menu.start()
+    selected = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+    selected_tour = int(selected.content)
+    parametro_embed = events.edit_event_parameter_embed()
+    await ctx.send(embed=parametro_embed)
+    selected_parametro = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+    
 #await ctx.send("Insere o vencedor do torneio")
 #new_winner = await client.wait_for('message', check=lambda message: message.author == ctx.author)
 #events.event.add_event_winner(new_event, new_winner.content)

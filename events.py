@@ -21,7 +21,6 @@ def event_embeds(message):
         for item in events_dict:
             if selected_event[0] in events_dict[item]["aliases"]:
                 tour = events_dict[item]    #este "tour" é o evento selecionado pelo user, após verificações
-                print(item)
                 break
         embed = discord.Embed(title=tour["name"], description=tour["location"])
         embed.set_image(url=tour["poster"])
@@ -36,6 +35,41 @@ def event_embeds(message):
     else:
         print("Event not found!")
         return 0
+
+def edit_event_embed():
+
+    count = 0
+    num = 1
+    tourneys_array = []
+    embed_array = []
+    embed = discord.Embed(title="LISTA DE TORNEIOS OFFLINE")
+    embed_content_name = ""
+    with open("events.json", 'r',encoding='utf8') as f:
+        tourneys_dict = json.load(f)
+        for item in tourneys_dict:
+            tourneys_array.append(tourneys_dict[item]["name"])
+        for item in range(len(tourneys_array)):
+            embed_content_name = embed_content_name + str(num) + "- " + tourneys_array[item] + "\n"
+            count += 1
+            num += 1
+            if count == 10:
+                embed.add_field(name="Escolhe o torneio que desejas editar:", value=embed_content_name)
+                embed.set_image(url="https://tekkenportugal.com/wp-content/uploads/2018/12/liga-ptfighters-finais-2018-banner.jpg")
+                embed_array.append(embed)
+                embed_content_name = ""
+                embed = discord.Embed(title="LISTA DE TORNEIOS OFFLINE")
+                count = 0
+        embed.add_field(name="Escolhe o torneio que desejas editar:", value=embed_content_name)
+        embed.set_image(url="https://tekkenportugal.com/wp-content/uploads/2018/12/liga-ptfighters-finais-2018-banner.jpg")
+        embed_array.append(embed)
+    return embed_array
+
+def edit_event_parameter_embed():
+
+    embed = discord.Embed(title="SELEÇÃO DE PARÂMETRO A EDITAR")
+    embed_content = "1- Nome do Evento\n2- Data do Evento\n3- Siglas/Aliases\n4- Bracket Link\n5- VODs\n6- Poster do Evento\n7- Localização do eventon\n8- Vencedor do Evento\n9- Top 3\n10- Organizadores"
+    embed.add_field(name="Escolhe o número do parâmetro que desejas editar", value=embed_content)
+    return embed
 
 class event:
     
