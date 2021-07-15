@@ -2,6 +2,8 @@ import json
 import discord
 import difflib
 import re
+from selenium import webdriver
+import time
 
 profileIndex_id = {}
 profileIndex_name = {}
@@ -425,6 +427,65 @@ def remove_tournament_results_interface(accolades_list):
     embed.add_field(name="Removing", value= accolades_menu)
 
     return embed
+
+#adiciona vods ao profile
+def add_vods(vod_link, user_id):
+
+    existing_vods = []
+    created_vods = []
+    vod_list = vod_link.split(", ")
+    if "vods" in profileIndex_id[user_id].keys():
+        existing_vods = profileIndex_id[user_id]["vods"]
+        for vod in vod_list:
+            driver = webdriver.Chrome()
+            driver.get(vod)
+            time.sleep(5)
+            cookies_button = driver.find_element_by_xpath("//*[@id='yDmH0d']/c-wiz/div/div/div/div[2]/div[1]/div[4]/form/div[1]/div/button")
+            cookies_button.click()
+            time.sleep(5)
+            vod_name = driver.find_element_by_xpath("//*[@id='container']/h1/yt-formatted-string")
+            vod_to_add = "[" + vod_name.text + "](" + vod + ")"
+            existing_vods.append(vod_to_add)
+
+            profileIndex_id[user_id]["vods"] = existing_vods
+            name = profileIndex_id[user_id]["player_name"].lower()
+            profileIndex_name[name]["vods"] = existing_vods
+        print(existing_vods)
+    else:
+        for vod in vod_list:
+            driver = webdriver.Chrome()
+            driver.get(vod)
+            time.sleep(5)
+            cookies_button = driver.find_element_by_xpath("//*[@id='yDmH0d']/c-wiz/div/div/div/div[2]/div[1]/div[4]/form/div[1]/div/button")
+            cookies_button.click()
+            time.sleep(5)
+            vod_name = driver.find_element_by_xpath("//*[@id='container']/h1/yt-formatted-string")
+            vod_to_add = "[" + vod_name.text + "](" + vod + ")"
+            created_vods.append(vod_to_add)
+            profileIndex_id[user_id]["vods"] = created_vods
+            name = profileIndex_id[user_id]["player_name"].lower()
+            profileIndex_name[name]["vods"] = created_vods
+
+    with open('profiles.json', 'w', encoding='utf8') as f:
+        json.dump(profileIndex_id, f, indent=4)
+    return 1
+
+def vods_page(message):
+
+    final_profile = find_profile(message)
+
+    if "vods" in final_profile.keys():
+        vods_string = ""
+        vods_list = final_profile["vods"]
+        for vod in vods_list:
+            vods_string += "➡️ " + vod + "\n"
+        embed = discord.Embed(title="Videos, clips and highlights of " + final_profile["player_name"])
+        embed.add_field(name="Clipada gostosa", value=vods_string)
+        if "thumbnail" in final_profile.keys():
+            embed.set_thumbnail(url=final_profile["thumbnail"])
+        return embed
+    else:
+        return 0
 
 #função que vai criar o embed do perfil encontrado
 def profile_embed(message):
