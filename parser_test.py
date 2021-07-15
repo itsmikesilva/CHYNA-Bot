@@ -1,5 +1,14 @@
 from selenium import webdriver
 import time
+import pickle
+
+def save_obj(obj, name, foldername):
+    with open(foldername + '\\' + name + '.pkl', 'wb') as f:
+       pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
+
+def load_obj(name, foldername):
+    with open(foldername + '\\' + name + '.pkl', 'rb') as f: 
+        return pickle.load(f)
 
 #arranjar isto de forma a ser um ciclo e fazer para todos os replays do replaylinks.txt
 driver = webdriver.Chrome()
@@ -30,14 +39,25 @@ with open('replaytest.txt', 'r', encoding='utf8') as f:
             count += 1
         pokemon_team_1 = pokemon_teams_list[0].split(" / ") #lista com os mons da team 1
         pokemon_team_2 = pokemon_teams_list[1].split(" / ") #lista com os mons da team 2
-        print(pokemon_team_1)
-        print(pokemon_team_2)
+        #print(pokemon_team_1)
+        #print(pokemon_team_2)
         time.sleep(3)
         battle_log_full = driver.find_element_by_xpath("/html/body/div[2]/div/div[1]/div[2]")
         battle_log = battle_log_full.text.split("Turn ")
         battle_repr = []
         for i in range(len(battle_log)):
-            turn_actions = [x for x in battle_log[i].split("\n") if x != ""]
+            #turn_actions = [x for x in battle_log[i].split("\n") if x != ""]
+            turn_actions = battle_log[i].split("\n")
             del turn_actions[0]
-            battle_repr.append(turn_actions)
-        print(battle_repr)
+            turn = []
+            current_action = []
+            for x in turn_actions:
+                if(x != ""):
+                    current_action.append(x)
+                if(x == "" and len(current_action) > 0):
+                    turn.append(current_action)
+                    current_action = []
+            battle_repr.append(turn)
+        
+        listinha = [pokemon_team_1, pokemon_team_2, battle_repr]
+        save_obj(listinha, item.split("-")[-1], "replays")
