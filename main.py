@@ -124,9 +124,11 @@ async def profile(ctx):
         menu = ReactionMenu(ctx, back_button='⬅️', next_button='➡️', config=ReactionMenu.STATIC, style="$/&")
         searched_profile = profile_embeds.profile_embed(msg.lower())
         tournament_results = profile_embeds.tournament_results_embed(msg.lower())
+        vods = profile_embeds.vods_page(msg.lower())
         menu.add_page(searched_profile)
         if tournament_results != 0:
             menu.add_page(tournament_results)
+            menu.add_page(vods)
         await menu.start()
 
 #Command para adicionar/editar uma thumbnail
@@ -310,6 +312,8 @@ async def set_vods(ctx):
     vod_link = ctx.message.content.split(" ", 1)[1]
     discord_user_id = ctx.message.author.id
     check_vod_success = profile_embeds.add_vods(vod_link, discord_user_id)
+    if check_vod_success == 1:
+        await ctx.send("Video(s) adicionado(s) com sucesso!")
 
 @client.command(name="event")
 async def view_event(ctx):
