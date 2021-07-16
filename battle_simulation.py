@@ -60,33 +60,97 @@ print("Opposing Team Pokemon in Field 1: ", battle.opposing_pokemon_field_1)
 print("Opposing Team Pokemon in Field 2: ", battle.opposing_pokemon_field_2)
 
 turnos_list = []
+temp_fainted_player = []
+temp_fainted_opposing = []
+fainted_player_mons = []
+fainted_opposing_mons = []
+count10 = 1
 for turn in replay[2]:
     for actions in turn:
-        print(actions)
         if "withdrew" in actions[0]:
             switch_out_action_op = actions[0].split(" withdrew ")
             withdrawn_pokemon_op = switch_out_action_op[1][:-1]
+            if "Urshifu" in withdrawn_pokemon_op:
+                withdrawn_pokemon_op = "Urshifu"
             if "sent out" in actions[1]:
                 switch_in_action_op = actions[1].split(" sent out ")
                 entering_pokemon_op = switch_in_action_op[1][:-1]
+                if "Urshifu" in entering_pokemon_op:
+                    entering_pokemon_op = "Urshifu"
                 if withdrawn_pokemon_op == battle.opposing_pokemon_field_1: 
                     battle.opposing_pokemon_field_1 = entering_pokemon_op
+                    if entering_pokemon_op not in battle.picked_opposing_team:
+                        battle.picked_opposing_team.append(entering_pokemon_op)
                 elif withdrawn_pokemon_op == battle.opposing_pokemon_field_2:
                     battle.opposing_pokemon_field_2 = entering_pokemon_op
+                    if entering_pokemon_op not in battle.picked_opposing_team:
+                        battle.picked_opposing_team.append(entering_pokemon_op)
                 else:
                     continue
         if "come back" in actions[0]:
             switch_out_action_player = actions[0].split(", ")
             withdrawn_pokemon_player = switch_out_action_player[0]
+            if "Urshifu" in withdrawn_pokemon_player:
+                withdrawn_pokemon_player = "Urshifu"
             if "Go!" in actions[1]:
                 switch_in_action_player = actions[1].split("Go! ")
                 entering_pokemon_player = switch_in_action_player[1][:-1]
+                if "Urshifu" in entering_pokemon_player:
+                    entering_pokemon_player = "Urshifu"
+                print("Entering Pokemon: " + entering_pokemon_player)
+                print("Withdrawn Pokemon: " + withdrawn_pokemon_player)
                 if withdrawn_pokemon_player == battle.pokemon_field_1: 
                     battle.pokemon_field_1 = entering_pokemon_player
+                    if entering_pokemon_player not in battle.picked_player_team:
+                        battle.picked_player_team.append(entering_pokemon_player)
                 elif withdrawn_pokemon_player == battle.pokemon_field_2:
                     battle.pokemon_field_2 = entering_pokemon_player
+                    if entering_pokemon_player not in battle.picked_player_team:
+                        battle.picked_player_team.append(entering_pokemon_player)
                 else:
                     continue
+        if "opposing" in actions[0] and "fainted!" in actions[0]:
+            fainted_op = actions[0].split(" opposing ")
+            fainted_opposing_pokemon = fainted_op[1].split(" ")[0]
+            temp_fainted_opposing.append(fainted_opposing_pokemon)
+        if "sent out" in actions[0]:
+            entering_pokemon_op = actions[0].split(" sent out ")[1][:-1] #meter o bicho q entra
+            if(len(temp_fainted_opposing) > 0):     #se ele tiver algum fainted pokemon p substituir (à partida tem)
+                cur_fainted_op = temp_fainted_opposing[0] #isto vai ter a string "Ho-oh"
+                if cur_fainted_op == battle.opposing_pokemon_field_1: 
+                    battle.opposing_pokemon_field_1 = entering_pokemon_op
+                    if entering_pokemon_op not in battle.picked_opposing_team:
+                        battle.picked_opposing_team.append(entering_pokemon_op)
+                elif cur_fainted_op == battle.opposing_pokemon_field_2:
+                    battle.opposing_pokemon_field_2 = entering_pokemon_op
+                    if entering_pokemon_op not in battle.picked_opposing_team:
+                        battle.picked_opposing_team.append(entering_pokemon_op)
+                del temp_fainted_opposing[0]
+        '''
+        else:
+            if len(temp_fainted_opposing) > 0:
+                cur_fainted_op = temp_fainted_opposing[0]
+                if cur_fainted_op == battle.opposing_pokemon_field_1:
+                    battle.opposing_pokemon_field_1 = "EMPTY"
+                elif cur_fainted_op == battle.opposing_pokemon_field_2:
+                    battle.opposing_pokemon_field_2 = "EMPTY"
+        '''
+        if "opposing" not in actions[0] and "fainted!" in actions[0]:
+            fainted_player = actions[0].split(" ")[0]
+            temp_fainted_player.append(fainted_player)
+        if "Go!" in actions[0]:
+            entering_pokemon_player = actions[0].split(" ")[1][:-1]
+            if len(temp_fainted_player) > 0:
+                cur_fainted_player = temp_fainted_player[0]
+                if cur_fainted_player == battle.pokemon_field_1:
+                    battle.pokemon_field_1 = entering_pokemon_player
+                    if entering_pokemon_player not in battle.picked_player_team:
+                        battle.picked_player_team.append(entering_pokemon_player)
+                elif cur_fainted_player == battle.pokemon_field_2:
+                    battle.pokemon_field_2 = entering_pokemon_player
+                    if entering_pokemon_player not in battle.picked_player_team:
+                        battle.picked_player_team.append(entering_pokemon_player)
+
         for action in actions:
             if "used" in action and "opposing" in action:
                 action_result = action.split("The opposing ")[1].split(" used ") 
@@ -137,6 +201,8 @@ for turn in replay[2]:
                 #print(pokemon_name)
                 #print(hp_lost)
                 #print()
+    print("Turn %d" % count10)
+    count10 += 1          
     print()
     turnos_list.append(battle.getCopy())
 
@@ -165,15 +231,20 @@ for battle_item in turnos_list:
     count1 += 1
     count2 += 1
 
-count3 = 0
+count4 = 1
 for battle_item in turnos_list:
-    print("Turn %d" % count3)
+    print("Beginning of Turn %d" % count4)
     print(battle_item.pokemon_field_1)
     print(battle_item.pokemon_field_2)
     print(battle_item.opposing_pokemon_field_1)
     print(battle_item.opposing_pokemon_field_2)
     print()
-    count3 += 1
+    count4 += 1
+
+print("PLAYER TEAM: ")
+print(battle_item.picked_player_team)
+print("OPPOSING TEAM: ")
+print(battle_item.picked_opposing_team)
 '''
 Go! x -> Beginning of Game, Player Team
 p sent out x! -> Beginng of Game, Opposing Team
