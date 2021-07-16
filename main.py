@@ -313,6 +313,9 @@ async def set_vods(ctx):
     check_vod_success = profile_embeds.add_vods(vod_link, discord_user_id)
     if check_vod_success == 1:
         await ctx.send("Video(s) adicionado(s) com sucesso!")
+    elif check_vod_success == 0:
+        await ctx.send("Link inserido é inválido!")
+
 
 @client.command(name="event")
 async def view_event(ctx):

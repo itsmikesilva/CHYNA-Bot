@@ -434,6 +434,13 @@ def add_vods(vod_link, user_id):
     existing_vods = []
     created_vods = []
     vod_list = vod_link.split(", ")
+    pattern = "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
+    for vod in vod_list:
+        match = re.search(pattern, vod)
+        if match:
+            pass
+        else:
+            return 0
     if "vods" in profileIndex_id[user_id].keys():
         existing_vods = profileIndex_id[user_id]["vods"]
         for vod in vod_list:
