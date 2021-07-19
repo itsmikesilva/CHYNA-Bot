@@ -3,6 +3,9 @@ import discord
 import difflib
 import re
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 
 profileIndex_id = {}
@@ -431,9 +434,13 @@ def remove_tournament_results_interface(accolades_list):
 #adiciona vods ao profile
 def add_vods(vod_link, user_id):
 
-    existing_vods = []
-    created_vods = []
+    temp_vods = []
     vod_list = vod_link.split(", ")
+    for vod in vod_list:
+        if " " in vod.strip():
+            return 3
+    if len(vod_list) > 3:
+        return 2
     pattern = "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
     for vod in vod_list:
         match = re.search(pattern, vod)
@@ -441,37 +448,30 @@ def add_vods(vod_link, user_id):
             pass
         else:
             return 0
+    driver = webdriver.Chrome()
+    cookies_clicked = False
     if "vods" in profileIndex_id[user_id].keys():
-        existing_vods = profileIndex_id[user_id]["vods"]
-        for vod in vod_list:
-            driver = webdriver.Chrome()
-            driver.get(vod)
-            time.sleep(5)
-            cookies_button = driver.find_element_by_xpath("//*[@id='yDmH0d']/c-wiz/div/div/div/div[2]/div[1]/div[4]/form/div[1]/div/button")
-            cookies_button.click()
-            time.sleep(5)
-            vod_name = driver.find_element_by_xpath("//*[@id='container']/h1/yt-formatted-string")
+        temp_vods = profileIndex_id[user_id]["vods"]
+    for vod in vod_list:
+        driver.get(vod)
+        try:
+            if not cookies_clicked:
+                cookies_button = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//*[@id='yDmH0d']/c-wiz/div/div/div/div[2]/div[1]/div[4]/form/div[1]/div/button")))
+                cookies_button.click()
+                cookies_clicked = True
+        except:
+            print("vc demorou mt tempo a carregar")
+        try:
+            vod_name = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//*[@id='container']/h1/yt-formatted-string")))
             vod_to_add = "[" + vod_name.text + "](" + vod + ")"
-            existing_vods.append(vod_to_add)
-
-            profileIndex_id[user_id]["vods"] = existing_vods
-            name = profileIndex_id[user_id]["player_name"].lower()
-            profileIndex_name[name]["vods"] = existing_vods
-        print(existing_vods)
-    else:
-        for vod in vod_list:
-            driver = webdriver.Chrome()
-            driver.get(vod)
-            time.sleep(5)
-            cookies_button = driver.find_element_by_xpath("//*[@id='yDmH0d']/c-wiz/div/div/div/div[2]/div[1]/div[4]/form/div[1]/div/button")
-            cookies_button.click()
-            time.sleep(5)
-            vod_name = driver.find_element_by_xpath("//*[@id='container']/h1/yt-formatted-string")
-            vod_to_add = "[" + vod_name.text + "](" + vod + ")"
-            created_vods.append(vod_to_add)
-            profileIndex_id[user_id]["vods"] = created_vods
-            name = profileIndex_id[user_id]["player_name"].lower()
-            profileIndex_name[name]["vods"] = created_vods
+            temp_vods.append(vod_to_add)
+        except:
+            print("bo$$y")
+        
+        profileIndex_id[user_id]["vods"] = temp_vods
+        name = profileIndex_id[user_id]["player_name"].lower()
+        profileIndex_name[name]["vods"] = temp_vods
+    print(temp_vods)
 
     with open('profiles.json', 'w', encoding='utf8') as f:
         json.dump(profileIndex_id, f, indent=4)

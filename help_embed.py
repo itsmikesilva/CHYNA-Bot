@@ -139,6 +139,14 @@ def tournament_results_page_embed():
 
     return embed1, embed2, embed3, embed4
 
+def set_vods_embed():
+    embed = discord.Embed(title="Adicionar Videos/Clipes do Jogador")
+    embed.set_author(name="CHYNA", icon_url="https://cdn.discordapp.com/avatars/808866968416813076/cc650ce022895166abf57e35f4454bc0.webp?size=128")
+    embed.add_field(name="Command !sv ou !setvods", value="Para adicionar videos, clipes e highlights ao perfil, o jogador deve utilizar o command !sv ou !setvods seguido dos links dos videos desejados, separando-os através de vírgulas.\n\nExemplo do uso do command !sv:\n\n✅ !sv https://www.youtube.com/watch?v=lGTRUN0tqVk, https://www.youtube.com/watch?v=XvBE4Op7boI\n❌ !sv https://www.youtube.com/watch?v=lGTRUN0tqVk https://www.youtube.com/watch?v=XvBE4Op7boI")
+    embed.set_image(url="https://cdn.discordapp.com/attachments/854306255043428392/854306925645398016/C_ZAF.png")
+
+    return embed
+
 def call_command_help_embed(message):
 
     if message == "!m" or message == "!manual" or message == 0:
@@ -175,6 +183,8 @@ def call_command_help_embed(message):
         not_embed, not_embed1, embed, not_embed2 = tournament_results_page_embed
     elif message == "!pr" or message == "!pickresults" or message == 16:
         not_embed, not_embed1, not_embed2, embed = tournament_results_page_embed()
+    elif message == "sv" or message == "!setvods" or message == 17:
+        embed = set_vods_embed()
     else:
         return 0
     

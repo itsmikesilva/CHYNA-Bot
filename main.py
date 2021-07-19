@@ -30,6 +30,7 @@ async def help_menu(ctx):
     name_change_page_embed = help_embed.name_change_embed()
     profile_page_embed = help_embed.profile_embed()
     add_results_embed, remove_results_embed, edit_results_embed, pick_results_embed = help_embed.tournament_results_page_embed()
+    add_vods_embed = help_embed.set_vods_embed()
     menu.add_page(front_page_embed)
     menu.add_page(set_profile_embed)
     menu.add_page(set_thumbnail_embed)
@@ -47,8 +48,10 @@ async def help_menu(ctx):
     menu.add_page(remove_results_embed)
     menu.add_page(edit_results_embed)
     menu.add_page(pick_results_embed)
+    menu.add_page(add_vods_embed)
     await menu.start()
 
+#Command help geral
 @client.command(name="helpcommands", aliases=["help"])
 async def help_commands(ctx):
     msg = ctx.message.content.split(" ")
@@ -82,6 +85,7 @@ async def help_commands(ctx):
             name_change_page_embed = help_embed.name_change_embed()
             profile_page_embed = help_embed.profile_embed()
             add_results_embed, remove_results_embed, edit_results_embed, pick_results_embed = help_embed.tournament_results_page_embed()
+            add_vods_embed = help_embed.set_vods_embed()
             menu.add_page(front_page_embed)
             menu.add_page(set_profile_embed)
             menu.add_page(set_thumbnail_embed)
@@ -99,6 +103,7 @@ async def help_commands(ctx):
             menu.add_page(remove_results_embed)
             menu.add_page(edit_results_embed)
             menu.add_page(pick_results_embed)
+            menu.add_page(add_vods_embed)
             await menu.start()
         await ctx.send(embed=chosen_command_embed)
 
@@ -128,6 +133,7 @@ async def profile(ctx):
         menu.add_page(searched_profile)
         if tournament_results != 0:
             menu.add_page(tournament_results)
+        if vods != 0:
             menu.add_page(vods)
         await menu.start()
 
@@ -313,6 +319,10 @@ async def set_vods(ctx):
     check_vod_success = profile_embeds.add_vods(vod_link, discord_user_id)
     if check_vod_success == 1:
         await ctx.send("Video(s) adicionado(s) com sucesso!")
+    elif check_vod_success == 2:
+        await ctx.send("ATENÇÃO: Só é possível enviar um máximo de 3 links de cada vez!")
+    elif check_vod_success == 3:
+        await ctx.send("ATENÇÃO: Deves utilizar vírgulas entre os links!")
     elif check_vod_success == 0:
         await ctx.send("Link inserido é inválido!")
 

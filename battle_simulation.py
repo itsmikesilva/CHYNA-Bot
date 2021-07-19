@@ -1,12 +1,13 @@
 from pokebattle import Battle
 from pokebattle import Pokemon
 import pickle
+import difflib
 
 def load_obj(name, foldername):
     with open(foldername + '\\' + name + '.pkl', 'rb') as f: 
         return pickle.load(f)
 
-replay = load_obj("1376791337", "replays")
+replay = load_obj("1376791075", "replays")
 team1 = {}
 team2 = {}
 for p in replay[0]:
@@ -36,8 +37,9 @@ for turn in replay[2]:
                 picked_player_team.append(pokemon)
                 count_player_team += 1
             if "sent out" in action and count_opposing_team < 2:
-                pokemon = action.split(" ")[-1]
+                pokemon = action.split(" sent out ")[1]
                 pokemon = pokemon[:-1]
+                print(pokemon)
                 picked_opposing_team.append(pokemon)
                 count_opposing_team += 1
 
@@ -70,13 +72,9 @@ for turn in replay[2]:
         if "withdrew" in actions[0]:
             switch_out_action_op = actions[0].split(" withdrew ")
             withdrawn_pokemon_op = switch_out_action_op[1][:-1]
-            if "Urshifu" in withdrawn_pokemon_op:
-                withdrawn_pokemon_op = "Urshifu"
             if "sent out" in actions[1]:
                 switch_in_action_op = actions[1].split(" sent out ")
                 entering_pokemon_op = switch_in_action_op[1][:-1]
-                if "Urshifu" in entering_pokemon_op:
-                    entering_pokemon_op = "Urshifu"
                 if withdrawn_pokemon_op == battle.opposing_pokemon_field_1: 
                     battle.opposing_pokemon_field_1 = entering_pokemon_op
                     if entering_pokemon_op not in battle.picked_opposing_team:
@@ -89,16 +87,10 @@ for turn in replay[2]:
                     continue
         if "come back" in actions[0]:
             switch_out_action_player = actions[0].split(", ")
-            withdrawn_pokemon_player = switch_out_action_player[0]
-            if "Urshifu" in withdrawn_pokemon_player:
-                withdrawn_pokemon_player = "Urshifu"
+            withdrawn_pokemon_player = switch_out_action_player[0]        
             if "Go!" in actions[1]:
                 switch_in_action_player = actions[1].split("Go! ")
                 entering_pokemon_player = switch_in_action_player[1][:-1]
-                if "Urshifu" in entering_pokemon_player:
-                    entering_pokemon_player = "Urshifu"
-                print("Entering Pokemon: " + entering_pokemon_player)
-                print("Withdrawn Pokemon: " + withdrawn_pokemon_player)
                 if withdrawn_pokemon_player == battle.pokemon_field_1: 
                     battle.pokemon_field_1 = entering_pokemon_player
                     if entering_pokemon_player not in battle.picked_player_team:
@@ -168,27 +160,31 @@ for turn in replay[2]:
             if "used" in action and "opposing" not in action:
                 action_result = action.split(" used ") 
                 pokemon_name = action_result[0]
-                pokemon_move = action_result[1][:-1]
-                if pokemon_move not in battle.player_team[pokemon_name].moves:
-                    battle.player_team[pokemon_name].moves.append(pokemon_move)
-                #print(actions)
-                #print(action)
-                #print(pokemon_name)
-                #print(pokemon_move)
-                #print()
+                name_compare = difflib.get_close_matches(pokemon_name, battle.player_team.keys())
+                if len(name_compare) > 0:
+                    pokemon_move = action_result[1][:-1]
+                    if pokemon_move not in battle.player_team[name_compare[0]].moves:
+                        battle.player_team[name_compare[0]].moves.append(pokemon_move)
+                    #print(actions)
+                    #print(action)
+                    #print(pokemon_name)
+                    #print(pokemon_move)
+                    #print()
 
             if "lost" in action and "opposing" not in action:
                 action_result = action.split(" lost ")
                 pokemon_name = action_result[0][1:]
-                hp_lost = action_result[1].split("%")[0]
-                hp_lost = int(hp_lost)
-                if battle.player_team[pokemon_name].health > 0:
-                    battle.player_team[pokemon_name].health = battle.player_team[pokemon_name].health - hp_lost
-                battle.player_team[pokemon_name]
-                #print(action)
-                #print(pokemon_name)
-                #print(hp_lost)
-                #print()
+                name_compare = difflib.get_close_matches(pokemon_name, battle.player_team.keys())
+                if len(name_compare) > 0:
+                    hp_lost = action_result[1].split("%")[0]
+                    hp_lost = int(hp_lost)
+                    if battle.player_team[name_compare[0]].health > 0:
+                        battle.player_team[name_compare[0]].health = battle.player_team[name_compare[0]].health - hp_lost
+                    battle.player_team[name_compare[0]]
+                    #print(action)
+                    #print(pokemon_name)
+                    #print(hp_lost)
+                    #print()
 
             if "lost" in action and "opposing" in action:
                 action_result = action.split(" lost ")
