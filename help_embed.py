@@ -139,12 +139,23 @@ def tournament_results_page_embed():
 
     return embed1, embed2, embed3, embed4
 
+#adicionar vods
 def set_vods_embed():
     embed = discord.Embed(title="Adicionar Videos/Clipes do Jogador")
     embed.set_author(name="CHYNA", icon_url="https://cdn.discordapp.com/avatars/808866968416813076/cc650ce022895166abf57e35f4454bc0.webp?size=128")
     embed.add_field(name="Command !sv ou !setvods", value="Para adicionar videos, clipes e highlights ao perfil, o jogador deve utilizar o command !sv ou !setvods seguido dos links dos videos desejados, separando-os através de vírgulas.\n\nExemplo do uso do command !sv:\n\n✅ !sv https://www.youtube.com/watch?v=lGTRUN0tqVk, https://www.youtube.com/watch?v=XvBE4Op7boI\n❌ !sv https://www.youtube.com/watch?v=lGTRUN0tqVk https://www.youtube.com/watch?v=XvBE4Op7boI")
     embed.set_image(url="https://cdn.discordapp.com/attachments/854306255043428392/854306925645398016/C_ZAF.png")
 
+    return embed
+
+#remover vods
+def remove_vods_embed():
+
+    embed = discord.Embed(title="Remover Videos/Clipes do Jogador")
+    embed.set_author(name="CHYNA", icon_url="https://cdn.discordapp.com/avatars/808866968416813076/cc650ce022895166abf57e35f4454bc0.webp?size=128")
+    embed.add_field(name="Command !rv ou !removevods", value="Para remover vídeos do perfil, o jogador deve utilizar o command !rv ou !removevods. Este command não tem requisitos. Ao receber o command !rv, a CHYNA perguntará qual dos VODs o jogador pretende remover. O jogador deve enviar uma mensagem com o número respetivo\n\nExemplo do uso do command !rv")
+    embed.set_image(url="https://cdn.discordapp.com/attachments/854306255043428392/854306925645398016/C_ZAF.png")
+    
     return embed
 
 def call_command_help_embed(message):
@@ -185,6 +196,8 @@ def call_command_help_embed(message):
         not_embed, not_embed1, not_embed2, embed = tournament_results_page_embed()
     elif message == "sv" or message == "!setvods" or message == 17:
         embed = set_vods_embed()
+    elif message == "rv" or message == "!removevods" or message == 18:
+        embed = remove_vods_embed()
     else:
         return 0
     
@@ -193,7 +206,7 @@ def call_command_help_embed(message):
 def show_commands_embed():
 
     commands_string_1 = "0- !m ou !manual\n1- !sp ou !setprofile\n2- !t ou !thumbnail\n3- !ss ou !setsubs\n4- !rs ou !removesubs\n5- !mr ou !maxrank\n6- !d ou !description\n7- !sm ou !setsocial\n8- !rm ou!removesocial\n9- !se ou !setesports"
-    commands_string_2 = "10- !re ou !removeesports\n11- !cn ou! changename\n12- !p ou !profile\n13- !tr ou !results\n14- !rr ou !removeresults\n15- !er ou !editresults\n16- !pr ou !pickresults"
+    commands_string_2 = "10- !re ou !removeesports\n11- !cn ou! changename\n12- !p ou !profile\n13- !tr ou !results\n14- !rr ou !removeresults\n15- !er ou !editresults\n16- !pr ou !pickresults\n17- !sv ou !setvods"
     embed1 = discord.Embed(title="LISTA DE COMANDOS")
     embed1.set_author(name="CHYNA", icon_url="https://cdn.discordapp.com/avatars/808866968416813076/cc650ce022895166abf57e35f4454bc0.webp?size=128")
     embed1.add_field(name="Escolhe o número do command para obter informação sobre ele:", value=commands_string_1)

@@ -31,6 +31,7 @@ async def help_menu(ctx):
     profile_page_embed = help_embed.profile_embed()
     add_results_embed, remove_results_embed, edit_results_embed, pick_results_embed = help_embed.tournament_results_page_embed()
     add_vods_embed = help_embed.set_vods_embed()
+    delete_vods_embed = help_embed.remove_vods_embed()
     menu.add_page(front_page_embed)
     menu.add_page(set_profile_embed)
     menu.add_page(set_thumbnail_embed)
@@ -49,6 +50,7 @@ async def help_menu(ctx):
     menu.add_page(edit_results_embed)
     menu.add_page(pick_results_embed)
     menu.add_page(add_vods_embed)
+    menu.add_page(delete_vods_embed)
     await menu.start()
 
 #Command help geral
@@ -86,6 +88,7 @@ async def help_commands(ctx):
             profile_page_embed = help_embed.profile_embed()
             add_results_embed, remove_results_embed, edit_results_embed, pick_results_embed = help_embed.tournament_results_page_embed()
             add_vods_embed = help_embed.set_vods_embed()
+            delete_vods_embed = help_embed.remove_vods_embed()
             menu.add_page(front_page_embed)
             menu.add_page(set_profile_embed)
             menu.add_page(set_thumbnail_embed)
@@ -104,6 +107,7 @@ async def help_commands(ctx):
             menu.add_page(edit_results_embed)
             menu.add_page(pick_results_embed)
             menu.add_page(add_vods_embed)
+            menu.add_page(delete_vods_embed)
             await menu.start()
         await ctx.send(embed=chosen_command_embed)
 
