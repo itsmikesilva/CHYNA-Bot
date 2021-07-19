@@ -326,6 +326,25 @@ async def set_vods(ctx):
     elif check_vod_success == 0:
         await ctx.send("Link inserido é inválido!")
 
+#Command para remover VODs
+@client.command(name="removevods", aliases=["rv"])
+async def remove_vods(ctx):
+    
+    discord_user_id = ctx.message.author.id
+    vods_embed = profile_embeds.remove_vods_interface(discord_user_id)
+    if vods_embed == 0:
+        await ctx.send("Não existem VODs associados a este perfil.")
+        return
+    else:
+        await ctx.send(embed=vods_embed)
+
+    msg = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+    number = int(msg.content)
+    check_if_in_range = profile_embeds.remove_vods_final(number, discord_user_id)
+    if check_if_in_range == 0:
+        await ctx.send("Fora dos limites! (O número selecionado não pertence à lista.)")
+    elif check_if_in_range == 1:
+        await ctx.send("VOD removido com sucesso!")
 
 @client.command(name="event")
 async def view_event(ctx):

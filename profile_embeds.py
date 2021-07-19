@@ -494,6 +494,51 @@ def vods_page(message):
     else:
         return 0
 
+#Recupera a lista de vods do player
+def vods_list(user_id):
+
+    if "vods" in profileIndex_id[user_id].keys():
+        vods_list = profileIndex_id[user_id]["vods"]
+        vods_menu = ""
+        count = 1
+        for item in vods_list:
+            vods_menu += str(count) + "- " + item + "\n"
+            count += 1
+        vods_final = vods_menu.split("\n")
+        vods_final.pop()
+
+        return vods_final
+    else:
+        return 0
+
+def remove_vods_interface(user_id):
+
+    vods_menu = vods_list(user_id)
+    if vods_menu == 0:
+        return 0
+    vods_final = ""
+    for item in vods_menu:
+        vods_final = vods_final + item + "\n"
+    embed = discord.Embed(title="VODs list", description="Choose the number of the VOD you wish to remove: ")
+    embed.add_field(name="Removing", value= vods_final)
+
+    return embed
+
+def remove_vods_final(number, user_id):
+
+    number = number - 1
+    vods_list = profileIndex_id[user_id]["vods"]
+    if number >= len(vods_list):
+        return 0
+    else:
+        for i in range(len(vods_list)):
+            if i == number:
+                vods_list.remove(vods_list[i])
+
+    with open('profiles.json', 'w', encoding='utf8') as f:
+        json.dump(profileIndex_id, f, indent=4)
+    return 1
+
 #função que vai criar o embed do perfil encontrado
 def profile_embed(message):
     final_profile = find_profile(message)

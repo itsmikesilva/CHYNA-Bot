@@ -7,7 +7,7 @@ def load_obj(name, foldername):
     with open(foldername + '\\' + name + '.pkl', 'rb') as f: 
         return pickle.load(f)
 
-replay = load_obj("1376791075", "replays")
+replay = load_obj("1376791337", "replays")
 team1 = {}
 team2 = {}
 for p in replay[0]:
@@ -28,6 +28,7 @@ count_player_team = 0
 count_opposing_team = 0
 picked_player_team = []
 picked_opposing_team = []
+
 for turn in replay[2]:
     for actions in turn:
         for action in actions:
@@ -39,7 +40,6 @@ for turn in replay[2]:
             if "sent out" in action and count_opposing_team < 2:
                 pokemon = action.split(" sent out ")[1]
                 pokemon = pokemon[:-1]
-                print(pokemon)
                 picked_opposing_team.append(pokemon)
                 count_opposing_team += 1
 
@@ -79,10 +79,12 @@ for turn in replay[2]:
                     battle.opposing_pokemon_field_1 = entering_pokemon_op
                     if entering_pokemon_op not in battle.picked_opposing_team:
                         battle.picked_opposing_team.append(entering_pokemon_op)
+                        alive_opposing_team.append(entering_pokemon_op)
                 elif withdrawn_pokemon_op == battle.opposing_pokemon_field_2:
                     battle.opposing_pokemon_field_2 = entering_pokemon_op
                     if entering_pokemon_op not in battle.picked_opposing_team:
                         battle.picked_opposing_team.append(entering_pokemon_op)
+                        alive_opposing_team.append(entering_pokemon_op)
                 else:
                     continue
         if "come back" in actions[0]:
@@ -98,7 +100,7 @@ for turn in replay[2]:
                 elif withdrawn_pokemon_player == battle.pokemon_field_2:
                     battle.pokemon_field_2 = entering_pokemon_player
                     if entering_pokemon_player not in battle.picked_player_team:
-                        battle.picked_player_team.append(entering_pokemon_player)
+                        battle.picked_player_team.append(entering_pokemon_player)                        
                 else:
                     continue
         if "opposing" in actions[0] and "fainted!" in actions[0]:
@@ -109,7 +111,8 @@ for turn in replay[2]:
             entering_pokemon_op = actions[0].split(" sent out ")[1][:-1] #meter o bicho q entra
             if(len(temp_fainted_opposing) > 0):     #se ele tiver algum fainted pokemon p substituir (à partida tem)
                 cur_fainted_op = temp_fainted_opposing[0] #isto vai ter a string "Ho-oh"
-                if cur_fainted_op == battle.opposing_pokemon_field_1: 
+                alive_opposing_team.remove(cur_fainted_op)
+                if cur_fainted_op == battle.opposing_pokemon_field_1:
                     battle.opposing_pokemon_field_1 = entering_pokemon_op
                     if entering_pokemon_op not in battle.picked_opposing_team:
                         battle.picked_opposing_team.append(entering_pokemon_op)
@@ -118,6 +121,7 @@ for turn in replay[2]:
                     if entering_pokemon_op not in battle.picked_opposing_team:
                         battle.picked_opposing_team.append(entering_pokemon_op)
                 del temp_fainted_opposing[0]
+
         '''
         else:
             if len(temp_fainted_opposing) > 0:
@@ -134,6 +138,7 @@ for turn in replay[2]:
             entering_pokemon_player = actions[0].split(" ")[1][:-1]
             if len(temp_fainted_player) > 0:
                 cur_fainted_player = temp_fainted_player[0]
+                alive_player_team.remove(cur_fainted_op)
                 if cur_fainted_player == battle.pokemon_field_1:
                     battle.pokemon_field_1 = entering_pokemon_player
                     if entering_pokemon_player not in battle.picked_player_team:
@@ -150,12 +155,6 @@ for turn in replay[2]:
                 pokemon_move = action_result[1][:-1]
                 if pokemon_move not in battle.opposing_team[pokemon_name].moves:
                     battle.opposing_team[pokemon_name].moves.append(pokemon_move)
-                    #print(battle.opposing_team[pokemon_name].moves)
-                #print(actions)
-                #print(action)
-                #print(pokemon_name)
-                #print(pokemon_move)
-                #print()
 
             if "used" in action and "opposing" not in action:
                 action_result = action.split(" used ") 
@@ -165,11 +164,6 @@ for turn in replay[2]:
                     pokemon_move = action_result[1][:-1]
                     if pokemon_move not in battle.player_team[name_compare[0]].moves:
                         battle.player_team[name_compare[0]].moves.append(pokemon_move)
-                    #print(actions)
-                    #print(action)
-                    #print(pokemon_name)
-                    #print(pokemon_move)
-                    #print()
 
             if "lost" in action and "opposing" not in action:
                 action_result = action.split(" lost ")
@@ -181,10 +175,6 @@ for turn in replay[2]:
                     if battle.player_team[name_compare[0]].health > 0:
                         battle.player_team[name_compare[0]].health = battle.player_team[name_compare[0]].health - hp_lost
                     battle.player_team[name_compare[0]]
-                    #print(action)
-                    #print(pokemon_name)
-                    #print(hp_lost)
-                    #print()
 
             if "lost" in action and "opposing" in action:
                 action_result = action.split(" lost ")
@@ -193,10 +183,7 @@ for turn in replay[2]:
                 hp_lost = int(hp_lost)
                 if battle.opposing_team[pokemon_name].health > 0:
                     battle.opposing_team[pokemon_name].health = battle.opposing_team[pokemon_name].health - hp_lost
-                #print(action)
-                #print(pokemon_name)
-                #print(hp_lost)
-                #print()
+
     print("Turn %d" % count10)
     count10 += 1          
     print()
