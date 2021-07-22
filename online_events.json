@@ -1,0 +1,616 @@
+{
+    "Deathphist League #1 PC": {
+        "name": "Deathphist League #1 PC",
+        "aliases": [
+            "DEATHPHIST #1 PC",
+            "DEATHFIST LEAGUE #1 PC"
+        ],
+        "date": "11 de Março de 2018",
+        "brackets": "[Challonge](https://challonge.com/pt/DL1PCTOP8)",
+        "vod": "[PLAYLIST: Deathphist League #1 PC](https://www.youtube.com/watch?v=V6IlQ3zqRME&list=PLnF4aArsYkpGnlcwQ20MzkUIdpDqWNQiD)",
+        "winner": "Coxo",
+        "top_8": [
+            "2- JFSL",
+            "3- Jondesu",
+            "4- MrNuvas",
+            "5- Drothdarr",
+            "5- Blue Link",
+            "7- Dusted",
+            "7- TehShady"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Deathphist League #1 PS4": {
+        "name": "Deathphist League #1 PS4",
+        "aliases": [
+            "DEATHPHIST #1 PS4",
+            "DEATHFIST LEAGUE #1 PS4"
+        ],
+        "date": "3 de Fevereiro de 2018",
+        "brackets": "[Challonge](https://challonge.com/pt/j61jj5mm)",
+        "vod": "[PLAYLIST: Deathphist League #1 PS4](https://www.youtube.com/watch?v=GgtirB345FQ&list=PLnF4aArsYkpFmgw9nLbWk5wz2iyhxI1WY)",
+        "winner": "Jondesu",
+        "top_8": [
+            "2- Ocelot/Seifer",
+            "3- SC_Yin",
+            "4- Lomb",
+            "5- JH",
+            "5- Twista",
+            "7- ChiefJ",
+            "7- Ravage"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Easter Wind Tuga Fist 2018 PC": {
+        "name": "Easter Wind Tuga Fist 2018 PC",
+        "aliases": [
+            "EWTF 2018 PC",
+            "EASTER WIND TUGA FIST 18",
+            "EASTER WIND TUGA FIST 18 PC",
+            "EWTF 18 PC"
+        ],
+        "date": "8 de Abril de 2018",
+        "brackets": "[Challonge](https://challonge.com/pt/EWTF18PC)",
+        "vod": "[VOD: Easter Wind Tuga Fist 2018 PC](https://www.youtube.com/watch?v=s1Q_ZZP1ofs)",
+        "winner": "Jondesu",
+        "top_8": [
+            "2- MIKE SILVA",
+            "3- SC_Yin",
+            "4- Drothdarr",
+            "5- Kazhriel",
+            "5- MrNuvas",
+            "7- Valkirius",
+            "7- Vitag"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Easter Wind Tuga Fist 2018 PS4": {
+        "name": "Easter Wind Tuga Fist 2018 PS4",
+        "aliases": [
+            "EWTF 2018 PS4",
+            "EASTER WIND TUGA FIST 18",
+            "EASTER WIND TUGA FIST 18 PS4",
+            "EWTF 18 PS4"
+        ],
+        "date": "15 de Abril de 2018",
+        "brackets": "[Challonge](https://challonge.com/pt/ewtf18ps4)",
+        "vod": "[VOD: Easter Wind Tuga Fist 2018 PS4 (Parte 1)](https://www.youtube.com/watch?v=s1Q_ZZP1ofs)\n[VOD: Easter Wind Tuga Fist 2018 PS4 (Parte 2)](https://www.youtube.com/watch?v=XxKivglyk38)",
+        "winner": "SC_Yin",
+        "top_8": [
+            "2- Seifer",
+            "3- Lomb",
+            "4- Ravage",
+            "5- Enzosam",
+            "5- Jokeyboi",
+            "7- ChiefJ",
+            "7- Queldreya"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Comunidade Gamer Portuguesa Tekken 7 #1": {
+        "name": "Comunidade Gamer Portuguesa Tekken 7 #1",
+        "aliases": [
+            "COMUNIDADE GAMER PORTUGUESA",
+            "CGP",
+            "COMUNIDADE GAMER PORTUGUESA TEKKEN 7 #1"
+        ],
+        "date": "16 de Dezembro de 2018",
+        "brackets": "[Challonge](https://challonge.com/pt/cgpt_tekken7_n1)",
+        "vod": "[VOD: Comunidade Gamer Portuguesa Tekken 7 #1](https://www.youtube.com/watch?v=91csakrJ-iU)",
+        "winner": "Jondesu",
+        "top_8": [
+            "2- JFSL",
+            "3- Lomb",
+            "4- ChiefJ",
+            "5- JackBarros",
+            "5- Twista",
+            "7- Bernas",
+            "7- Dogged_Contender"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Deathphist League #2 PC": {
+        "name": "Deathphist League #2 PC",
+        "aliases": [
+            "DEATHPHIST #2 PC",
+            "DEATHFIST LEAGUE #2 PC"
+        ],
+        "date": "11 de Março de 2018",
+        "brackets": "[Challonge](https://challonge.com/DL2PCTOP8)",
+        "vod": "[PLAYLIST: Deathphist League #2 PC](https://www.youtube.com/watch?v=VzTa5tVTOMY&list=PLnF4aArsYkpHgrrN_wo8CAAo0RULajAX-&ab_channel=TekkenPortugal)",
+        "winner": "JFSL",
+        "top_8": [
+            "2- Lomb",
+            "3- Bernas",
+            "4- Jondesu",
+            "5- Drothdarr",
+            "5- Twista",
+            "7- Nyuu"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Deathphist League #2 PS4": {
+        "name": "Deathphist League #2 PS4",
+        "aliases": [
+            "DEATHPHIST #2 PS4",
+            "DEATHFIST LEAGUE #2 PS4"
+        ],
+        "date": "3 de Fevereiro de 2018",
+        "brackets": "[Challonge](https://challonge.com/pt/o9waa3tb)",
+        "vod": "[PLAYLIST: Deathphist League #2 PS4 (Swiss)](https://www.youtube.com/watch?v=kbae9wLG7Q8&list=PLnF4aArsYkpFGmtG_o-EBstlijQgvbzH5&ab_channel=TekkenPortugal)",
+        "winner": "ChiefJ",
+        "top_8": [
+            "2- Twista",
+            "3- SlashingVine",
+            "4- Ravage",
+            "5- Queldreya",
+            "6- Cris",
+            "7- Wolf",
+            "7- MARIORUI11"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Easter Wind Tuga Fist 2019 PC": {
+        "name": "Easter Wind Tuga Fist 2019 PC",
+        "aliases": [
+            "EWTF 2019 PC",
+            "EASTER WIND TUGA FIST 19",
+            "EASTER WIND TUGA FIST 19 PC",
+            "EWTF 19 PC"
+        ],
+        "date": "13 de Abril de 2019",
+        "brackets": "[Challonge](https://challonge.com/pt/EWTF19PC)",
+        "vod": "[VOD: Easter Wind Tuga Fist 2019 PC](https://www.youtube.com/watch?v=oC-qUPeOcBc)",
+        "winner": "JFSL",
+        "top_8": [
+            "2- Lomb",
+            "3- InvictusCobra",
+            "4- Herzeleid",
+            "5- Drothdarr",
+            "5- Twista",
+            "7- K4tana",
+            "7- JH"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Easter Wind Tuga Fist 2019 PS4": {
+        "name": "Easter Wind Tuga Fist 2019 PS4",
+        "aliases": [
+            "EWTF 2019 PS4",
+            "EASTER WIND TUGA FIST 19",
+            "EASTER WIND TUGA FIST 19 PS4",
+            "EWTF 19 PS4"
+        ],
+        "date": "20 de Abril de 2019",
+        "brackets": "[Challonge](https://challonge.com/pt/EWTF19PS4)",
+        "vod": "[VOD: Easter Wind Tuga Fist 2019 PS4](https://www.youtube.com/watch?v=9qwNiGtQUdM)",
+        "winner": "Seifer",
+        "top_8": [
+            "2- JFSL",
+            "3- Enzosam",
+            "4- Lomb",
+            "5- Grandorman",
+            "5- Twista"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Easter Wind Tuga Fist 2020 PC": {
+        "name": "Easter Wind Tuga Fist 2020 PC",
+        "aliases": [
+            "EWTF 2020 PC",
+            "EASTER WIND TUGA FIST 20",
+            "EASTER WIND TUGA FIST 20 PC",
+            "EWTF 20 PC"
+        ],
+        "date": "18 de Abril de 2020",
+        "brackets": "[Challonge](https://challonge.com/pt/EWTF20PC)",
+        "vod": "[VOD: Easter Wind Tuga Fist 2020 PC](https://www.youtube.com/watch?v=sKfJTJvHBiI)",
+        "winner": "JFSL",
+        "top_8": [
+            "2- Rui Murteira Gomes",
+            "3- Coxo",
+            "4- Lomb",
+            "5- Reinventing",
+            "5- Valkirius",
+            "7- Duarte",
+            "7- Jolpool8"
+        ],
+        "organizers": "Tekken Portugal, Comunidade Gamer Portuguesa"
+    },
+
+    "Discórdia Lusitana #1": {
+        "name": "Discórdia Lusitana #1",
+        "aliases": [
+            "DISCORDIA #1",
+            "DISCORDIA LUSITANA #1",
+            "DL #1"
+        ],
+        "date": "27 de Julho de 2019",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana1)",
+        "vod": "[VOD: Discórdia Lusitana #1](https://www.youtube.com/watch?v=qQWKzg2u8Ls)",
+        "winner": "Drothdarr",
+        "top_8": [
+            "2- Coxo",
+            "3- JFSL",
+            "4- Keyframe",
+            "5- Flake",
+            "5- Toga7",
+            "7- Martim",
+            "7- Twista"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #2": {
+        "name": "Discórdia Lusitana #2",
+        "aliases": [
+            "DISCORDIA #2",
+            "DISCORDIA LUSITANA #2",
+            "DL #2"
+        ],
+        "date": "28 de Setembro de 2019",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana2)",
+        "vod": "[VOD: Discórdia Lusitana #2](https://www.youtube.com/watch?v=8aBWW9F_ns8)",
+        "winner": "MIKE SILVA",
+        "top_8": [
+            "2- Shidoki",
+            "3- Dusted",
+            "4- JFSL",
+            "5- Drothdarr",
+            "5- Pyr0",
+            "7- Flake",
+            "7- Rui Murteira Gomes"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #3": {
+        "name": "Discórdia Lusitana #3",
+        "aliases": [
+            "DISCORDIA #3",
+            "DISCORDIA LUSITANA #3",
+            "DL #3"
+        ],
+        "date": "5 de Outubro de 2019",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana3)",
+        "vod": "[VOD: Discórdia Lusitana #3](https://www.youtube.com/watch?v=tVzqMbZyl8M)",
+        "winner": "JFSL",
+        "top_8": [
+            "2- portuguese_dream",
+            "3- Rarn",
+            "4- Bernas",
+            "5- Twista"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #4": {
+        "name": "Discórdia Lusitana #4",
+        "aliases": [
+            "DISCORDIA #4",
+            "DISCORDIA LUSITANA #4",
+            "DL #4"
+        ],
+        "date": "18 de Janeiro de 2020",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana4)",
+        "vod": "[VOD: Discórdia Lusitana #4](https://www.youtube.com/watch?v=vtcKyrB9w2I)",
+        "winner": "Coxo",
+        "top_8": [
+            "2- Rui Murteira Gomes",
+            "3- dollinhos",
+            "4- JFSL",
+            "5- Keyframe",
+            "5- Valkirius",
+            "7- ItsaMeJose",
+            "7- MGL_Temível"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #5": {
+        "name": "Discórdia Lusitana #5",
+        "aliases": [
+            "DISCORDIA #5",
+            "DISCORDIA LUSITANA #5",
+            "DL #5"
+        ],
+        "date": "18 de Janeiro de 2020",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana5)",
+        "vod": "NÃO EXISTEM VODS PARA APRESENTAR",
+        "winner": "Jondesu",
+        "top_8": [
+            "2- Lomb",
+            "3- JFSL",
+            "4- MrNuvas",
+            "5- Flix",
+            "5- Keyframe",
+            "7- Duarte",
+            "7- Coxo"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #6": {
+        "name": "Discórdia Lusitana #6",
+        "aliases": [
+            "DISCORDIA #6",
+            "DISCORDIA LUSITANA #6",
+            "DL #6"
+        ],
+        "date": "9 de Maio de 2020",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana6)",
+        "vod": "[VOD: Discórdia Lusitana #6 (Parte 1)](https://www.youtube.com/watch?v=uloaZj6LVP8)\n[VOD: Discórdia Lusitana #6 (Parte 1)](https://www.youtube.com/watch?v=CKzvkv0wEbo)",
+        "winner": "Rui Murteira Gomes",
+        "top_8": [
+            "2- JFSL",
+            "3- EdgelordZuko",
+            "4- dollinhos",
+            "5- Bass_5775",
+            "5- ItsaMeJose",
+            "7- MGL_Temível",
+            "7- Coxo"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #7 (Team)": {
+        "name": "Discórdia Lusitana #7 (Team)",
+        "aliases": [
+            "DISCORDIA #7",
+            "DISCORDIA LUSITANA #7",
+            "DL #7"
+        ],
+        "date": "20 de Junho de 2020",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana7)",
+        "vod": "[VOD: Discórdia Lusitana #7](https://www.youtube.com/watch?v=oUe4tmmHzKA)",
+        "winner": "2 Coxos e Meio (VMasterFoxx (c), Coxo, Jondesu)",
+        "top_8": [
+            "2- The Cult of UHU (Flake (c), Wolf, Seifer)",
+            "3- Dardos 2: Revenge of the Abare (MrNuvas (c), Sagres, OzzyPT)",
+            "4- Os Italianos Empresários (ZenboyA (c), Valkirius, Edgelord Zuko)",
+            "5- Alentejo sem Lei (RuiMurteiraGomes (c)",
+            "5- Orgulho Transmontano (Reinventing (c), Pyr0, zathee)",
+            "5- TeamTorpedos (JuLiO (c), RhinoW, ItsaMeJose)",
+            "5- The knights (Jolpool8 (c), SoniChaos, shinigamiPT)"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #8 (Team/Mokujin)": {
+        "name": "Discórdia Lusitana #8 (Team/Mokujin)",
+        "aliases": [
+            "DISCORDIA #8",
+            "DISCORDIA LUSITANA #8",
+            "DL #8"
+        ],
+        "date": "12 de Julho de 2020",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana8)",
+        "vod": "[VOD: Discórdia Lusitana #8](https://www.youtube.com/watch?v=_zSEgMSdZyw)",
+        "winner": "Mafia Alentejana (Valkirius, Lomb, Dodompa)",
+        "top_8": [
+            "2- The Cult of UHU (Flake, Wolf, Seifer)",
+            "3- Irmandade do Botão (MrNuvas, dollinhos, MGL_Temível)",
+            "3- Torpedos Inc. (Duff, FreeDom, ChiefJ)",
+            "5- 1 Coxo e 2 Meios (InvictusCobra, Jondesu, VMasterFoxx) ",
+            "5- Dardos (Ravioli, Blitz, Grandorman)",
+            "5- PIDE (Gon Vieira, Duarte, JFSL)",
+            "5- TeamTorpedos (JuLiO, RhinoW, Havirgi)"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #9": {
+        "name": "Discórdia Lusitana #9",
+        "aliases": [
+            "DISCORDIA #9",
+            "DISCORDIA LUSITANA #9",
+            "DL #9"
+        ],
+        "date": "2 de Agosto de 2020",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana9)",
+        "vod": "[VOD: Discórdia Lusitana #9 (Parte 1)](https://www.youtube.com/watch?v=ohzVuqNcJSg)\n[VOD: Discórdia Lusitana #9 (Parte 2)](https://www.youtube.com/watch?v=-1cx4PwueeU)\n[VOD: Discórdia Lusitana #9 (Parte 3)](https://www.youtube.com/watch?v=sGGAHfwnqo0)",
+        "winner": "JFSL",
+        "top_8": [
+            "2- Coxo",
+            "3- Keyframe",
+            "4- MIKE SILVA",
+            "5- Seifer",
+            "5- Rui Murteira Gomes",
+            "7- Drothdarr",
+            "7- Valkirius"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #10": {
+        "name": "Discórdia Lusitana #10",
+        "aliases": [
+            "DISCORDIA #10",
+            "DISCORDIA LUSITANA #10",
+            "DL #10"
+        ],
+        "date": "27 de Setembro de 2020",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana10)",
+        "vod": "[VOD: Discórdia Lusitana #10](https://www.youtube.com/watch?v=EteGAhEbIY4)",
+        "winner": "JFSL",
+        "top_8": [
+            "2- Coxo",
+            "3- Seifer",
+            "4- Lomb",
+            "5- MrNuvas",
+            "5- Rui Murteira Gomes",
+            "7- Chapeu_de_Pesca",
+            "7- Valkirius"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #11 (Swiss)": {
+        "name": "Discórdia Lusitana #11 (Swiss)",
+        "aliases": [
+            "DISCORDIA #11",
+            "DISCORDIA LUSITANA #11",
+            "DL #11"
+        ],
+        "date": "8 de Novembro de 2020",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana11)",
+        "vod": "[VOD: Discórdia Lusitana #11](https://www.youtube.com/watch?v=NdRhjF1wATE)",
+        "winner": "EdgelordZuko",
+        "top_8": [
+            "2- ChiefJ",
+            "3- Drothdarr",
+            "4- Lomb",
+            "5- JFSL",
+            "6- Grandorman",
+            "7- Shidoki",
+            "8- Seifer"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #12 (Swiss)": {
+        "name": "Discórdia Lusitana #12 (Swiss)",
+        "aliases": [
+            "DISCORDIA #12",
+            "DISCORDIA LUSITANA #12",
+            "DL #12"
+        ],
+        "date": "13 de Dezembro de 2020",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana12)",
+        "vod": "[VOD: Discórdia Lusitana #12](https://www.youtube.com/watch?v=8XJh6V-oIJY)",
+        "winner": "JFSL",
+        "top_8": [
+            "2- Jondesu",
+            "3- Lomb",
+            "4- EdgelordZuko",
+            "5- ZenboyA",
+            "6- Rui Murteira Gomes",
+            "7- FreeDom",
+            "8- Seifer"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #13": {
+        "name": "Discórdia Lusitana #13",
+        "aliases": [
+            "DISCORDIA #13",
+            "DISCORDIA LUSITANA #13",
+            "DL #13"
+        ],
+        "date": "31 de Janeiro de 2021",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana13)",
+        "vod": "NÃO EXISTEM VODS PARA APRESENTAR",
+        "winner": "Lomb",
+        "top_8": [
+            "2- Coxo",
+            "3- dollinhos",
+            "4- Rui Murteira Gomes",
+            "5- FreeDom",
+            "5- Reinventing",
+            "7- EdgelordZuko",
+            "7- JFSL"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #14 (Swiss)": {
+        "name": "Discórdia Lusitana #14 (Swiss)",
+        "aliases": [
+            "DISCORDIA #14",
+            "DISCORDIA LUSITANA #14",
+            "DL #14"
+        ],
+        "date": "28 de Fevereiro de 2021",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana14)",
+        "vod": "[VOD: Discórdia Lusitana #14](https://www.youtube.com/watch?v=Dud0kQX64iU)",
+        "winner": "BadCat",
+        "top_8": [
+            "2- Coxo",
+            "3- JFSL",
+            "4- Rui Murteira Gomes",
+            "5- EdgelordZuko",
+            "6- Shadowsborn",
+            "7- Reinventing",
+            "8- DatGuyJota"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Lusitana #15 (Teams)": {
+        "name": "Discórdia Lusitana #15 (Teams)",
+        "aliases": [
+            "DISCORDIA #15",
+            "DISCORDIA LUSITANA #15",
+            "DL #15"
+        ],
+        "date": "18 de Abril de 2021",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaLusitana15)",
+        "vod": "[VOD: Discórdia Lusitana #15](https://www.youtube.com/watch?v=B0uaCyU-zlI)",
+        "winner": "Lê no Alentege (JFSL, Azorea, N4G4TO)",
+        "top_8": [
+            "2- SSD (DS_Colision, Smiley, Shadowsborn)",
+            "3- Alianza Céltica (FreeDom, ChiefJ, BadCat)",
+            "4- Dardos (MrNuvas, Ravioli, Grandorman)",
+            "5- Alentejo sem Lei (Valkirius, Rui Murteira Gomes, Reinventing)",
+            "6- FDS (Gon Vieira, ItsaMeJose, Coxo)",
+            "7- Rarn did nothing wrong (Rarn, EdgelordZuko, Zenboy",
+            "8- The Cult of HUH (Seifer, Wolf, Flake)"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Ibérica Maio 2021 (Teams/Mokujin)": {
+        "name": "Discórdia Ibérica Maio 2021 (Teams/Mokujin)",
+        "aliases": [
+            "DISCORDIA IBERICA MAIO",
+            "DISCORDIA IBERICA MAIO 2021",
+            "DI MAIO",
+            "DISCORDIA IBERICA #1"
+        ],
+        "date": "23 de Maio de 2021",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaIbericaMaio21)",
+        "vod": "[VOD: Discórdia Ibérica Maio 2021](https://www.youtube.com/watch?v=f5es0GR1_wM)",
+        "winner": "The Cult of UHU (Seifer, Wolf, Flake)",
+        "top_8": [
+            "2- 無限の剣製 () (InvictusCobra, ItsaMeJose, Gon Vieira",
+            "3- Tryhard Casuals (Smiley, FreeDom, ChiefJ)",
+            "4- Gazpacho VideoJuegos (CallMeSempai, Flick, Giloxe)"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Ibérica Junho 2021 (Swiss)": {
+        "name": "Discórdia Ibérica Junho 2021 (Swiss)",
+        "aliases": [
+            "DISCORDIA IBERICA JUNHO",
+            "DISCORDIA IBERICA JUNHO 2021",
+            "DI JUNHO",
+            "DISCORDIA IBERICA #2"
+        ],
+        "date": "23 de Maio de 2021",
+        "brackets": "[Challonge](https://challonge.com/pt/DiscordiaIbericaJune21)",
+        "vod": "[VOD: Discórdia Ibérica Junho 2021](https://www.youtube.com/watch?v=fuwpKcUfS-Y)",
+        "winner": "Rui Murteira Gomes",
+        "top_8": [
+            "2- Reinventing",
+            "3- Seifer",
+            "4- ChiefJ",
+            "5- Smiley",
+            "6- EdgelordZuko",
+            "7- ItsaMeJose",
+            "8- ZenboyA"
+        ],
+        "organizers": "Tekken Portugal"
+    }
+    
+}

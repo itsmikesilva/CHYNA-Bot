@@ -365,6 +365,29 @@
         ],
         "organizers": "PTFighters"
     },
+
+    "Tekken Clash @ Red Bull Gaming Ground": {
+        "name": "Tekken Clash @ Red Bull Gaming Ground",
+        "date": "22 de Dezembro de 2019",
+        "aliases": [
+            "TEKKEN CLASH",
+            "RED BULL",
+            "RED BULL GAMING GROUND",
+            "TEKKEN CLASH RED BULL",
+            "TEKKEN CLASH RED BULL GAMING GROUND"
+        ],
+        "brackets": "[Challonge](https://challonge.com/pt/54hml7rz)",
+        "vod": "[VOD: Tekken Clash @ Red Bull Gaming Ground](https://www.youtube.com/watch?v=D-Rqll8_4kM)",
+        "poster": "https://tekkenportugal.com/wp-content/uploads/2019/12/redbull_gaming_ground.jpg",
+        "location": "Time Out Market, Lisboa",
+        "winner": "Dodompa",
+        "top_3": [
+            "JFSL",
+            "Flake"
+        ],
+        "organizers": "PTFighters"
+    },
+
     "Northern Cross #1": {
         "name": "Northern Cross #1",
         "date": "15 de Fevereiro de 2020",
