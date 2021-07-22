@@ -5,11 +5,16 @@ import re
 
 aliases = []
 eventIndex_name = {}
+online_eventIndex_name = {}
 with open ("events.json",'r',encoding='utf8') as f:
     events_dict = json.load(f)
     for item in events_dict:
         eventIndex_name[events_dict[item]["name"]] = events_dict[item]
-    #print(eventIndex_name["Lutinhas em Lisboa #5"])
+    
+with open("online_events.json", 'r', encoding='utf8') as g:
+    online_events_dict = json.load(g)
+    for item in online_events_dict:
+        online_eventIndex_name[online_events_dict[item]["name"]] = online_events_dict[item]
     
 def event_embeds(message):
     with open('aliases_list.json', 'r', encoding='utf8') as f:

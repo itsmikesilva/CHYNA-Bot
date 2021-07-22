@@ -335,7 +335,7 @@ async def set_vods(ctx):
 async def remove_vods(ctx):
     
     discord_user_id = ctx.message.author.id
-    vods_embed = profile_embeds.remove_vods_interface(discord_user_id)
+    vods_embed = profile_embeds.remove_vods_interface(discord_user_id) 
     if vods_embed == 0:
         await ctx.send("Não existem VODs associados a este perfil.")
         return
@@ -350,6 +350,7 @@ async def remove_vods(ctx):
     elif check_if_in_range == 1:
         await ctx.send("VOD removido com sucesso!")
 
+#Command para visualizar eventos
 @client.command(name="event")
 async def view_event(ctx):
     msg = ctx.message.content.split(" ", 1)[1]

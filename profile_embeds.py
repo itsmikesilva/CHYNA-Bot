@@ -494,7 +494,7 @@ def vods_page(message):
     else:
         return 0
 
-#Recupera a lista de vods do player
+#Retorna a lista de vods do player em forma de string para display no embed
 def vods_list(user_id):
 
     if "vods" in profileIndex_id[user_id].keys():
@@ -511,6 +511,7 @@ def vods_list(user_id):
     else:
         return 0
 
+#Retorna o embed da interface para a funcionalidade de remoção de VODs
 def remove_vods_interface(user_id):
 
     vods_menu = vods_list(user_id)
@@ -525,6 +526,7 @@ def remove_vods_interface(user_id):
 
     return embed
 
+#Verifica se o número selecionado pelo utilizador é legitimo e efetua a remoção do VOD
 def remove_vods_final(number, user_id):
 
     number = number - 1
