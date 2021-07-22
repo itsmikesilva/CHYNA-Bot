@@ -514,6 +514,7 @@ def vods_list(user_id):
 def remove_vods_interface(user_id):
 
     vods_menu = vods_list(user_id)
+    print(vods_menu)
     if vods_menu == 0:
         return 0
     vods_final = ""
@@ -534,6 +535,8 @@ def remove_vods_final(number, user_id):
         for i in range(len(vods_list)):
             if i == number:
                 vods_list.remove(vods_list[i])
+                if len(vods_list) == 0:
+                    del profileIndex_id[user_id]["vods"]
 
     with open('profiles.json', 'w', encoding='utf8') as f:
         json.dump(profileIndex_id, f, indent=4)
