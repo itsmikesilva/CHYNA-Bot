@@ -597,7 +597,7 @@
             "DI JUNHO",
             "DISCORDIA IBERICA #2"
         ],
-        "date": "23 de Maio de 2021",
+        "date": "27 de Junho de 2021",
         "brackets": "[Challonge](https://challonge.com/pt/DiscordiaIbericaJune21)",
         "vod": "[VOD: Discórdia Ibérica Junho 2021](https://www.youtube.com/watch?v=fuwpKcUfS-Y)",
         "winner": "Rui Murteira Gomes",
@@ -611,6 +611,29 @@
             "8- ZenboyA"
         ],
         "organizers": "Tekken Portugal"
-    }
+    },
     
+    "WSL Qualificador Nacional Fase A": {
+        "name": "WSL Qualificador Nacional Fase A",
+        "aliases": [
+            "QUALIFICADOR NACIONAL A",
+            "IESF 2021 FASE A",
+            "QUALIFIER A",
+            "IESF 2021 A"
+        ],
+        "date": "18 de Julho de 2021",
+        "brackets": "[Challonge](https://challonge.com/pt/QualificadorNacional2021FaseA)",
+        "vod": "[VOD: WSL Qualificador Nacional Fase A](https://www.twitch.tv/videos/1090506986)",
+        "winner": "Lomb",
+        "top_8": [
+            "2- EdgelordZuko",
+            "3- JFSL",
+            "4- Seifer",
+            "5- Coxo",
+            "5- Rui Murteira Gomes",
+            "7- Bibas",
+            "7- Ravage"
+        ],
+        "organizers": "Tekken Portugal"
+    }
 }
