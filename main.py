@@ -368,7 +368,16 @@ async def view_event(ctx):
     else:
         await ctx.send(embed=evento)
 
-
+#Command para visualizar eventos online
+@client.command(name="onevent")
+async def view_online_event(ctx):
+    msg = ctx.message.content.split(" ", 1)[1]
+    evento = events.online_event_embed(msg)
+    if evento == 0:
+        await ctx.send("Evento online não foi encontrado!")
+    else:
+        await ctx.send(embed=evento)
+        
 #ADMINISTRATOR COMMANDS ----------//-------------//----------------//-------------//-------------//-------------//------------
 #Command para Discórdias Embed
 @client.command(name="discordias")

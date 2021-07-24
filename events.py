@@ -41,6 +41,31 @@ def event_embeds(message):
         print("Event not found!")
         return 0
 
+def online_event_embed(message):
+    with open('aliases_list.json', 'r', encoding='utf8') as f:
+        online_events_list = json.load(f)
+        selected_event = difflib.get_close_matches(message.upper(), online_events_list["online_aliases_list"])
+        tour = {}
+        top_8_string = ""
+        if len(selected_event) > 0:
+            for item in online_events_dict:
+                if selected_event[0] in online_events_dict[item]["aliases"]:
+                    tour = online_events_dict[item]    #este "tour" é o evento selecionado pelo user, após verificações
+                    break
+            embed = discord.Embed(title=tour["name"])
+            embed.add_field(name="Data", value=tour["date"])
+            embed.add_field(name="VODs", value=tour["vod"], inline=True)
+            embed.add_field(name="Vencedor(a)", value="🥇 " + tour["winner"], inline=False)
+            for player in tour["top_8"]:
+                top_8_string = top_8_string + player + "\n"
+            #embed.add_field(name="Top 8", value="🥈 " + tour["top_3"][0] + "\n" + "🥉 " + tour["top_3"][1], inline=True)
+            embed.add_field(name="Top 8", value=top_8_string, inline=True)
+            embed.add_field(name="Brackets", value=tour["brackets"], inline=True)
+            embed.set_footer(text="Organizadores: " + tour["organizers"])
+            if "poster" in tour.keys():
+                embed.set_image(url=tour["poster"])
+            return embed
+    
 def edit_event_embed():
 
     count = 0
