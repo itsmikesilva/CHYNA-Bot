@@ -1,3 +1,4 @@
+import random
 import discord
 import profile_embeds
 #import wishlists
@@ -10,10 +11,17 @@ import token_chyna
 
 client = commands.Bot(command_prefix = "!")
 client.remove_command("help")
+history_messages = []
 
 @client.event
 async def on_ready():
+    history_channel = client.get_channel(406496729207406595) #geral do Silva Castle
+    print("processando mensagens do geral...")
+    messages = await history_channel.history(limit=500).flatten()
+    for m in messages:
+        history_messages.append(m.content)
     print("CHYNA is ready!")
+
 
 #Command para o manual/guide
 @client.command(name="manual", aliases=["m"])
@@ -467,6 +475,23 @@ async def edit_tournament(ctx):
 #new_vods = await client.wait_for('message', check=lambda message: message.author == ctx.author)
 #events.event.add_event_vods(new_event, new_vods.content)
 
+@client.event
+async def on_message(message):
+
+    await client.process_commands(message)
+
+    #final_message = "Sou uma grande burra!!!!!!"
+    chyna_id = 808866968416813076
+    target_channel = 798626019564322840 #geral do CHYNA'S Corner
+    print(history_messages)
+    final_message = random.choice(history_messages)
+    
+
+    if message.author.id == chyna_id:
+        return
+    if message.channel.id != target_channel:
+        return
+    await message.channel.send(final_message)
 
 #VALENTINE'S DAY STUFF
 @client.command()

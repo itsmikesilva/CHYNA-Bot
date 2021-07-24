@@ -79,12 +79,12 @@ for turn in replay[2]:
                     battle.opposing_pokemon_field_1 = entering_pokemon_op
                     if entering_pokemon_op not in battle.picked_opposing_team:
                         battle.picked_opposing_team.append(entering_pokemon_op)
-                        alive_opposing_team.append(entering_pokemon_op)
+                        
                 elif withdrawn_pokemon_op == battle.opposing_pokemon_field_2:
                     battle.opposing_pokemon_field_2 = entering_pokemon_op
                     if entering_pokemon_op not in battle.picked_opposing_team:
                         battle.picked_opposing_team.append(entering_pokemon_op)
-                        alive_opposing_team.append(entering_pokemon_op)
+                        
                 else:
                     continue
         if "come back" in actions[0]:
@@ -111,7 +111,7 @@ for turn in replay[2]:
             entering_pokemon_op = actions[0].split(" sent out ")[1][:-1] #meter o bicho q entra
             if(len(temp_fainted_opposing) > 0):     #se ele tiver algum fainted pokemon p substituir (à partida tem)
                 cur_fainted_op = temp_fainted_opposing[0] #isto vai ter a string "Ho-oh"
-                alive_opposing_team.remove(cur_fainted_op)
+                
                 if cur_fainted_op == battle.opposing_pokemon_field_1:
                     battle.opposing_pokemon_field_1 = entering_pokemon_op
                     if entering_pokemon_op not in battle.picked_opposing_team:
@@ -138,7 +138,7 @@ for turn in replay[2]:
             entering_pokemon_player = actions[0].split(" ")[1][:-1]
             if len(temp_fainted_player) > 0:
                 cur_fainted_player = temp_fainted_player[0]
-                alive_player_team.remove(cur_fainted_op)
+                
                 if cur_fainted_player == battle.pokemon_field_1:
                     battle.pokemon_field_1 = entering_pokemon_player
                     if entering_pokemon_player not in battle.picked_player_team:
