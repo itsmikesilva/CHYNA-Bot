@@ -137,7 +137,15 @@
         "QUALIFICADOR NACIONAL A",
         "IESF 2021 FASE A",
         "QUALIFIER A",
-        "IESF 2021 A"
+        "IESF 2021 A",
+        "QUALIFICADOR NACIONAL B",
+        "IESF 2021 FASE B",
+        "QUALIFIER B",
+        "IESF 2021 B",
+        "QUALIFICADOR NACIONAL FINAL",
+        "IESF 2021 FASE FINAL",
+        "QUALIFIER FINAL",
+        "IESF 2021 FINAL"
 
     ]
 }

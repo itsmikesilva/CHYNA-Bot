@@ -8,6 +8,9 @@ import help_embed
 from reactionmenu import ReactionMenu, Button, ButtonType
 from discord.ext import commands
 import token_chyna
+import youtube_dl
+import os
+from discord.ext import commands
 
 client = commands.Bot(command_prefix = "!")
 client.remove_command("help")
@@ -377,7 +380,7 @@ async def view_online_event(ctx):
         await ctx.send("Evento online não foi encontrado!")
     else:
         await ctx.send(embed=evento)
-        
+
 #ADMINISTRATOR COMMANDS ----------//-------------//----------------//-------------//-------------//-------------//------------
 #Command para Discórdias Embed
 @client.command(name="discordias")
@@ -484,6 +487,71 @@ async def edit_tournament(ctx):
 #new_vods = await client.wait_for('message', check=lambda message: message.author == ctx.author)
 #events.event.add_event_vods(new_event, new_vods.content)
 
+#MUSIC BOT
+@client.command(name="play")
+async def play(ctx, url : str):
+    channel = ctx.message.author.voice.channel
+    song_there = os.path.isfile("song.mp3")
+    try:
+        if song_there:
+            os.remove("song.mp3")
+    except PermissionError:
+        await ctx.send("Wait for the current playing music to end or use 'stop' command")
+
+    voiceChannel = discord.utils.get(ctx.guild.voice_channels, name=channel.name)    #obtem o channel onde o user se encontra
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)    #seleciona um voice_client para utilizar
+    if voice == None:
+        await voiceChannel.connect()
+
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+    for file in os.listdir("./"):
+        if file.endswith(".mp3"):
+            os.rename(file, "song.mp3")
+    voice.play(discord.FFmpegAudio("song.mp3"))
+
+#CHYNA LEAVING VC
+@client.command(name="leave")
+async def leave(ctx):
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    if voice == None:
+        await voice.disconnect()
+    else:
+        await ctx.send("CHYNA is not connected to a voice channel!")
+
+#MUSIC PAUSE
+@client.command(name="pause")
+async def pause(ctx):
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    if voice.is_playing():
+        voice.pause()
+    else:
+        await ctx.send("No audio is currently playing!")
+
+#RESUME AUDIO
+@client.command(name="resume")
+async def resume(ctx):
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    if voice.is_paused():
+        voice.resume()
+    else:
+        await ctx.send("The audio is not paused!")
+
+#STOP PLAYING AUDIO (NOT LEAVING)
+@client.command
+async def stop(ctx):
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    voice.stop()
+
 @client.event
 async def on_message(message):
 
@@ -492,7 +560,6 @@ async def on_message(message):
     #final_message = "Sou uma grande burra!!!!!!"
     chyna_id = 808866968416813076
     target_channel = 798626019564322840 #geral do CHYNA'S Corner
-    print(history_messages)
     final_message = random.choice(history_messages)
     
 

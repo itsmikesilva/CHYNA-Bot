@@ -624,7 +624,7 @@
         ],
         "date": "18 de Julho de 2021",
         "brackets": "[Challonge](https://challonge.com/pt/QualificadorNacional2021FaseA)",
-        "vod": "[VOD: WSL Qualificador Nacional Fase A](https://www.twitch.tv/videos/1090506986)",
+        "vod": "NÃO EXISTEM VODS PARA APRESENTAR",
         "poster": "https://pbs.twimg.com/media/E6lWYLSXsAIhdpq?format=jpg&name=medium",
         "winner": "Lomb",
         "top_8": [
@@ -636,6 +636,53 @@
             "7- Bibas",
             "7- Ravage"
         ],
-        "organizers": "Tekken Portugal"
+        "organizers": "Tekken Portugal, FPDE"
+    },
+    "WSL Qualificador Nacional Fase B": {
+        "name": "WSL Qualificador Nacional Fase B",
+        "aliases": [
+            "QUALIFICADOR NACIONAL B",
+            "IESF 2021 FASE B",
+            "QUALIFIER B",
+            "IESF 2021 B"
+        ],
+        "date": "7 de Agosto de 2021",
+        "brackets": "[Challonge](https://challonge.com/pt/QualificadorNacional2021FaseB)",
+        "vod": "NÃO EXISTEM VODS PARA APRESENTAR",
+        "poster": "https://pbs.twimg.com/media/E6lWYLSXsAIhdpq?format=jpg&name=medium",
+        "winner": "MIKE SILVA",
+        "top_8": [
+            "2- InvictusCobra",
+            "3- Coxo",
+            "4- ChiefJ",
+            "5- MrNuvas",
+            "5- ZenboyA",
+            "7- Smiley"
+        ],
+        "organizers": "Tekken Portugal, FPDE"
+    },
+    "WSL Qualificador Nacional Final": {
+        "name": "WSL Qualificador Nacional Final",
+        "aliases": [
+            "QUALIFICADOR NACIONAL FINAL",
+            "IESF 2021 FASE FINAL",
+            "QUALIFIER FINAL",
+            "IESF 2021 FINAL"
+        ],
+        "date": "24 de Agosto de 2021",
+        "brackets": "[Challonge](https://challonge.com/pt/QualificadorNacional2021Final)",
+        "vod": "[VOD: WSL Qualificador Nacional Final](https://www.twitch.tv/videos/1128175373)",
+        "poster": "https://pbs.twimg.com/media/E6lWYLSXsAIhdpq?format=jpg&name=medium",
+        "winner": "JFSL",
+        "top_8": [
+            "2- EdgelordZuko",
+            "3- Coxo",
+            "4- Lomb",
+            "5- MIKE SILVA",
+            "5- ChiefJ",
+            "7- InvictusCobra",
+            "7- Seifer"
+        ],
+        "organizers": "Tekken Portugal, FPDE"
     }
 }
