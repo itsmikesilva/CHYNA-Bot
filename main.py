@@ -12,19 +12,31 @@ import youtube_dl
 import os
 from discord.ext import commands
 import chyna_music
+import nltk
+from nltk.tokenize import word_tokenize
+import operator
 
 cogs = [chyna_music]
 client = commands.Bot(command_prefix = "$")
 client.remove_command("help")
 history_messages = []
+inv_index = {}
 
 @client.event
 async def on_ready():
     history_channel = client.get_channel(406496729207406595) #geral do Silva Castle
     print("processando mensagens do geral...")
-    messages = await history_channel.history(limit=500).flatten()
+    messages = await history_channel.history(limit=20000).flatten()
     for m in messages:
         history_messages.append(m.content)
+    for i in range(len(history_messages)):
+        words = word_tokenize(history_messages[i])
+        for w in words:
+            if w not in inv_index.keys():
+                inv_index[w] = []
+            inv_index[w].append(i)
+    print(inv_index)
+
     print("CHYNA is ready!")
 
 for i in range(len(cogs)):
@@ -496,11 +508,19 @@ async def on_message(message):
 
     await client.process_commands(message)
 
-    #final_message = "Sou uma grande burra!!!!!!"
     chyna_id = 808866968416813076
     target_channel = 798626019564322840 #geral do CHYNA'S Corner
-    final_message = random.choice(history_messages)
-    
+    index_count = {}
+    msg_words = word_tokenize(message.content)
+    for w in msg_words:
+        if w in inv_index.keys():
+            word_indexes = inv_index[w]
+            for i in word_indexes:
+                if i not in index_count.keys():
+                    index_count[i] = 0
+                index_count[i] += 1
+    highest_index = max(index_count.items(), key=operator.itemgetter(1))[0]
+    final_message = history_messages[highest_index-1]
 
     if message.author.id == chyna_id:
         return
