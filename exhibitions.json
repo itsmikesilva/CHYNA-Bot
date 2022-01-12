@@ -1,0 +1,31 @@
+{
+    "Aleph vs. Lomb": {
+        "exh_type" : "SinglesFTX",
+        "title" : "Aleph vs. Lomb",
+        "subtitle" : "First to 5",
+        "date" : "3 de Março de 2020",
+        "subdate" : "03/02/2020",
+        "p1": [["Aleph"], ["Lee"]],
+        "p2": [["Lomb"],["Kuma"]],
+        "poster" : "[Aleph vs. Lomb (EXHIBITION MATCH - First to 5)](https://www.youtube.com/watch?v=lXlhfDZvg0g)",
+        "result" : "Aleph 0-5 Lomb",
+        "winner" : "p2",
+        "requested_by" : "martim"
+    },
+
+    "Lomb vs. JFSL": {
+        "exh_type" : "SinglesFTX",
+        "title" : "Lomb vs. JFSL",
+        "subtitle" : "First to 10",
+        "date" : "28 de Junho de 2020",
+        "subdate" : "28/06/2020",
+        "p1": [["Lomb"],["Armor King", "Panda", "Kuma", "Gigas"]],
+        "p2": [["JFSL"],["Lili"]],
+        "poster" : "[Lomb vs. JFSL (EXHIBITION MATCH - First to 10)](https://www.youtube.com/watch?v=Pp_Ha3wgtIo)",
+        "result" : "Lomb 4-10 JFSL",
+        "winner" : "p2",
+        "requested_by" : "Mário Rui"
+    }
+    
+}
+
