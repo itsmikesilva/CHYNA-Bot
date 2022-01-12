@@ -684,5 +684,80 @@
             "7- Seifer"
         ],
         "organizers": "Tekken Portugal, FPDE"
+    },
+
+    "Discórdia Ibérica Setembro 2021 (Swiss)": {
+        "name": "Discórdia Ibérica Setembro 2021 (Swiss)",
+        "aliases": [
+            "DISCORDIA IBERICA SETEMBRO",
+            "DISCORDIA IBERICA SETEMBRO 2021",
+            "DI SETEMBRO",
+            "DISCORDIA IBERICA #3"
+        ],
+        "date": "26 de Setembro de 2021",
+        "brackets": "[Challonge](https://challonge.com/DiscordiaIbericaSeptember21)",
+        "vod": "[VOD: Discórdia Ibérica Setembro 2021 (Swiss)](https://www.youtube.com/watch?v=U5bXBO4mvws)",
+        "poster": "https://pbs.twimg.com/media/E_WVJ8dX0AMvvLw?format=jpg&name=4096x4096",
+        "winner": "Karios",
+        "top_8": [
+            "2- JFSL",
+            "3- Rui Murteira Gomes",
+            "4- VTN_Jacka",
+            "5- EdgelordZuko",
+            "6- COXO",
+            "7- ItsaMeJose",
+            "8- MetalCarrot"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Ibérica Outubro 2021": {
+        "name": "Discórdia Ibérica Outubro 2021",
+        "aliases": [
+            "DISCORDIA IBERICA OUTUBRO",
+            "DISCORDIA IBERICA OUTUBRO 2021",
+            "DI OUTUBRO",
+            "DISCORDIA IBERICA #4"
+        ],
+        "date": "31 de Outubro de 2021",
+        "brackets": "[Challonge](https://challonge.com/DiscordiaIbericaOctober21)",
+        "vod": "[VOD: Discórdia Ibérica Outubro 2021](https://www.youtube.com/watch?v=-4xxYadYpi4)",
+        "poster": "https://pbs.twimg.com/media/FCvB_w3XsAQBVH6?format=jpg&name=4096x4096",
+        "winner": "ItsaMeJose",
+        "top_8": [
+            "2- EdgelordZuko",
+            "3- Ravage",
+            "4- Drothdarr",
+            "5- Lixoso",
+            "5- Hasuta",
+            "7- ds_colision",
+            "7- Beleca"
+        ],
+        "organizers": "Tekken Portugal"
+    },
+
+    "Discórdia Ibérica Novembro 2021 (Mokujin)": {
+        "name": "Discórdia Ibérica Novembro 2021 (Mokujin)",
+        "aliases": [
+            "DISCORDIA IBERICA NOVEMBRO",
+            "DISCORDIA IBERICA NOVEMBRO 2021",
+            "DI NOVEMBRO",
+            "DISCORDIA IBERICA #5"
+        ],
+        "date": "28 de Novembro de 2021",
+        "brackets": "[Challonge](https://challonge.com/DiscordiaIbericaNovember21)",
+        "vod": "[VOD: Discórdia Ibérica Novembro 2021 (Mokujin)](https://www.youtube.com/watch?v=J0Zxa9x5CYI)",
+        "poster": "NONE",
+        "winner": "InvictusCobra",
+        "top_8": [
+            "2- Beleca",
+            "3- Sakes",
+            "4- DatGuyJota",
+            "5- JFSL",
+            "5- Seifer",
+            "7- Azorea",
+            "7- Wolf"
+        ],
+        "organizers": "Tekken Portugal"
     }
 }

@@ -1,7 +1,6 @@
 import random
 import discord
 import profile_embeds
-#import wishlists
 import events
 import hall_of_fame
 import help_embed
@@ -20,21 +19,22 @@ cogs = [chyna_music]
 client = commands.Bot(command_prefix = "$")
 client.remove_command("help")
 history_messages = []
-inv_index = {}
+inv_index = {} 
 
+#This function obtains messages from a certain text channel
 @client.event
 async def on_ready():
-    history_channel = client.get_channel(406496729207406595) #geral do Silva Castle
-    print("processando mensagens do geral...")
-    messages = await history_channel.history(limit=20000).flatten()
+    history_channel = client.get_channel(406496729207406595) #ID corresponding to the #general chat we are getting messages from
+    print("Processing messages from #general...")
+    messages = await history_channel.history(limit=20000).flatten() #Obtains Message objects from the chosen channel and turns them into a list
     for m in messages:
-        history_messages.append(m.content)
+        history_messages.append(m.content)  #Adds the content of Message objects (the message in text format) to a new list where all messages will be stored
     for i in range(len(history_messages)):
-        words = word_tokenize(history_messages[i])
+        words = word_tokenize(history_messages[i])  
         for w in words:
             if w not in inv_index.keys():
                 inv_index[w] = []
-            inv_index[w].append(i)
+            inv_index[w].append(i)  
     print(inv_index)
 
     print("CHYNA is ready!")
@@ -42,10 +42,11 @@ async def on_ready():
 for i in range(len(cogs)):
     cogs[i].setup(client)
 
-#Command para o manual/guide
+#This command prompts a menu that serves as a manual to help the users understand how CHYNA works
 @client.command(name="manual", aliases=["m"])
 async def help_menu(ctx):
     menu = ReactionMenu(ctx, back_button='⬅️', next_button='➡️', config=ReactionMenu.STATIC, style="$/&")
+    #Each of the following functions creates an embed designed specifically for each command
     front_page_embed = help_embed.help_front_page()
     set_profile_embed = help_embed.create_profile_embed()
     set_thumbnail_embed = help_embed.thumbnail_page_embed()
@@ -80,28 +81,28 @@ async def help_menu(ctx):
     menu.add_page(delete_vods_embed)
     await menu.start()
 
-#Command help geral
+#Help Command
 @client.command(name="helpcommands", aliases=["help"])
 async def help_commands(ctx):
     msg = ctx.message.content.split(" ")
     if len(msg) > 1:
-        command_embed = help_embed.call_command_help_embed(msg[1])
+        command_embed = help_embed.call_command_help_embed(msg[1])  #This function returns the menu page for the desired section
         try:
-            if command_embed == 0:
-                await ctx.send("Command não foi encontrado!")
+            if command_embed == 0:  #If the menu page requested by the user doesn't exist, it returns 0
+                await ctx.send("Command not found!")
             await ctx.send(embed=command_embed)
         except AttributeError:
             pass
-    elif len(msg) == 1:
+    elif len(msg) == 1: #If the user only types "$help", a menu with every command is prompted for the user to choose
         menu = ReactionMenu(ctx, back_button='⬅️', next_button='➡️', config=ReactionMenu.STATIC, style="$/&")
         command_menu1, command_menu2 = help_embed.show_commands_embed()
         menu.add_page(command_menu1)
         menu.add_page(command_menu2)
         await menu.start()
-        user_input = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+        user_input = await client.wait_for('message', check=lambda message: message.author == ctx.author) #The menu will ask for user input in order to determine what help menu page will be shown
         command_number = int(user_input.content)
         chosen_command_embed = help_embed.call_command_help_embed(command_number)
-        if chosen_command_embed == 1:
+        if chosen_command_embed == 1:   #If the prior function returns 1, the full help manual will be displayed
             menu = ReactionMenu(ctx, back_button='⬅️', next_button='➡️', config=ReactionMenu.STATIC, style="$/&")
             front_page_embed = help_embed.help_front_page()
             set_profile_embed = help_embed.create_profile_embed()
@@ -138,24 +139,24 @@ async def help_commands(ctx):
             await menu.start()
         await ctx.send(embed=chosen_command_embed)
 
-#Command para criar o profile do jogador
+#This command allows the user to create their own profile
 @client.command(name="setprofile", aliases=["sp"])
 async def setprofile(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     discord_user_id = ctx.message.author.id
     check_if_profile_exists = profile_embeds.create_profile(discord_user_id,msg)
     if check_if_profile_exists == 1:
-        await ctx.send("Perfil criado com sucesso!")
+        await ctx.send("Profile created successfully!")
     else:
-        await ctx.send("Já existe um perfil para este utilizador!")
+        await ctx.send("A profile for this user already exists!")
 
-#Command para visualizar profiles de vários jogadores
+#This command allows the user to view the profiles of other players
 @client.command(name="profile", aliases=["p"])
 async def profile(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     check_if_profile_exists = profile_embeds.find_profile(msg.lower())
     if check_if_profile_exists == 0:
-        await ctx.send("Perfil inexistente!")
+        await ctx.send("This profile doesn't exist!")
     else:
         menu = ReactionMenu(ctx, back_button='⬅️', next_button='➡️', config=ReactionMenu.STATIC, style="$/&")
         searched_profile = profile_embeds.profile_embed(msg.lower())
@@ -168,89 +169,89 @@ async def profile(ctx):
             menu.add_page(vods)
         await menu.start()
 
-#Command para adicionar/editar uma thumbnail
+#This command allows the user to add a thumbnail to their profile
 @client.command(name="thumbnail", aliases=["t"])
 async def set_thumbnail(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     discord_user_id = ctx.message.author.id
     check_if_char_exists = profile_embeds.add_thumbnail(msg, discord_user_id)
     if check_if_char_exists == 0:
-        await ctx.send("A personagem não foi identificada! (DICA: Em geral, deves utilizar o primeiro nome da personagem. Para os casos excecionais, segue conforme os exemplos)\n**Personagens com UM nome**: !st Marduk; !st Anna; !st Jin\n**Personagens com MAIS DO QUE UM nome**: !st Lucky Chloe; !st Master Raven")
+        await ctx.send("The character was not identified! (HINT: Try inputting the character's first name. In some cases, you might have to type two names! See the following example!)\n**Characters with ONE name**: !st Marduk; !st Anna; !st Jin\n**Characters with MORE THAN ONE name**: !st Lucky Chloe; !st Master Raven")
     else:
-        await ctx.send("Thumbnail adicionada com sucesso!")
+        await ctx.send("Thumbnail added successfully!")
 
-#Command para adicionar o max rank
+#This command allows the user to add their max rank in Online Mode to their profile
 @client.command(name="maxrank", aliases=["mr"])
 async def set_max_rank(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     discord_user_id = ctx.message.author.id
     check_if_rank_exists = profile_embeds.add_max_rank(msg, discord_user_id)
     if check_if_rank_exists == 0:
-        await ctx.send("Rank não foi encontrado! (DICA: Se o rank tiver mais que uma palavra, escreve-o por extenso. Embora não seja case-sensitive, abreviações não vão resultar para esses casos.)\n\nExemplo: !sr tgo ❌ !sr tekken god omega ✅")
+        await ctx.send("Rank not found! (HINT: If the rank has more than one name, type it the way it's written in the game. Acronyms will not work!)\n\nExample: !sr tgo ❌ !sr tekken god omega ✅")
     else:
-        await ctx.send("Season 4 MAX RANK adicionado com sucesso!")
+        await ctx.send("Season 4 MAX RANK added successfully!")
 
-#Command para adicionar sub characters
+#This command allows the user to add their secondary characters to their profile
 @client.command(name="setsubs", aliases=["ss"])
 async def set_sub_characters(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     discord_user_id = ctx.message.author.id
     check_if_sub_limit = profile_embeds.add_sub_characters(msg, discord_user_id)
     if check_if_sub_limit == 0:
-        await ctx.send("Limite de SUB-CHARACTERS excedido! (MAX 3)\n\n**DICA:** Se pretenderes remover uma SUB-CHARACTER, utiliza o command !rs junto do nome da personagem. Exemplo: !rs Heihachi")
+        await ctx.send("SUB-CHARACTERS limit out of bounds! (MAX 3)\n\n**HINT:** If you wish to remove a SUB-CHARACTER, use the command !rs followed by the character's name. Example: !rs Heihachi")
     elif check_if_sub_limit == -1:
-        await ctx.send("A MAIN CHARACTER não pode ser uma SUB-CHARACTER! (DICA: No caso em que pretendas alterar a tua main character, utiliza o comando !st para definires a nova main character/thumbnail.)")
+        await ctx.send("The MAIN CHARACTER can't be a SUB-CHARACTER! (HINT: In the case you wish to change your main character, use the command !st to set the new main character/thumbnail.)")
     elif check_if_sub_limit == 2:
-        await ctx.send("A personagem selecionada não existe!")
+        await ctx.send("The selected character doesn't exist!")
     elif check_if_sub_limit == 3:
-        await ctx.send("A personagem selecionada já era previamente uma das SUB-CHARACTERS!")
+        await ctx.send("The selected character is already a SUB-CHARACTER!")
     else:
-        await ctx.send("SUB-CHARACTER(S) adicionada(s) com sucesso!\n\n **NOTA:**\nSe algum dos SUB-CHARACTERS não tiver sido inserido como esperado, utiliza o command de ajuda '!h !ss'")
+        await ctx.send("SUB-CHARACTER(S) added successfully!\n\n **WARNING:**\nIf one of the SUB-CHARACTERS was not added as intended, use the help command '!h !ss'")
 
-#Command para remover sub characters
+#This command allows the user to remove a sub-character
 @client.command(name="removesubs", aliases=["rs"])
 async def delete_sub_characters(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     discord_user_id = ctx.message.author.id
     check_removal_success = profile_embeds.remove_sub_characters(msg, discord_user_id)
     if check_removal_success == 0:
-        await ctx.send("Personagem não encontrada na lista de SUB-CHARACTERS!")
+        await ctx.send("Character not found in the SUB-CHARACTERS list!")
     else:
-        await ctx.send("SUB-CHARACTER removida com sucesso!")
+        await ctx.send("SUB-CHARACTER removed successfully!")
 
-#Command para adicionar social medias
+#This command allows the user to add their social medias in their profile
 @client.command(name="setsocial", aliases=["sm"])
 async def set_social_media(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     discord_user_id = ctx.message.author.id
     check_if_link_works = profile_embeds.add_social_media(msg, discord_user_id)
     if check_if_link_works == 0:
-        await ctx.send("Social Media adicionada com sucesso!")
+        await ctx.send("Social Media added successfully!")
     elif check_if_link_works == -1:
-        await ctx.send("Link de Social Media inválido!")
+        await ctx.send("This social media link is invalid!")
 
-#Command para remover social medias
+#This command allows the user to remove a social media from their profile
 @client.command(name="removesocial", aliases=["rm"])
 async def delete_social_media(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     discord_user_id = ctx.message.author.id
     check_if_social_exist = profile_embeds.remove_social_media(msg, discord_user_id)
     if check_if_social_exist == 1:
-        await ctx.send("Social Media removida com sucesso!")
+        await ctx.send("Social Media removed successfully!")
     elif check_if_social_exist == -1:
-        await ctx.send("Não foram encontradas Social Medias.")
+        await ctx.send("No social media was found.")
     elif check_if_social_exist == 0:
-        await ctx.send(msg.capitalize() + " não foi encontrado no perfil deste utilizador.")
+        await ctx.send(msg.capitalize() + " was not found in this user's profile.")
 
-#Command para alterar o player name
+#This command allows the user to change their player name
 @client.command(name="changename", aliases=["cn"])
 async def change_name(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     discord_user_id = ctx.message.author.id
     profile_embeds.name_change(msg, discord_user_id)
-    await ctx.send("Nome de jogador alterado com sucesso!")
+    await ctx.send("Player name edited successfully!")
 
-#Command para adicionar uma breve descrição
+#This command allows the user to write a message or speak about themselves in a little section of their profile
 @client.command(name="description", aliases=["d"])
 async def player_description(ctx):
     limit = 250
@@ -258,19 +259,19 @@ async def player_description(ctx):
     discord_user_id = ctx.message.author.id
     check_if_exceeds_limit = profile_embeds.description(msg, discord_user_id)
     if check_if_exceeds_limit == 0:
-        await ctx.send("Limite de mensagem excedido! (" + str(limit) + ")")
+        await ctx.send("Character limit out of bounds! (" + str(limit) + ")")
     else:
-        await ctx.send("Descrição do jogador adicionada/alterada com sucesso!")
+        await ctx.send("Player description added/edited successfully!")
 
-#Command para adicionar tournament results
+#This command allows the user to add their tournament results in their profile
 @client.command(name="results", aliases=["tr"])
 async def add_accolades(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     discord_user_id = ctx.message.author.id
     profile_embeds.tournament_results(msg, discord_user_id)
-    await ctx.send("Tournament Results adicionados com sucesso!")
+    await ctx.send("Tournament Results added successfully!")
 
-#Command para editar tournament results
+#This command allows the user to edit their tournament results
 @client.command(name="editresults", aliases=["er"])
 async def edit_accolades(ctx):
     discord_user_id = ctx.message.author.id
@@ -278,17 +279,17 @@ async def edit_accolades(ctx):
     accolades_embed = profile_embeds.edit_tournament_results_interface(accolades_list)
     await ctx.send(embed=accolades_embed)
 
-    msg = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+    msg = await client.wait_for('message', check=lambda message: message.author == ctx.author)  #The menu asks the user to choose the tournament result they wish to edit
     number = int(msg.content)
-    await ctx.send("Insere aqui o novo tournament result/accomplishment que irá substituir o escolhido anteriormente.")
+    await ctx.send("Type in the result you wish to save to your profile. This action will replace the tournament result you selected.")
     new_msg = await client.wait_for('message', check=lambda message: message.author == ctx.author)
     check_if_in_range = profile_embeds.edit_tournament_results_final(new_msg.content, number, discord_user_id)
     if check_if_in_range == 0:
-        await ctx.send("Fora dos limites! (O número selecionado não pertence à lista)")
+        await ctx.send("Out of bounds! (The selected number doesn't exist in the list)")
     else:
-        await ctx.send("Tournament Result alterado com sucesso!")
+        await ctx.send("Tournament Result edited successfully!")
 
-#Command para remover tournament results
+#This command allows the user to remove a tournament result
 @client.command(name="removeresults", aliases=["rr"])
 async def delete_accolades(ctx):
     discord_user_id = ctx.message.author.id
@@ -296,15 +297,15 @@ async def delete_accolades(ctx):
     accolades_embed = profile_embeds.remove_tournament_results_interface(accolades_list)
     await ctx.send(embed=accolades_embed)
 
-    msg = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+    msg = await client.wait_for('message', check=lambda message: message.author == ctx.author)  #The menu asks the user to choose the tournament result they wish to remove
     number = int(msg.content)
     check_if_in_range = profile_embeds.remove_tournament_results_final(number, discord_user_id)
     if check_if_in_range == 0:
-        await ctx.send("Fora dos limites! (O número selecionado não pertence à lista.)")
+        await ctx.send("Out of bounds! (The selected number doesn't exist in the list)")
     else:
-        await ctx.send("Tournament Result removido com sucesso!")
+        await ctx.send("Tournament Result removed successfully!")
 
-#Command para pickar top 3 tournament results
+#This command allows the user to chose their 3 favorite tournament results to be displayed in the user's profile front page
 @client.command(name="pickresults", aliases=["pr"])
 async def choose_accolades(ctx):
     discord_user_id = ctx.message.author.id
@@ -316,89 +317,88 @@ async def choose_accolades(ctx):
     numbers = msg.content.split(",")
     check_if_valid = profile_embeds.pick_accolades_final(numbers, discord_user_id)
     if check_if_valid == 0:
-        await ctx.send("Escolhe um máximo de TRÊS tournament results. (Limite excedido)")
+        await ctx.send("Select a maximum of THREE tournament results. (Out of bounds)")
     elif check_if_valid == -1:
-        await ctx.send("Input inválido. (Digita apenas NÚMEROS separados por uma vírgula e um espaço. Exemplo: 4, 2, 5)")
+        await ctx.send("Invalid input. (Type in only NUMBERS separated by a comma AND a space. Example: 4, 2, 5)")
     elif check_if_valid == -2:
-        await ctx.send("Fora dos limites! (O número selecionado não faz parte da lista)")
+        await ctx.send("Out of bounds! (The selected number doesn't belong to the list)")
     elif check_if_valid == 1:
-        await ctx.send("Resultados atualizados! Verifica as mudanças digitando '!p Profile Name'")
+        await ctx.send("Results updated! See the new changes by typing '!p' followed by your profile name!")
 
-#Command para adicionar E-Sports Team
+#This command allows the user to add or edit their E-Sports team to their Player Name
 @client.command(name="setesports", aliases=["se"])
 async def add_esports_team(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     discord_user_id = ctx.message.author.id
     profile_embeds.set_esports_team(msg,discord_user_id)
-    await ctx.send("E-Sports Team atualizada!")
+    await ctx.send("E-Sports Team updated!")
 
-#Command para adicionar E-Sports Team
+#This command allows the user to remove their E-Sports team
 @client.command(name="removeesports", aliases=["re"])
 async def delete_esports_team(ctx):
     discord_user_id = ctx.message.author.id
     check_if_esports_team = profile_embeds.remove_esports_team(discord_user_id)
     if check_if_esports_team == 0:
-        await ctx.send("Não existe uma E-Sports Team atríbuida a este perfil.")
+        await ctx.send("No E-Sports Team assigned to this profile.")
     else:
-        await ctx.send("E-Sports Team removida com sucesso!")
+        await ctx.send("E-Sports Team removed successfully!")
 
-#Command para adicionar VODs
+#This command allows the user to add their videos and clips to their profile
 @client.command(name="setvods", aliases=["sv"])
 async def set_vods(ctx):
     vod_link = ctx.message.content.split(" ", 1)[1]
     discord_user_id = ctx.message.author.id
     check_vod_success = profile_embeds.add_vods(vod_link, discord_user_id)
     if check_vod_success == 1:
-        await ctx.send("Video(s) adicionado(s) com sucesso!")
+        await ctx.send("Video(s) added successfully!")
     elif check_vod_success == 2:
-        await ctx.send("ATENÇÃO: Só é possível enviar um máximo de 3 links de cada vez!")
+        await ctx.send("ATTENTION: You can only type in THREE links at a time (MAX)!")
     elif check_vod_success == 3:
-        await ctx.send("ATENÇÃO: Deves utilizar vírgulas entre os links!")
+        await ctx.send("ATTENTION: Use commas in between links!")
     elif check_vod_success == 0:
-        await ctx.send("Link inserido é inválido!")
+        await ctx.send("Invalid link!")
 
-#Command para remover VODs
+#This command allows the user to remove videos/clips from their profile
 @client.command(name="removevods", aliases=["rv"])
 async def remove_vods(ctx):
     
     discord_user_id = ctx.message.author.id
     vods_embed = profile_embeds.remove_vods_interface(discord_user_id) 
     if vods_embed == 0:
-        await ctx.send("Não existem VODs associados a este perfil.")
+        await ctx.send("There are no VODs assigned to this profile.")
         return
     else:
         await ctx.send(embed=vods_embed)
 
-    msg = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+    msg = await client.wait_for('message', check=lambda message: message.author == ctx.author)  #The menu will ask the user which VOD they wish to remove
     number = int(msg.content)
     check_if_in_range = profile_embeds.remove_vods_final(number, discord_user_id)
     if check_if_in_range == 0:
-        await ctx.send("Fora dos limites! (O número selecionado não pertence à lista.)")
+        await ctx.send("Out of bounds! (The selected number doesn't belong to the list.)")
     elif check_if_in_range == 1:
-        await ctx.send("VOD removido com sucesso!")
+        await ctx.send("VOD removed successfully!")
 
-#Command para visualizar eventos
+#This command allows the user to view a past offline event
 @client.command(name="event")
 async def view_event(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     evento = events.event_embeds(msg)
     if evento == 0:
-        await ctx.send("Evento não foi encontrado!")
+        await ctx.send("Event not found!")
     else:
         await ctx.send(embed=evento)
 
-#Command para visualizar eventos online
+#This command allows the user to view a past online event
 @client.command(name="onevent")
 async def view_online_event(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     evento = events.online_event_embed(msg)
     if evento == 0:
-        await ctx.send("Evento online não foi encontrado!")
+        await ctx.send("Online event not found!")
     else:
         await ctx.send(embed=evento)
 
-#ADMINISTRATOR COMMANDS ----------//-------------//----------------//-------------//-------------//-------------//------------
-#Command para Discórdias Embed
+#This command allows the user to see a menu with the past results of the online tournaments labeled as DISCÓRDIA LUSITANA/DISCÓRDIA IBÉRICA
 @client.command(name="discordias")
 async def hof_discordias(ctx):
     discordias = hall_of_fame.hall_of_fame_discordias_embed()
@@ -407,7 +407,7 @@ async def hof_discordias(ctx):
         menu.add_page(item)
     await menu.start()
 
-#Command para outros online tournaments embed
+#This command allows the user to see a menu with past results of other online tournaments
 @client.command(name="onlines")
 async def hof_online_tournaments(ctx):
     online_tours = hall_of_fame.hall_of_fame_onlines_embed()
@@ -416,7 +416,7 @@ async def hof_online_tournaments(ctx):
         menu.add_page(item)
     await menu.start()
 
-#Command para offline tournaments embed
+#This command allows the user to see a menu with past results of offline tournaments
 @client.command(name="offlines")
 async def hof_offline_tournaments(ctx):
     offline_tours = hall_of_fame.hall_of_fame_offlines_embed()
@@ -425,61 +425,80 @@ async def hof_offline_tournaments(ctx):
         menu.add_page(item)
     await menu.start()
 
-#Command para exhibitions embed -> !exhibitions
+#Command para exhibitions embed -> !exhibitions WIP
+@client.command(name="exhibitions", aliases = ["exh"])
+async def exhibitions(ctx):
+    check_if_players = ctx.message.content.split(" ", 1)
+    if len(check_if_players) == 1:
+        #lista todos os exhibitions
+        menu = ReactionMenu(ctx, back_button='⬅️', next_button='➡️', config=ReactionMenu.STATIC, style="$/&")
+        exh_list = events.all_exhibitions_embed()
+        for item in exh_list:
+            menu.add_page(item)
+        await menu.start()
+    else:
+        menu = ReactionMenu(ctx, back_button='⬅️', next_button='➡️', config=ReactionMenu.STATIC, style="$/&")
+        players = ctx.message.content.split(" ", 1)[1]
+        player_exh_list = events.exhibitions_embed(players)
+        for item in player_exh_list:
+            menu.add_page(item)
+        await menu.start()
 
-#Command para criar eventos
+
+
+#ADMINISTRATOR COMMANDS ----------//-------------//----------------//-------------//-------------//-------------//------------
+#This command allows the administrator to create a new event
 @client.command(name="addevent")
 async def create_tournament(ctx):
     msg = ctx.message.content.split(" ", 1)[1]
     new_event = events.event(msg)
     events.event.add_event(new_event)
-    await ctx.send("Insere a data do novo evento (Exemplo: 18 de outubro de 2021)")
+    await ctx.send("Insert the date of the event (Example: 18 de outubro de 2021)")
     new_date = await client.wait_for('message', check=lambda message: message.author == ctx.author)
     if new_date.content.lower() == "skip":
         pass
     else:
         events.event.add_event_date(new_event, new_date.content)
-    await ctx.send("Insere siglas e outros nomes reconhecíveis do torneio\n(Exemplo: Para Lutinhas em Lisboa #5, os *aliases* seriam 'LEL5, Lutinhas #5, Lutinhas em Lisboa #5'")
+    await ctx.send("Insert acronyms or other names by which the event might be known for:\n(Example: For Lutinhas em Lisboa #5, the *aliases* would be: 'LEL5, Lutinhas #5, Lutinhas em Lisboa #5'")
     new_aliases = await client.wait_for('message', check=lambda message: message.author == ctx.author)
     if new_aliases.content.lower() == "skip":
         pass
     else:
         events.event.add_event_aliases(new_event, new_aliases.content)
-    await ctx.send("Insere o link das **brackets** do torneio")
+    await ctx.send("Insert the link for the **brackets**")
     new_brackets = await client.wait_for('message', check=lambda message: message.author == ctx.author)
     if new_brackets.content.lower() == "skip":
         pass
     else:
         check_brackets = events.event.add_event_brackets(new_event, new_brackets.content)
         while check_brackets == 0:
-            await ctx.send("ATENÇÃO: Deves apenas inserir um link para as brackets! Insere novamente o link das **brackets** do torneio")
+            await ctx.send("ATTENTION: You should only insert ONE link for the brackets! Try again!")
             new_brackets = await client.wait_for('message', check=lambda message: message.author == ctx.author)
             check_brackets = events.event.add_event_brackets(new_event, new_brackets.content)
-    await ctx.send("Insere o link do **poster** do torneio")
+    await ctx.send("Insert the link of the **poster** for the event")
     new_poster = await client.wait_for('message', check=lambda message: message.author == ctx.author)
     if new_poster.content.lower() == "skip":
         pass
     else:
         events.event.add_event_poster(new_event, new_poster.content)
-    await ctx.send("Insere a localização do torneio")
+    await ctx.send("Insert the location for the event")
     new_location = await client.wait_for('message', check=lambda message: message.author == ctx.author)
     if new_location.content.lower() == "skip":
         pass
     else:
         events.event.add_event_location(new_event, new_location.content)   
-    await ctx.send("Insere os organizadores do torneio")
+    await ctx.send("Insert the tournament organizers")
     new_organizers = await client.wait_for('message', check=lambda message: message.author == ctx.author)
     if new_organizers.content.lower() == "skip":
         pass
     else:
         events.event.add_event_organizers(new_event, new_organizers.content)
 
-    await ctx.send("Torneio adicionado com sucesso! Verifica-o através do command !event seguido do nome do evento")
+    await ctx.send("Event added successfully! Use the command !event followed by the name of the event to view it!")
 
-#Command para criar eventos
+#This command allows the admin to edit an event that was created before (WIP)
 @client.command(name="editevent")
 async def edit_tournament(ctx):
-#winner, top 3, vods SÓ podem aparecer aqui
     menu = ReactionMenu(ctx, back_button='⬅️', next_button='➡️', config=ReactionMenu.STATIC, style="$/&")
     tour_list = events.edit_event_embed()
     for item in tour_list:
@@ -490,93 +509,46 @@ async def edit_tournament(ctx):
     parametro_embed = events.edit_event_parameter_embed()
     await ctx.send(embed=parametro_embed)
     selected_parametro = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-    
-#await ctx.send("Insere o vencedor do torneio")
-#new_winner = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-#events.event.add_event_winner(new_event, new_winner.content)
-#
-#await ctx.send("Insere o restante do top 3 por ordem de lugar")
-#new_top_3 = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-#events.event.add_event_top_3(new_event, new_top_3.content)
-#
-#await ctx.send("Insere o link dos VODs do torneio. Se for mais do que um link, deves separá-los por vírgula!")
-#new_vods = await client.wait_for('message', check=lambda message: message.author == ctx.author)
-#events.event.add_event_vods(new_event, new_vods.content)
 
+'''WIP    
+await ctx.send("Insere o vencedor do torneio")
+new_winner = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+events.event.add_event_winner(new_event, new_winner.content)
+
+await ctx.send("Insere o restante do top 3 por ordem de lugar")
+new_top_3 = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+events.event.add_event_top_3(new_event, new_top_3.content)
+
+await ctx.send("Insere o link dos VODs do torneio. Se for mais do que um link, deves separá-los por vírgula!")
+new_vods = await client.wait_for('message', check=lambda message: message.author == ctx.author)
+events.event.add_event_vods(new_event, new_vods.content)
+'''
+
+#This section is where CHYNA will perform the action of socializing with other users
 @client.event
 async def on_message(message):
 
     await client.process_commands(message)
 
     chyna_id = 808866968416813076
-    target_channel = 798626019564322840 #geral do CHYNA'S Corner
+    target_channel = 798626019564322840 #Currently the channel ID for CHYNA's testing server
     index_count = {}
     msg_words = word_tokenize(message.content)
-    for w in msg_words:
-        if w in inv_index.keys():
-            word_indexes = inv_index[w]
-            for i in word_indexes:
-                if i not in index_count.keys():
-                    index_count[i] = 0
-                index_count[i] += 1
-    highest_index = max(index_count.items(), key=operator.itemgetter(1))[0]
-    final_message = history_messages[highest_index-1]
-
-    if message.author.id == chyna_id:
+    if message.channel.id != target_channel:    #CHYNA will not reply to users on other channels
         return
-    if message.channel.id != target_channel:
+    else:
+        for w in msg_words:
+            if w in inv_index.keys():
+                word_indexes = inv_index[w]
+                for i in word_indexes:
+                    if i not in index_count.keys():
+                        index_count[i] = 0
+                    index_count[i] += 1
+        highest_index = max(index_count.items(), key=operator.itemgetter(1))[0]
+        final_message = history_messages[highest_index-1]   #This is the message sent by CHYNA
+
+    if message.author.id == chyna_id:   #Guarantees CHYNA will not reply to its own messages
         return
     await message.channel.send(final_message)
-
-#VALENTINE'S DAY STUFF
-@client.command()
-async def valentine(ctx):
-    if (ctx.message.channel.id != 809586931323109416):
-        return
-    
-    f = discord.File('JAN.pdf')
-    await ctx.send(file=f)
-
-
-@client.command()
-async def funsies(ctx):
-    if (ctx.message.channel.id != 809586931323109416):
-        return
-
-    img = discord.File('joguinho.jpg')
-    clues = discord.File('clues.jpg')
-    await ctx.send(file=img)
-    await ctx.send(file=clues)
-
-#WISHLIST STUFF
-@client.command()
-async def wishlist(ctx):
-    if (ctx.message.channel.id != 809586931323109416):
-        return
-    msg = ctx.message.content.split()[1]
-    final_wishlist = wishlists.get_wishlist(msg)
-    await ctx.send(final_wishlist)
-
-@client.command(name="wishlistadd", aliases=["wa"])
-async def wishlistadd(ctx):
-    if (ctx.message.channel.id != 809586931323109416):
-        return
-    msg = ctx.message.content.split(" ", 1)[1]
-    if ctx.message.author.id == 135895383686512640:
-        wishlists.add_to_wishlist_jan(msg)
-    elif (ctx.message.author.id == 220318176792150018):
-        wishlists.add_to_wishlist_mike(msg)
-    await ctx.send("Wishlist entry added successfully!")
-
-@client.command(name="wishlistremove", aliases=["wr"])
-async def wishlistremove(ctx):
-    if (ctx.message.channel.id != 809586931323109416):
-        return
-    msg = ctx.message.content
-    ix = int(msg.split()[1]) - 1
-    if ctx.message.author.id == 135895383686512640:
-        wishlists.remove_from_wishlist_jan(ix)
-    elif (ctx.message.author.id == 220318176792150018):
-        wishlists.remove_from_wishlist_mike(ix)
 
 client.run(token_chyna.token_chyna)

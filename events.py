@@ -6,26 +6,38 @@ import re
 aliases = []
 eventIndex_name = {}
 online_eventIndex_name = {}
+exhibitions_eventIndex_name = {}
+
+#Creates a dictionary for events that will be used by many other functions, this will avoid having to open the file every time
 with open ("events.json",'r',encoding='utf8') as f:
     events_dict = json.load(f)
     for item in events_dict:
         eventIndex_name[events_dict[item]["name"]] = events_dict[item]
-    
+
+#Creates a dictionary for online events that will be used by many other functions, this will avoid having to open the file every time
 with open("online_events.json", 'r', encoding='utf8') as g:
     online_events_dict = json.load(g)
     for item in online_events_dict:
         online_eventIndex_name[online_events_dict[item]["name"]] = online_events_dict[item]
-    
+
+#Creates a dictionary for exhibition matches that will be used by many other functions, this will avoid having to open the file every time
+with open("exhibitions.json", 'r', encoding='utf8') as h:
+    exhibitions_dict = json.load(h)
+    for item in exhibitions_dict:
+        exhibitions_eventIndex_name[exhibitions_dict[item]["title"]] = exhibitions_dict[item]
+        print(exhibitions_dict)
+
+#Creates the embed for the event that will be displayed on Discord
 def event_embeds(message):
     with open('aliases_list.json', 'r', encoding='utf8') as f:
         events_list = json.load(f)
 
-    selected_event = difflib.get_close_matches(message.upper(), events_list["aliases_list"]) #retorna a lista de aliases com que deu match
+    selected_event = difflib.get_close_matches(message.upper(), events_list["aliases_list"]) #returns a list of aliases that had a match with the user input
     tour = {}
     if len(selected_event) > 0:
         for item in events_dict:
             if selected_event[0] in events_dict[item]["aliases"]:
-                tour = events_dict[item]    #este "tour" é o evento selecionado pelo user, após verificações
+                tour = events_dict[item]    #"tour" represents the event selected by the user
                 break
         embed = discord.Embed(title=tour["name"], description=tour["location"])
         embed.set_image(url=tour["poster"])
@@ -41,6 +53,7 @@ def event_embeds(message):
         print("Event not found!")
         return 0
 
+#Creates the embed for the online event that will be displayed on Discord (has a different format from the previous one)
 def online_event_embed(message):
     with open('aliases_list.json', 'r', encoding='utf8') as f:
         online_events_list = json.load(f)
@@ -50,7 +63,7 @@ def online_event_embed(message):
         if len(selected_event) > 0:
             for item in online_events_dict:
                 if selected_event[0] in online_events_dict[item]["aliases"]:
-                    tour = online_events_dict[item]    #este "tour" é o evento selecionado pelo user, após verificações
+                    tour = online_events_dict[item]    #"tour" represents the event selected by the user
                     break
             embed = discord.Embed(title=tour["name"])
             embed.add_field(name="Data", value=tour["date"])
@@ -61,18 +74,74 @@ def online_event_embed(message):
             #embed.add_field(name="Top 8", value="🥈 " + tour["top_3"][0] + "\n" + "🥉 " + tour["top_3"][1], inline=True)
             embed.add_field(name="Top 8", value=top_8_string, inline=True)
             embed.add_field(name="Brackets", value=tour["brackets"], inline=True)
-            embed.set_footer(text="Organizadores: " + tour["organizers"])
+            embed.set_footer(text="Organizers: " + tour["organizers"])
             if "poster" in tour.keys():
                 embed.set_image(url=tour["poster"])
             return embed
-    
+
+#WIP
+def exhibitions_embed(message):
+    players = message.split(", ")
+    if len(players) == 1:
+        #Lists every exhibition match from the selected player
+        exh_list = []
+        exh_page = []
+        match_string = ""
+        date_string = ""
+        counter = 0
+        embed = discord.Embed(title="Exhibition Matches including " + players[0])
+        for i in exhibitions_dict:
+            if players[0] in exhibitions_dict[i]["p1"][0]: #or exhibitions_dict[i]["p2"][0]:
+                match_string = match_string + exhibitions_dict[i]["title"] + "\n"
+                date_string = date_string + exhibitions_dict[i]["subdate"] + "\n"
+                counter += 1
+                if len(exh_page) == 10:
+                    embed.add_field(name="Match", value=match_string)
+                    embed.add_field(name="Date", value=date_string, inline=True)
+                    exh_list.append(exh_page)
+                    exh_page = []
+        if counter == 0:
+            print("This player doesn't have an exhibition match!")
+        else:
+            embed.add_field(name="Match", value=match_string)
+            embed.add_field(name="Date", value=date_string, inline=True)
+            exh_list.append(embed)
+            return exh_list
+
+    else:
+        #searches every exhibiton match containing the selected players (WIP)
+        return
+
+#This embed will list all of the exhibition matches
+def all_exhibitions_embed():
+
+    exh_list = []
+    exh_page = []
+    match_string = ""
+    date_string = ""
+    embed = discord.Embed(title="EXHIBITION MATCHES")
+    for i in exhibitions_dict:
+        match_string = match_string + exhibitions_dict[i]["title"] + "\n"
+        date_string = date_string + exhibitions_dict[i]["subdate"] + "\n"
+        
+        if len(exh_page) == 10:
+            embed.add_field(name="Match", value=match_string)
+            embed.add_field(name="Date", value=date_string, inline=True)
+            exh_list.append(exh_page)
+            exh_page = []
+    embed.add_field(name="Match", value=match_string)
+    embed.add_field(name="Date", value=date_string, inline=True)
+    exh_list.append(embed)
+    return exh_list 
+
+#Creates the embed that will be displayed on Discord for admins to edit an existing event
 def edit_event_embed():
 
     count = 0
     num = 1
     tourneys_array = []
     embed_array = []
-    embed = discord.Embed(title="LISTA DE TORNEIOS OFFLINE")
+    embed = discord.Embed(title="OFFLINE TOURNAMENT LIST")
     embed_content_name = ""
     with open("events.json", 'r',encoding='utf8') as f:
         tourneys_dict = json.load(f)
@@ -83,22 +152,23 @@ def edit_event_embed():
             count += 1
             num += 1
             if count == 10:
-                embed.add_field(name="Escolhe o torneio que desejas editar:", value=embed_content_name)
+                embed.add_field(name="Pick the event that you wish to edit:", value=embed_content_name)
                 embed.set_image(url="https://tekkenportugal.com/wp-content/uploads/2018/12/liga-ptfighters-finais-2018-banner.jpg")
                 embed_array.append(embed)
                 embed_content_name = ""
-                embed = discord.Embed(title="LISTA DE TORNEIOS OFFLINE")
+                embed = discord.Embed(title="OFFLINE TOURNAMENT LIST")
                 count = 0
-        embed.add_field(name="Escolhe o torneio que desejas editar:", value=embed_content_name)
+        embed.add_field(name="Pick the event that you wish to edit:", value=embed_content_name)
         embed.set_image(url="https://tekkenportugal.com/wp-content/uploads/2018/12/liga-ptfighters-finais-2018-banner.jpg")
         embed_array.append(embed)
     return embed_array
 
+#Creates an embed that will be displayed on Discord to allow the admin to pick the parameter of the event they would like to edit
 def edit_event_parameter_embed():
 
-    embed = discord.Embed(title="SELEÇÃO DE PARÂMETRO A EDITAR")
-    embed_content = "1- Nome do Evento\n2- Data do Evento\n3- Siglas/Aliases\n4- Bracket Link\n5- VODs\n6- Poster do Evento\n7- Localização do eventon\n8- Vencedor do Evento\n9- Top 3\n10- Organizadores"
-    embed.add_field(name="Escolhe o número do parâmetro que desejas editar", value=embed_content)
+    embed = discord.Embed(title="EVENT EDITING")
+    embed_content = "1- Event Name\n2- Event Date\n3- Aliases\n4- Bracket Link\n5- VODs\n6- Event Poster\n7- Event location\n8- Winner\n9- Top 3\n10- Organizers"
+    embed.add_field(name="Select the number of the parameter you wish to edit:", value=embed_content)
     return embed
 
 class event:

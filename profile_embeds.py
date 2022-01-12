@@ -10,6 +10,7 @@ import time
 
 profileIndex_id = {}
 profileIndex_name = {}
+#Creates two dictionaries where the main keys are the player name and the Discord user ID, since these two parameters will be the most important to manage profiles
 with open('profiles.json','r',encoding='utf8') as f:
     profiles = json.load(f)
     for p in profiles:
@@ -27,7 +28,7 @@ all_characters = ["Anna", "Armor King", "Shaheen", "Alisa", "Asuka", "Bob", "Bry
                   "Akuma", "Geese", "Noctis", "Josie", "Nina", "Negan", "Leroy", "Fahkumram", "Panda", "Paul", "Steve", "Xiaoyu", "Yoshimitsu", 
                   "Zafina"]
 
-#Função que vai encontrar o profile desejado
+#This function will search for and return the desired profile
 def find_profile(message):
     if message in profileIndex_name.keys():
         return profileIndex_name[message]
@@ -35,14 +36,14 @@ def find_profile(message):
         print("Unexistent profile!")
         return 0
 
-#Função que vai criar um novo profile
+#This function creates a new profile for the user
 def create_profile(user_id, message):
-    # verificar se existe algum profile com o id do utilizador
+    # Checks if this user already has a profile on the database using their Discord user ID
     if user_id in profileIndex_id.keys():
         print("A profile for this user already exists!")
         return 0
 
-    #cria o profile from scratch
+    #Creates a new profile from scratch
     new_profile = {}
     new_profile["player_name"] = message
     new_profile["user_id"] = user_id
@@ -52,32 +53,32 @@ def create_profile(user_id, message):
         json.dump(profileIndex_id, f, indent=4)
     return 1
 
-#adiciona thumbnail
+#Adds a thumbnail to the profile that will be displayed on Discord
 def add_thumbnail(message, user_id):
 
-    with open('tekken_icons.json', 'r', encoding='utf8') as f:
+    with open('tekken_icons.json', 'r', encoding='utf8') as f:  #this file contains links for .png icons
         tekken_icons = json.load(f)
         icons_list = list(tekken_icons.keys())
         check_thumb = difflib.get_close_matches(message, icons_list)
-        #Verifica se existe thumbnail para a character, caso afirmativo adiciona a thumbnail ao perfil associado
+        #Checks if the thumbnail chosen by the user exists on the characters database list 
         if len(check_thumb) > 0 :
             if check_thumb[0] in tekken_icons.keys():               
                 profileIndex_id[user_id]["thumbnail"] = tekken_icons[check_thumb[0]]
                 name = profileIndex_id[user_id]["player_name"].lower()
                 profileIndex_name[name]["thumbnail"] = tekken_icons[check_thumb[0]]
 
-                #Cria uma key para a main character
+                #Creates a main_character key in the user's dictionary
                 main_character = difflib.get_close_matches(message.capitalize(), all_characters)
                 if len(main_character) > 0:
                     profileIndex_id[user_id]["main_character"] = main_character[0]
                     profileIndex_name[name]["main_character"] = main_character[0]
                     
-                    #Se a nova main character estiver anteriormente definida como sub, remove-a da lista de subs
+                    #If the new main character already is part of the "Sub-Characters" list, it will be removed from the latter
                     if "sub_characters" in profileIndex_id[user_id].keys():
                         for sub_character in profileIndex_id[user_id]["sub_characters"]:
                             if main_character[0] == sub_character:
                                 profileIndex_id[user_id]["sub_characters"].remove(sub_character)
-                                #Apaga a key de subs na situação de a sub character removida deixar a lista vazia
+                                #If the act of removing the sub-character empties the "Sub-Characters" list, then it removes the sub_characters key
                                 if len(profileIndex_id[user_id]["sub_characters"]) == 0:
                                     del profileIndex_id[user_id]["sub_characters"]
 
@@ -88,7 +89,7 @@ def add_thumbnail(message, user_id):
                 print("Character not found!")
                 return 0
 
-# Adiciona o max rank
+# Adds max rank to the user profile
 def add_max_rank(message, user_id):
 
     final_rank = difflib.get_close_matches(message.upper(), all_ranks)
@@ -104,20 +105,22 @@ def add_max_rank(message, user_id):
         print("Rank not found!")
         return 0
 
-# Adiciona sub characters
+# Adds characters to a Sub-Characters list (other characters played by the user that isn't the main character)
 def add_sub_characters (message, user_id):
     
     subs_array = message.split(",")
     final_sub_characters = []
+    #The maximum number of sub-characters is set to 3
     if len(subs_array) > 3:
         print("Sub characters limit exceeded")
         return 0
     else:
+        #Checks if there already is a key for the Sub-Characters list and attributes it to a variable in case there is
         if "sub_characters" in profileIndex_id[user_id].keys():
             final_sub_characters = profileIndex_id[user_id]["sub_characters"].copy()
         else:
-            profileIndex_id[user_id]["sub_characters"] = []
-        # Verifica se as characters introduzidas pelo utilizador existem na database (lista de characters do jogo)
+            profileIndex_id[user_id]["sub_characters"] = [] #Otherwise it creates a new Sub-Characters list
+        #Checks if the chosen character exists within the character's database (the variable all_characters)
         for x in range(len(subs_array)):
             if(len(final_sub_characters)) == 3:
                 return 0
@@ -129,12 +132,13 @@ def add_sub_characters (message, user_id):
                     final_sub_characters.append(check_char_existence[0])
             else:
                 return 2
-        #Verifica se as characters introduzidas pelo utilizador são ou não a main character
+        #Checks if any of the characters chosen by the user are already set as the main character
         for y in final_sub_characters:
             if y == profileIndex_id[user_id]["main_character"]:
-                final_sub_characters.remove(y)
+                final_sub_characters.remove(y)  #removes the character that is set as the main_character from the Sub-Characters list
                 return -1
 
+        #Overwrites the dictionaries with the new information
         profileIndex_id[user_id]["sub_characters"] = final_sub_characters
         name = profileIndex_id[user_id]["player_name"].lower()
         profileIndex_name[name]["sub_characters"] = final_sub_characters
@@ -143,12 +147,12 @@ def add_sub_characters (message, user_id):
             json.dump(profileIndex_id, f, indent=4)
         return 1
 
-#Remove sub characters
+#Removes characters from the Sub-Characters list
 def remove_sub_characters(message, user_id):
 
     subs_post_removal = []
     subs_post_removal = profileIndex_id[user_id]["sub_characters"]
-    #Procura matches entre a mensagem e a lista de chars, e em seguida remove a char que tenha dado match da lista de subs
+    #Searches for a match between user input and the all_characters list, and then removes the selected character from Sub-Characters list
     sub_compare = difflib.get_close_matches(message.capitalize(), all_characters)
     if len(sub_compare) > 0:
         if sub_compare[0] in subs_post_removal:
@@ -160,7 +164,7 @@ def remove_sub_characters(message, user_id):
     profileIndex_id[user_id]["sub_characters"] = subs_post_removal
     name = profileIndex_id[user_id]["player_name"].lower()
     profileIndex_name[name]["sub_characters"] = subs_post_removal
-    #Apaga a key "sub_characters" caso deixem de existir subs após a remoção
+    #Deletes the key "sub_characters" in case the Sub-Characters list is empty after removal
     if len(profileIndex_id[user_id]["sub_characters"]) == 0:
         del profileIndex_id[user_id]["sub_characters"]
     
@@ -169,11 +173,11 @@ def remove_sub_characters(message, user_id):
     return 1
 
 
-#Adiciona social media do jogador
+#Adds player social media to their profile
 def add_social_media(message,user_id):
 
-    #Este pattern dá match com os nomes do site -> Twitter, YouTube, Instagram, Twitch...
-    pattern = "^(?:http)?s?(?:://)?(?:www\.)?([A-Za-z0-9]*)\.(?:[A-Za-z0-9]*)\/(?:.*)$"
+    # This regex pattern finds the social media name based on the user's input (social media link)
+    pattern = "^(?:http)?s?(?:://)?(?:www\.)?([A-Za-z0-9]*)\.(?:[A-Za-z0-9]*)\/(?:.*)$" 
     match = re.search(pattern, message)
     if not match:
         return -1
@@ -195,7 +199,7 @@ def add_social_media(message,user_id):
         json.dump(profileIndex_id, f, indent=4)
     return 0
 
-#Remove a social media do jogador
+#Removes player's social media from their profile
 def remove_social_media(msg, user_id):
     social_list =  []
     social_compare_list = []
@@ -203,18 +207,18 @@ def remove_social_media(msg, user_id):
         social_list = profileIndex_id[user_id]["social_media"]
         if len(social_list) > 0:
             for social_media_item in social_list:
-                #Verifica se o item (link) da social media tem um nome reconhecivel através do pattern em regex (p.ex. twitter, twitch, youtube)
+                #Checks if the social media item link has a name that obeys the regex pattern
                 pattern = "^(?:http)?s?(?:://)?(?:www\.)?([A-Za-z0-9]*)\.(?:[A-Za-z0-9]*)\/(?:.*)$"
                 match = re.search(pattern, social_media_item)
                 if match:
                     final_match = match.group(1)
-                    social_compare_list.append(final_match)     #cria uma list das possiveis social medias para comparar com a mensagem
+                    social_compare_list.append(final_match)     #Creates a social media list (by name) to compare with the user message
             all_socials = difflib.get_close_matches(msg, social_compare_list)
             if len(all_socials) > 0:
                 new_msg = all_socials[0]
-                social_list.pop(social_compare_list.index(new_msg))
+                social_list.pop(social_compare_list.index(new_msg)) #Removes the social media link from the list 
             else:
-                return 0        #este retorno serve para dizer à CHYNA que a social media a remover não existe no perfil do utilizador
+                return 0        
 
             profileIndex_id[user_id]["social_media"] = social_list
             name = profileIndex_id[user_id]["player_name"].lower()
@@ -225,13 +229,13 @@ def remove_social_media(msg, user_id):
 
             with open('profiles.json', 'w', encoding='utf8') as f:
                 json.dump(profileIndex_id, f, indent=4)
-            return 1        #este retorno serve para dizer à CHYNA que a remoção da social media indicada foi successful
+            return 1
         else:
-            return -1       #este retorno serve para dizer à CHYNA que não foram encontradas social medias at all
+            return -1 
     else:
-        return -1       #este retorno serve para dizer à CHYNA que não foram encontradas social medias at all
+        return -1
 
-#Função que altera o player name
+#This function changes the player name that is displayed on their profile
 def name_change(msg, user_id):
 
     profileIndex_id[user_id]["player_name"] = msg
@@ -239,7 +243,7 @@ def name_change(msg, user_id):
     with open('profiles.json', 'w', encoding='utf8') as f:
         json.dump(profileIndex_id, f, indent=4)
 
-#Função que adiciona uma brief description do player
+#This function allows the user to write a short description about themselves
 def description(msg, user_id):
 
     max_characters = 250
@@ -254,7 +258,7 @@ def description(msg, user_id):
             json.dump(profileIndex_id, f, indent=4)
         return 1
 
-#Função que adiciona tournament results
+#This function allows the user to add their tournament results to their profile
 def tournament_results(msg, user_id):
     
     accolades_list = []
@@ -274,7 +278,7 @@ def tournament_results(msg, user_id):
     with open('profiles.json', 'w', encoding='utf8') as f:
         json.dump(profileIndex_id, f, indent=4)
 
-#Função que adiciona uma E-Sports Team
+#This function allows the player to add their E-Sports team to their profile, in case they have one
 def set_esports_team(message,user_id):
 
     final_esports_team = message.upper()
@@ -285,7 +289,7 @@ def set_esports_team(message,user_id):
     with open('profiles.json', 'w', encoding='utf8') as f:
         json.dump(profileIndex_id, f, indent=4)
 
-#Função que remove uma E-Sports Team
+#Removes the E-Sports team from the player's profile
 def remove_esports_team(user_id):
 
     if "esports_team" in profileIndex_id[user_id].keys():
@@ -313,7 +317,7 @@ def remove_tournament_results_final(number, user_id):
         json.dump(profileIndex_id, f, indent=4)
     return 1
 
-#Pick top 3 tournament results
+#This function presents an interface for the user to choose their three favorite achievements
 def pick_tournament_results_interface(accolades_list):
 
     accolades_menu = ""
@@ -324,7 +328,7 @@ def pick_tournament_results_interface(accolades_list):
 
     return embed
 
-#Coloca as picks do user nos primeiros indices de uma nova lista, preenche os restantes
+#This function helps create a list of accolades sorted by the top (up to) three picks first and then followed by the rest
 def pick_accolades_final(numbers, user_id):
 
     accolades_list = profileIndex_id[user_id]["accolades"]
@@ -332,16 +336,17 @@ def pick_accolades_final(numbers, user_id):
 
     if len(numbers) > 3:
         return 0
-    #Dá-nos os indices das accolades no json que pretendemos colocar nos primeiros 1,2 ou 3 da nova lista (aka os top results)
+
     while True:
         try:
+            #This cycle turns the chosen numbers by the user into the list indexes
             for i in range(len(numbers)):
                 numbers[i] = int(numbers[i])
                 numbers[i] = numbers[i] - 1
-            #Procura adicionar o conteudo da lista c/ os indexes desejados numa nova lista
+            #First, adds the desired accolades into the new list
             for j in numbers:
                 new_accolades.append(accolades_list[j])
-            #Adiciona os restantes elementos da lista de accolades na nova lista
+            #Then adds the rest of the accolades that follow
             for k in range(len(accolades_list)):
                 if k not in numbers:
                         new_accolades.append(accolades_list[k])
@@ -360,7 +365,7 @@ def pick_accolades_final(numbers, user_id):
         except IndexError:
             return -2
 
-#Cria um embed para uma nova página apenas de tournament results
+#Creates an embed to be displayed on Discord filled with the player's tournament results
 def tournament_results_embed(message):
 
     final_profile = find_profile(message)
@@ -379,7 +384,7 @@ def tournament_results_embed(message):
     else:
         return 0
 
-#Cria lista de accolades com números para a edição dos accolades existentes
+#Creates a new accolades list; This one differs from the original one by adding a number to the beginning of each item to allow editing
 def tournament_results_list(user_id):
 
     accolades_list = profileIndex_id[user_id]["accolades"]
@@ -393,7 +398,7 @@ def tournament_results_list(user_id):
 
     return accolades_final
 
-#Cria embed de interface ao utilizador (Editar Tournament Result)
+#Creates an embed to be displayed on Discord for editing tournament results
 def edit_tournament_results_interface(accolades_list):
 
     accolades_menu = ""
@@ -404,7 +409,7 @@ def edit_tournament_results_interface(accolades_list):
 
     return embed
 
-#Faz a edição e update do json dos tournament results
+#This function allows editing of the player's tournament results
 def edit_tournament_results_final(new_msg, number, user_id):
 
     number = number - 1
@@ -420,7 +425,7 @@ def edit_tournament_results_final(new_msg, number, user_id):
         json.dump(profileIndex_id, f, indent=4)
     return 1
 
-#Cria interface ao utilizador (Remover Tournament Result)
+#Creates an embed to be displayed on Discord to help the player remove a tournament result
 def remove_tournament_results_interface(accolades_list):
 
     accolades_menu = ""
@@ -431,7 +436,7 @@ def remove_tournament_results_interface(accolades_list):
 
     return embed
 
-#adiciona vods ao profile
+#This function allows the player to add videos of them playing to their user profile
 def add_vods(vod_link, user_id):
 
     temp_vods = []
@@ -448,6 +453,7 @@ def add_vods(vod_link, user_id):
             pass
         else:
             return 0
+    #Using Selenium, the program tries to obtain the video title by opening the browser (server side)
     driver = webdriver.Chrome()
     cookies_clicked = False
     if "vods" in profileIndex_id[user_id].keys():
@@ -455,18 +461,20 @@ def add_vods(vod_link, user_id):
     for vod in vod_list:
         driver.get(vod)
         try:
+            #Allows YouTube cookies request, otherwise the program can not get to the video title
             if not cookies_clicked:
                 cookies_button = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//*[@id='yDmH0d']/c-wiz/div/div/div/div[2]/div[1]/div[4]/form/div[1]/div/button")))
                 cookies_button.click()
                 cookies_clicked = True
         except:
-            print("vc demorou mt tempo a carregar")
+            print("Worked!")
         try:
+            #Gets the video title and adds to the user VODs list
             vod_name = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//*[@id='container']/h1/yt-formatted-string")))
             vod_to_add = "[" + vod_name.text + "](" + vod + ")"
             temp_vods.append(vod_to_add)
         except:
-            print("bo$$y")
+            print("Worked!")
         
         profileIndex_id[user_id]["vods"] = temp_vods
         name = profileIndex_id[user_id]["player_name"].lower()
@@ -477,6 +485,7 @@ def add_vods(vod_link, user_id):
         json.dump(profileIndex_id, f, indent=4)
     return 1
 
+#Creates an embed to be displayed on Discord with the player's VODs
 def vods_page(message):
 
     final_profile = find_profile(message)
@@ -494,7 +503,7 @@ def vods_page(message):
     else:
         return 0
 
-#Retorna a lista de vods do player em forma de string para display no embed
+#Returns the VODs list of a player in string format rather than list for easier display on Discord
 def vods_list(user_id):
 
     if "vods" in profileIndex_id[user_id].keys():
@@ -511,7 +520,7 @@ def vods_list(user_id):
     else:
         return 0
 
-#Retorna o embed da interface para a funcionalidade de remoção de VODs
+#Creates an embed to be displayed on Discord that will allow the user to remove VODs from their profile
 def remove_vods_interface(user_id):
 
     vods_menu = vods_list(user_id)
@@ -526,7 +535,7 @@ def remove_vods_interface(user_id):
 
     return embed
 
-#Verifica se o número selecionado pelo utilizador é legitimo e efetua a remoção do VOD
+#Checks if the number selected by the user exists and deletes the selected VOD if positive
 def remove_vods_final(number, user_id):
 
     number = number - 1
@@ -538,42 +547,42 @@ def remove_vods_final(number, user_id):
             if i == number:
                 vods_list.remove(vods_list[i])
                 if len(vods_list) == 0:
-                    del profileIndex_id[user_id]["vods"]
+                    del profileIndex_id[user_id]["vods"]    #deletes the VOD key in case there are no VODs left
 
     with open('profiles.json', 'w', encoding='utf8') as f:
         json.dump(profileIndex_id, f, indent=4)
     return 1
 
-#função que vai criar o embed do perfil encontrado
+#This function will create the embed that will be displayed on Discord for the user profiles
 def profile_embed(message):
     final_profile = find_profile(message)
 
-   #Cria o embed c/ player name
+   #Creates the profile by adding player name to it and E-Sports team if it exists
     if "esports_team" in final_profile.keys():
         embed = discord.Embed(title=final_profile["esports_team"] + " | " + final_profile["player_name"])
     else:
         embed = discord.Embed(title=final_profile["player_name"])
 
-    #Adiciona a thumbnail caso exista
+    #Adds a thumbnail in case the player selected one
     if "thumbnail" in final_profile.keys():
         embed.set_thumbnail(url=final_profile["thumbnail"])
     
-    #Adiciona max rank caso exista
+    #Adds max rank in case the player selected it
     if "max_rank" in final_profile.keys():
         embed.add_field(name="SEASON 4 MAX RANK", value=final_profile["max_rank"],inline=True)
     
-    #Adiciona sub characters caso existam
+    #Adds sub-characters in case they exist
     if "sub_characters" in final_profile.keys():
         sub_char_embed = ""
         for sub_character in final_profile["sub_characters"]:
             sub_char_embed = sub_char_embed + "\n" + sub_character
         embed.add_field(name="SUB-CHARACTERS",value=sub_char_embed,inline=True)
 
-    #Adiciona uma breve descrição do jogador
+    #Adds a brief description of a player
     if "description" in final_profile.keys():
         embed.add_field(name="ABOUT THE PLAYER", value=final_profile["description"], inline=False)
     
-    #Adiciona social media caso exista
+    #Adds a social media in case it exists
     if "social_media" in final_profile.keys():
         if len(final_profile["social_media"]) > 0:
             social_media_string = ""
@@ -585,7 +594,7 @@ def profile_embed(message):
                 social_media_string += "[" + final_match.capitalize() + "]" + "(" + s + ")" + "\n"
             embed.add_field(name=final_profile["player_name"] + "'s Social Media", value=(social_media_string), inline=False)
 
-    #Adiciona tournament results e outros accomplishments caso existam
+    #Adds tournament results and other accolades in case they exist
     if "accolades" in final_profile.keys():
         accolades_final_list = final_profile["accolades"]
         accolades_string = ""
